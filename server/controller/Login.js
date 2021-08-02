@@ -5,6 +5,7 @@ import uniqid from 'uniqid'
 import mailJet from 'node-mailjet'
 import User from '../Schema/SignUp.js'
 import Code from '../Schema/SecretCode.js'
+import { sendMailToUser } from '../utils/utils.js'
 
 export const Login = (req, res) => {
  if (!req.body.email) {
@@ -41,37 +42,14 @@ export const Login = (req, res) => {
             email: user.email,
             secretCode: uniqid(),
            })
-           newSecretCode.save().then(res => {
-            const sendEmail = mailJet.connect(
-             process.env.EMAIL_API_KEY_PUBLIC,
-             process.env.EMAIL_API_KEY_PRIVATE
-            )
-            const request = sendEmail
-             .post('send', { version: 'v3.1' })
-             .request({
-              Messages: [
-               {
-                From: {
-                 Email: 'oluwatayocodes@gmail.com',
-                 Name: 'Akosile',
-                },
-                To: [
-                 {
-                  Email: user.email,
-                  Name: user.firstname + '' + user.lastname,
-                 },
-                ],
-                Subject: `Hi ${user.firstname} ${user.lastname}`,
-                TextPart: 'My first Mailjet email',
-                HTMLPart: `<h3>Dear ${user.firstname}, Please Verify your account <a href='http://localhost:3000/verify/${user._id}/${res.secretCode}'>Mailjet</a>!</h3><br />May the delivery force be with you!`,
-                CustomID: 'AppGettingStartedTest',
-               },
-              ],
-             })
+
+           newSecretCode.save().then(result => {
+            const verification = `<h3>Dear ${user.firstname}, Please Verify your account <a href='http://localhost:3000/verify/${user._id}/${result.secretCode}'>Mailjet</a>!</h3><br />May the delivery force be with you!`
+
+            sendMailToUser(user.firstname, user.lastname, verification)
+             .then(res => console.log('success', res))
+             .catch(res.status(400).json({ success: false, err: err }))
            })
-           request
-            .then(res => console.log('success', res))
-            .catch(res.status(400).json({ success: false, err: err }))
           })
         }
 

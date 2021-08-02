@@ -9,7 +9,9 @@ import {
  VerifyUserEmail,
 } from '../controller/controller.js'
 import { AuthorizeUser, checkToken } from '../controller/Auth.js'
+/* 
 import { ResendCode } from '../controller/ResendCode.js'
+ */
 route.post('/', NewUser)
 route.post('/login', Login)
 route.post('/validate', isUserLoginsUnique)
@@ -22,7 +24,8 @@ route.get('/authorize', checkToken, AuthorizeUser)
 /* Authorize users */
 
 /* Resend token */
-route.post('/verification/get-activation-email', checkToken, ResendCode)
+/* 
+route.post('/verification/get-activation-email', checkToken, ResendCode) */
 /* Resend token */
 
 export default route

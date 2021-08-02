@@ -6,23 +6,25 @@ import passportLocal from 'passport-local'
 // External
 import passport from 'passport'
 import Code from '../Schema/SecretCode.js'
+import { sendMailToUser ,SecretCodeToUser} from '../utils/utils.js'
 // Config
 
 const LocalStrategy = passportLocal.Strategy
-passport.use(new LocalStrategy({ usernameField: 'email' ,passwordField:'password'}, User.authenticate()))
+passport.use(
+ new LocalStrategy(
+  { usernameField: 'email', passwordField: 'password' },
+  User.authenticate()
+ )
+)
 
 const createNewUser = (req, res) => {
- const secretCode = uniqid()
- // Get the major detials from  user then stores it
- console.log(req.body,'form here')
+ 
+ // Get the major details from  user then stores it
+ console.log(req.body, 'form here')
  const { firstname, lastname, username, email, password } = req.body
  const deleted_on = ''
  const deleted_by = ''
-
- //Verification code initialization
-
- //Verification code initialization
-
+ 
  // USer details
  const form = {
   firstname,
@@ -31,7 +33,7 @@ const createNewUser = (req, res) => {
   email,
   deleted_by,
   deleted_on,
-  secretCode,
+ 
  }
  // User details
 
@@ -44,42 +46,22 @@ const createNewUser = (req, res) => {
    console.log(err)
   } else {
    const { email, firstname, _id } = user
-   console.log(email, secretCode, firstname, _id)
+   console.log(email,SecretCodeToUser(), firstname, _id)
 
    const newSecretCode = new Code({
     email,
-    secretCode,
+    secretCode:SecretCodeToUser()
    })
 
    //Creates a verification code and saves it
    newSecretCode
     .save()
-    .then(() => {
-     const sendEmail = mailJet.connect(
-      process.env.EMAIL_API_KEY_PUBLIC,
-      process.env.EMAIL_API_KEY_PRIVATE
-     )
-     const request = sendEmail.post('send', { version: 'v3.1' }).request({
-      Messages: [
-       {
-        From: {
-         Email: 'oluwatayocodes@gmail.com',
-         Name: 'Akosile',
-        },
-        To: [
-         {
-          Email: email,
-          Name: firstname.toUpperCase(),
-         },
-        ],
-        Subject: `Hi ${firstname}`,
-        TextPart: 'My first Mailjet email',
-        HTMLPart: `<h3>Dear ${firstname}, Please Verify your account <a href='http://localhost:3000/verify/${_id}/${secretCode}'>Mailjet</a>!</h3><br />May the delivery force be with you!`,
-        CustomID: 'AppGettingStartedTest',
-       },
-      ],
-     })
-     request
+    .then(data => {
+     const {secretCode } = data
+     const verification = `
+Please <a href ='http://localhost:3000/verification/verify-account/${user._id}/${secretCode}' >Verify</a> your account      
+      `
+     sendMailToUser(user.firstname, user.lastname, user.email, verification)
       .then(result => {
        console.log(result.body)
        res.status(200).json({ body: `Success ${result}` })
