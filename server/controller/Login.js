@@ -1,11 +1,9 @@
 import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
 import passport from 'passport'
-import uniqid from 'uniqid'
-import mailJet from 'node-mailjet'
-import User from '../Schema/SignUp.js'
 import Code from '../Schema/SecretCode.js'
-import { sendMailToUser } from '../utils/utils.js'
+import User from '../Schema/SignUp.js'
+import { SecretCodeToUser, sendMailToUser } from '../utils/utils.js'
 
 export const Login = (req, res) => {
  if (!req.body.email) {
@@ -40,13 +38,13 @@ export const Login = (req, res) => {
           .then(res => {
            const newSecretCode = new Code({
             email: user.email,
-            secretCode: uniqid(),
+            secretCode: SecretCodeToUser(),
            })
 
            newSecretCode.save().then(result => {
             const verification = `<h3>Dear ${user.firstname}, Please Verify your account <a href='http://localhost:3000/verify/${user._id}/${result.secretCode}'>Mailjet</a>!</h3><br />May the delivery force be with you!`
 
-            sendMailToUser(user.firstname, user.lastname, verification)
+            sendMailToUser(user.firstname, user.lastname, user.email, verification)
              .then(res => console.log('success', res))
              .catch(res.status(400).json({ success: false, err: err }))
            })

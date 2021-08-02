@@ -16,10 +16,11 @@ const NewUser = new Schema({
   enum: ['Pending', 'Active'],
   default: 'Pending',
  },
- dateCreated: {
-  type: Date,
-  default: Date.now(),
- },
+ account:{
+     type:mongoose.Schema.Types.ObjectId,
+     ref : "Account"
+ }
+ 
 })
 NewUser.plugin(passportLocalMongoose, { usernameField: 'email' })
 const User = mongoose.model('User', NewUser)
