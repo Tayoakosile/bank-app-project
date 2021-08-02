@@ -1,5 +1,6 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import useAuth from './auth/useAuth'
 import {
  Dashboard,
  Login,
@@ -18,7 +19,7 @@ const App = () => {
    </Route>
 
    <Route exact path="/login">
-    <Login />
+   <Login /> 
    </Route>
 
    <Route path="/verifyaccount">
@@ -36,9 +37,9 @@ const App = () => {
    <Route exact path="/verification/verify-account/verify-success">
     <VerifySuccess />
    </Route>
-
+   
    <Route exact path="/dashboard">
-    <Dashboard />
+    <Dashboard /> 
    </Route>
 
    <Route exact path="/">

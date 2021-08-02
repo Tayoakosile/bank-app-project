@@ -1,14 +1,19 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { reactLocalStorage } from 'reactjs-localstorage'
 import { axios } from '../api/api'
 import useStore from '../zustand/index'
 
 const useAuth = url => {
+
+ //set user status
+ const [userStatus,setUserStatus] = useState('')
+ //set user status
+
  const { setUserId, userId, setData, email } = useStore(state => state)
  const token = reactLocalStorage.get('userToken', true)
- const { error, isLoading, isSuccess, data, isError } = useQuery(
-  url,
+ const { error, isLoading, isSuccess, data, isError, status } = useQuery(
+  'authorize',
   async () => {
    const { data } = await axios.get('/authorize', {
     headers: {
@@ -25,12 +30,12 @@ const useAuth = url => {
   if (isSuccess) {
    setUserId(data.authorizedData.userId)
    setData(data.authorizedData.email)
-   console.log(data.authorizedData.userId)
+   setUserStatus(data.authorizedData.userStatus)
   }
  }, [isSuccess, setUserId, setData])
  console.log(data)
 
- return { error, isLoading, isSuccess, data, isError, userId, email }
+ return { error, isLoading, isSuccess, data, isError, userId, email,userStatus }
 }
 
 export default useAuth

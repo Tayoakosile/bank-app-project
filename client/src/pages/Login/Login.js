@@ -18,6 +18,10 @@ import useLogin from '../../hooks/useLogin'
 export default function SimpleCard() {
  const history = useHistory()
  const { handleSubmit, register, onSubmit, errors, isValid } = useLogin()
+ const { isSuccess } = useAuth()
+ if (isSuccess) {
+  return <Redirect to="/dashboard"></Redirect>
+ }
  return (
   <Flex minH={'100vh'} align={'center'} justify={'center'} bg="gray.50">
    <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
