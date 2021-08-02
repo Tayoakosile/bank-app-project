@@ -38,7 +38,7 @@ export const Login = (req, res) => {
           .then(res => {
            const newSecretCode = new Code({
             email: user.email,
-            secretCode: SecretCodeToUser(),
+            secretCode: SecretCodeToUser('00Aa',12),
            })
 
            newSecretCode.save().then(result => {

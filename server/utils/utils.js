@@ -1,5 +1,5 @@
 import mailJet from 'node-mailjet'
-import uniqid from 'uniqid'
+import randomize from 'randomatic'
 
 export const sendMailToUser = (firstname, lastname, email, verification) => {
  const sendEmail = mailJet.connect(
@@ -30,6 +30,6 @@ export const sendMailToUser = (firstname, lastname, email, verification) => {
  return request
 }
 
-export const SecretCodeToUser = () => {
- return uniqid()
+export const SecretCodeToUser = (random, length) => {
+ return randomize(random, length)
 }

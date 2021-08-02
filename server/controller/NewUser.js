@@ -46,11 +46,11 @@ const createNewUser = (req, res) => {
    console.log(err)
   } else {
    const { email, firstname, _id } = user
-   console.log(email,SecretCodeToUser(), firstname, _id)
+   console.log(email,SecretCodeToUser('00Aa',12), firstname, _id)
 
    const newSecretCode = new Code({
     email,
-    secretCode:SecretCodeToUser()
+    secretCode:SecretCodeToUser('00Aa',12)
    })
 
    //Creates a verification code and saves it

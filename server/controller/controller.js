@@ -1,6 +1,8 @@
 import Mongoose from 'mongoose'
+import Account from '../Schema/Account.js'
 import Code from '../Schema/SecretCode.js'
 import User from '../Schema/SignUp.js'
+import { SecretCodeToUser } from '../utils/utils.js'
 export const isUserLoginsUnique = async (req, res) => {
  const query = req.query
  console.log(query)
@@ -41,6 +43,21 @@ export const VerifyUserEmail = async (req, res) => {
       email: user.email,
       status: 'active',
      })
+
+     await Code.deleteOne({
+      email: user.email,
+     })
+
+     
+     /* Create a new account number*/
+     const userAccount = new Account({
+       account_number: `kw${SecretCodeToUser('0', 8)}`,
+      })
+      await userAccount.save()
+      /* Create a new account number*/
+
+
+
      res.status(200).json({ success: true, message: 'Code still Valid' })
      console.log('Code still Valid', VerifyCode)
     } else {

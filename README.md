@@ -19,6 +19,15 @@ This repo contains A Bank Webapp in which you
 - Node JS
 - Express js
 - Mongoose
-* MailJet (Service used send email address)
-* Hosted on Heroku
+- MailJet (Service used send email address to user)
+- Hosted on Heroku
 ```
+- USE CASES
+1. User Sign up
+     
+     - Create their entity on the db
+     - Send them a verification email
+
+
+2. User verified
+  - Generate a random account number for them say 10 digits and some Alphabets - EK1093912123 and create the account - must not clash with an existing account.
