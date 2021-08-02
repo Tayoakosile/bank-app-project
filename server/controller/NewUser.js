@@ -6,21 +6,15 @@ import passportLocal from 'passport-local'
 // External
 import passport from 'passport'
 import Code from '../Schema/SecretCode.js'
-import { SendMail } from '../utils/SendMail.js'
 // Config
 
 const LocalStrategy = passportLocal.Strategy
-passport.use(
- new LocalStrategy(
-  { usernameField: 'email', passwordField: 'password' },
-  User.authenticate()
- )
-)
+passport.use(new LocalStrategy({ usernameField: 'email' ,passwordField:'password'}, User.authenticate()))
 
 const createNewUser = (req, res) => {
  const secretCode = uniqid()
  // Get the major detials from  user then stores it
- console.log(req.body, 'form here')
+ console.log(req.body,'form here')
  const { firstname, lastname, username, email, password } = req.body
  const deleted_on = ''
  const deleted_by = ''
@@ -57,11 +51,35 @@ const createNewUser = (req, res) => {
     secretCode,
    })
 
-   //Creates a verification code
+   //Creates a verification code and saves it
    newSecretCode
     .save()
     .then(() => {
-     SendMail()
+     const sendEmail = mailJet.connect(
+      process.env.EMAIL_API_KEY_PUBLIC,
+      process.env.EMAIL_API_KEY_PRIVATE
+     )
+     const request = sendEmail.post('send', { version: 'v3.1' }).request({
+      Messages: [
+       {
+        From: {
+         Email: 'oluwatayocodes@gmail.com',
+         Name: 'Akosile',
+        },
+        To: [
+         {
+          Email: email,
+          Name: firstname.toUpperCase(),
+         },
+        ],
+        Subject: `Hi ${firstname}`,
+        TextPart: 'My first Mailjet email',
+        HTMLPart: `<h3>Dear ${firstname}, Please Verify your account <a href='http://localhost:3000/verify/${_id}/${secretCode}'>Mailjet</a>!</h3><br />May the delivery force be with you!`,
+        CustomID: 'AppGettingStartedTest',
+       },
+      ],
+     })
+     request
       .then(result => {
        console.log(result.body)
        res.status(200).json({ body: `Success ${result}` })
