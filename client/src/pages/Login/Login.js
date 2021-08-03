@@ -11,6 +11,7 @@ import {
  Stack,
  Text,
 } from '@chakra-ui/react'
+import { useState } from 'react'
 import { Redirect, useHistory } from 'react-router'
 import useAuth from '../../auth/useAuth'
 import InputField from '../../components/Input'

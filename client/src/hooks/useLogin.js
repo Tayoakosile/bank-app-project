@@ -1,11 +1,10 @@
 import { useToast } from '@chakra-ui/react'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router'
 import { reactLocalStorage } from 'reactjs-localstorage'
-import { axios, logUserIn } from '../api/api'
+import { postRequestToServer } from '../api/api'
 import useStore from '../zustand'
-import useForceUpdate from './useFocreUpdate'
 
 const useLogin = () => {
  const history = useHistory()
@@ -29,7 +28,7 @@ const useLogin = () => {
  const onSubmit = useCallback(
   async data => {
    try {
-    const form = await logUserIn('/login', data)
+    const form = await postRequestToServer('/login', data)
 
     if (form) {
      const {
@@ -55,7 +54,7 @@ const useLogin = () => {
     console.log(err)
    }
   },
-  [logUserIn, toast, history, setUser]
+  [postRequestToServer, toast, history, setUser]
  )
  return { register, isValid, handleSubmit, onSubmit, errors }
 }

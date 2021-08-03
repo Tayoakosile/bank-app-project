@@ -2,7 +2,7 @@ import { useToast } from '@chakra-ui/react'
 import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
-import { axios, isUserEmailUnique, createNewUser } from '../api/api'
+import { isUserEmailUnique, postRequestToServer } from '../api/api'
 import useStore from '../zustand/index'
 
 const useValidateForm = () => {
@@ -46,12 +46,12 @@ const useValidateForm = () => {
  // Submit form
  const onSubmit = form => {
   if (form) {
-   createNewUser("/",form)
+   postRequestToServer('/', form)
     .then(res => {
      newZustandUser(form.email)
      document.getElementById('myForm').reset()
      reset({ form })
-     clearErrors()
+     clearErrors({ errors })
      toast({
       title: 'Account Successfully created.',
       position: 'top-right',

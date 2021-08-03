@@ -48,10 +48,10 @@ export const VerifyUserEmail = async (req, res) => {
       email: user.email,
      })
 
-     
+
      /* Create a new account number*/
      const userAccount = new Account({
-       account_number: `kw${SecretCodeToUser('0', 8)}`,
+       account_number: `KW${SecretCodeToUser('0', 9)}`,
       })
       await userAccount.save()
       /* Create a new account number*/

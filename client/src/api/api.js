@@ -12,12 +12,14 @@ export const isUserEmailUnique = (url, mode, verify) => {
  return res
 }
 
-export const createNewUser = (url, data) => {
- const res = axios.post(url, data)
- return res
-}
+export const postRequestToServer = (url, data) => {
+ if (data) {
+  const res = axios.post(url, data)
+  return res
+ }
+ else{
+    const res = axios.post(url)
+    return res
 
-export const logUserIn = (url, data) => {
- const res = axios.post(url, data)
- return res
+ }
 }

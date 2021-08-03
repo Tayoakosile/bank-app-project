@@ -26,7 +26,7 @@ const App = () => {
     <VerifyAccount />
    </Route>
 
-   <Route exact path="/verify/:_id/:secretCode">
+   <Route exact path="/verification/verify-account/:_id/:secretCode">
     <VerifiedStatus />
    </Route>
 

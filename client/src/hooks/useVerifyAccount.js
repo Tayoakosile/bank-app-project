@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import useStore from '../zustand/index'
-import axios from '../api/api'
+import axios, { postRequestToServer } from '../api/api'
 import { useParams, useHistory } from 'react-router-dom'
 
 const useVerifyAccount = () => {
@@ -17,21 +17,11 @@ const useVerifyAccount = () => {
  }, [email])
 
  //  Send request to  User details
-
-/*  useEffect(() => {
-  axios
-   .post(`/verification/verify-account/${_id}/${secretCode}`)
-   .then(res => {
-    console.log(res)
-    history.push(`/verification/verify-account/verify-success`)
-   })
-   .catch(err => {
-    console.log(err)
-    history.push(`/verification/verify-account/verify-error`)
-   })
-  //  Send request to Validate User details
- }, [axios]) */
-
+ useEffect(() => {
+  postRequestToServer(`
+  /verification/verify-account/${_id}/${secretCode}`)
+ })
+ 
  return { email }
 }
 
