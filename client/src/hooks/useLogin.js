@@ -29,12 +29,11 @@ const useLogin = () => {
   async data => {
    try {
     const form = await postRequestToServer('/login', data)
-
     if (form) {
      const {
       data: { token },
      } = form
-     setUser(form)
+     /* Make user details available throughout the app*/
      /* Make user details available throughout the app*/
 
      console.log(form)
@@ -44,6 +43,7 @@ const useLogin = () => {
       duration: 3000,
       title: 'Login Successful',
       description: 'Redirecting to Dashboard',
+      isClosable: true,
       onCloseComplete: () => {
        history.push('/dashboard')
       },

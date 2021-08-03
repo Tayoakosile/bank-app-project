@@ -6,7 +6,7 @@ const SecretCode = new Schema({
  secretCode: { type: String, required: true, unique: true },
  createdAt: { type: Date, default: Date.now() },
 })
-SecretCode.index({ createdAt: 1 }, { expireAfterSeconds: 120})
+SecretCode.index({ createdAt: 1 }, { expireAfterSeconds: 540})
 
 
 const Code = mongoose.model('Code', SecretCode)

@@ -19,7 +19,7 @@ const App = () => {
    </Route>
 
    <Route exact path="/login">
-   <Login /> 
+    <Login />
    </Route>
 
    <Route path="/verifyaccount">
@@ -37,9 +37,9 @@ const App = () => {
    <Route exact path="/verification/verify-account/verify-success">
     <VerifySuccess />
    </Route>
-   
+
    <Route exact path="/dashboard">
-    <Dashboard /> 
+    <Dashboard title="title" stat="sta" />
    </Route>
 
    <Route exact path="/">

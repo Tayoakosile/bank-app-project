@@ -23,10 +23,10 @@ This repo contains A Bank Webapp in which you
 - Hosted on Heroku
 ```
 - USE CASES
-1. User Sign up
+1. User Signs up
      
-     - Create their entity on the db
-     - Send them a verification email
+     - Create users entity on the db
+     - Send user a verification email 
 
 
 2. User verified

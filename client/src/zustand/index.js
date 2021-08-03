@@ -9,7 +9,7 @@ const useStore = create(set => ({
 
  setData: data => set({ email: data }),
 
- setUser: user => set({ user }),
+ setUser: user => set({ user: user }),
  setUserId: status => set({ userId: status }),
  setUserAuthorized: status => set({ isUserAuthorized: status }),
 }))

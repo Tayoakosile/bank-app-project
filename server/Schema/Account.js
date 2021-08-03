@@ -3,11 +3,10 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const AccountSchema = new Schema({
- account_number: { type: String, unique: true, required: true },
+ account_number: String,
  balance: { type: Number, default: 0 },
- last_updated: { type: Date, default: Date.now() },
- created_on: { type: Date, default: Date.now() },
-})
+ 
+},{timestamps:true})
 
 const Account = mongoose.model('Account', AccountSchema)
 export default Account

@@ -1,5 +1,6 @@
 import mailJet from 'node-mailjet'
 import randomize from 'randomatic'
+import Code from '../Schema/SecretCode.js'
 
 export const sendMailToUser = (firstname, lastname, email, verification) => {
  const sendEmail = mailJet.connect(
@@ -32,4 +33,12 @@ export const sendMailToUser = (firstname, lastname, email, verification) => {
 
 export const SecretCodeToUser = (random, length) => {
  return randomize(random, length)
+}
+export const NewSecretCode = (email) => {
+ const newSecretCode = new Code({
+  email,
+  secretCode: SecretCodeToUser('0as', 12),
+ })
+
+ return newSecretCode.save()
 }

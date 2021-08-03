@@ -5,12 +5,11 @@ import { axios } from '../api/api'
 import useStore from '../zustand/index'
 
 const useAuth = url => {
-
- //set user status
- const [userStatus,setUserStatus] = useState('')
  //set user status
 
- const { setUserId, userId, setData, email } = useStore(state => state)
+ //set user status
+
+ const { setUserId, userId, setData, email, setUser } = useStore(state => state)
  const token = reactLocalStorage.get('userToken', true)
  const { error, isLoading, isSuccess, data, isError, status } = useQuery(
   'authorize',
@@ -30,12 +29,20 @@ const useAuth = url => {
   if (isSuccess) {
    setUserId(data.authorizedData.userId)
    setData(data.authorizedData.email)
-   setUserStatus(data.authorizedData.userStatus)
+   setUser(data)
   }
- }, [isSuccess, setUserId, setData])
+ }, [])
  console.log(data)
 
- return { error, isLoading, isSuccess, data, isError, userId, email,userStatus }
+ return {
+  error,
+  isLoading,
+  isSuccess,
+  data,
+  isError,
+  userId,
+  email,
+ }
 }
 
 export default useAuth
