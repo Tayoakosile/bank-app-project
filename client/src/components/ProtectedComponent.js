@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router'
 import useAuth from '../auth/useAuth'
 
@@ -14,7 +14,7 @@ const ProtectedComponent = ({ children }) => {
  }
  return (
   <>
-   {userStatus === 'active' ? (
+   {userStatus   === 'active' ? (
     <>{children}</>
    ) : (
     <Redirect to="/verifyaccount"></Redirect>
