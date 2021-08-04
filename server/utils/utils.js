@@ -13,7 +13,7 @@ export const sendMailToUser = (firstname, lastname, email, verification) => {
    {
     From: {
      Email: 'oluwatayocodes@gmail.com',
-     Name: 'Akosile',
+     Name: 'Akosile from KweeqFundz',
     },
     To: [
      {
@@ -30,12 +30,12 @@ export const sendMailToUser = (firstname, lastname, email, verification) => {
  })
  return request
 }
-
+/* Generate random codes */
 export const SecretCodeToUser = (random, length) => {
  return randomize(random, length)
 }
-export const NewSecretCode = (email) => {
- const newSecretCode = new Code({
+export const NewSecretCode = (Schema, email) => {
+ const newSecretCode = new Schema({
   email,
   secretCode: SecretCodeToUser('0as', 12),
  })

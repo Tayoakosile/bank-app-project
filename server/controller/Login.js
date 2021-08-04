@@ -28,7 +28,6 @@ export const Login = (req, res) => {
       res.status(404).send('Incorrect username or Password')
      } else {
       req.login(user, function (err) {
-       console.log(user)
        if (err) {
         console.log('Error:', 'One more error', err)
         res.status(404).json({ success: false, message: err })
@@ -46,12 +45,12 @@ export const Login = (req, res) => {
            success: true,
            user: result,
            message: `Authentication successful`,
-           token: token,
+           token: `kkdkdkdkdkdkd${token}`,
           })
-
+          /* 
           console.log('Sign in successful', token)
 
-          console.log('result', result)
+          console.log('result', result) */
          })
          .catch(err => console.log(err))
 
@@ -60,20 +59,20 @@ export const Login = (req, res) => {
          User.findById({
           _id: mongoose.Types.ObjectId(`${user._id}`),
          })
-          .then(res => Code.deleteOne({ email: res.email }))
           .then(res => {
-           NewSecretCode(user.email).then(result => {
-            const verification = `<h3>Dear ${user.firstname}, Please Verify your account <a href='http://localhost:3000/verification/verify-account/${user._id}/${result.secretCode}'>Mailjet</a>!</h3><br />May the delivery force be with you!`
+           console.log(res.email)
+           const checkCode =    Code.exists({ email: 'sss' })
+           if(checkCode ){
+             console.log('User found', checkCode )
+            }
+            else{
+             console.log('User not found' )
 
-            sendMailToUser(
-             user.firstname,
-             user.lastname,
-             user.email,
-             verification
-            )
-             .then(res => console.log('success', res))
-             .catch(res.status(400).json({ success: false, err: err }))
-           })
+           }
+          })
+
+          .catch(err => {
+           console.log('code not found', err)
           })
         }
        }

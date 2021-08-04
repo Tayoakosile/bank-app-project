@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken'
 
 export const checkToken = (req, res, next) => {
  const header = req.headers['authorization']
- console.log(req.headers)
  if (typeof header !== 'undefined') {
   const bearer = header.split(' ')
   const token = bearer[1]

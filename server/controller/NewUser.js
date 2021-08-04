@@ -20,22 +20,27 @@ passport.use(
  )
 )
 
-const createNewUser = (req, res) => {
+const createNewUser = async (req, res) => {
  // Get the major details from  user then stores it
  console.log(req.body, 'form here')
- const { firstname, lastname, username, email, password } = req.body
- const deleted_on = ''
- const deleted_by = ''
 
- // USer details
+ try {
+  const { firstname, lastname, username, email, password } = await req.body
+  console.log(req.body)
+  const deleted_on = ''
+  const deleted_by = ''
 
- // User details
- const newAccountNumber = new Account({ account_number: '' })
+  // Create  a new account number
 
- newAccountNumber
-  .save()
-  .then(account => {
-   const { _id } = account
+  const createUserAccountNumber = await new Account({
+   account_number: '',
+  }).save()
+
+  /* If account number was successfully created */
+
+  if (createUserAccountNumber) {
+   const { _id } = createUserAccountNumber
+   console.log(createUserAccountNumber)
    const form = {
     firstname,
     lastname,
@@ -45,46 +50,55 @@ const createNewUser = (req, res) => {
     deleted_by,
     deleted_on,
    }
-   console.log(account)
+   await User.register(form, password, async (err, user) => {
+    if (user) {
+     const { email, firstname, _id } = user
+     console.log(user)
+     /* Creates a new secret code to verify users */
+     const createVerificationCode = await NewSecretCode(Code, email)
+     if (createVerificationCode) {
+      const { secretCode } = createVerificationCode
+      /* Send the verification code to users email account */
+      const verification = `
+     <h2>Hi, ${firstname.toUpperCase()}</h2>,
+<p>Welcome to Kweeqfundz Bank app</p>
+     <p>
+     Please 
+     <a href ='http://localhost:3000/verification/verify-account/${_id}/${secretCode}'>Verify</a>
+     your email address
+     </p>`
 
-   User.register(form, password, (err, user) => {
-    if (err) {
+      /* Send verification code to user */
+      const sendVerificationCodeToUsers = await sendMailToUser(
+       firstname,
+       lastname,
+       email,
+       verification
+      )
+
+      if (sendVerificationCodeToUsers) {
+       res
+        .status(200)
+        .json({ success: true, message: `Your account has been created` })
+      }
+
+      /* Send the verification code to users account */
+     } else {
+      res.status(400).json({ success: false, message: 'Could not send email' })
+     }
+    } else {
+    /* Creates a new secret code to verify users */
      res.status(400).json({
       success: false,
       message: `Your Account could not be created.  ${err}`,
      })
-     console.log(err)
-    } else {
-     const { email, firstname, _id } = user
-     console.log(email, SecretCodeToUser('00Aa', 12), firstname, _id)
-
-     //Creates a verification code and saves it
-     NewSecretCode()
-      .then(data => {
-       const { secretCode } = data
-       const verification = `
-Please <a href ='http://localhost:3000/verification/verify-account/${user._id}/${secretCode}' >Verify</a> your account      
-      `
-       /* Sends verification code to users email account */
-       sendMailToUser(user.firstname, user.lastname, user.email, verification)
-        .then(result => {
-         console.log(result.body)
-         res.status(200).json({ body: `Success ${result}` })
-        })
-        .catch(err => {
-         res.status(400).json({ err: `Error ${err}` })
-         console.log(err)
-        })
-      })
-      .catch(err => res.status(400).json({ success: false, err: err }))
     }
    })
-  })
-  .catch(err => {
-   console.log(err)
-   res.status(400).json({ err })
-  })
+  }
+ } catch (err) {
+  console.log(err)
+  res.status(400).json({ err: err })
+ }
 }
-//Creates a verification code
 
 export default createNewUser
