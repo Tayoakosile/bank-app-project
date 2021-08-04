@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "mjml": "^4.10.2",
     "node-mailjet": "^3.3.4",
     "nodemailer-mailgun-transport": "^2.1.3",
     "passport": "^0.4.1",

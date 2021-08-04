@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { reactLocalStorage } from 'reactjs-localstorage'
 import { axios } from '../api/api'

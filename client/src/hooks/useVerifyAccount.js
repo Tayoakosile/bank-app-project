@@ -17,17 +17,20 @@ const useVerifyAccount = () => {
  }, [email])
 
  //  Send request to  User details
- useEffect(async () => {
-  try {
-   const verifyAccount = await postRequestToServer(
-    `/verification/verify-account/${_id}/${secretCode}`
-   )
-   await setUserStatus(verifyAccount)
-   console.log(verifyAccount)
-  } catch (err) {
-   console.log(err)
+ useEffect(() => {
+  async function fetchData() {
+   try {
+    const verifyAccount = await postRequestToServer(
+     `/verification/verify-account/${_id}/${secretCode}`
+    )
+    await setUserStatus(verifyAccount)
+    console.log(verifyAccount)
+   } catch (err) {
+    console.log(err)
+   }
   }
- }, [postRequestToServer, secretCode, _id])
+  fetchData()
+ }, [ secretCode, _id])
 
  return { email, userStatus }
 }

@@ -11,8 +11,7 @@ import {
  Stack,
  Text,
 } from '@chakra-ui/react'
-import { useState } from 'react'
-import { Redirect, useHistory } from 'react-router'
+import { Link as Navigator, Redirect, useHistory } from 'react-router-dom'
 import useAuth from '../../auth/useAuth'
 import InputField from '../../components/Input'
 import useLogin from '../../hooks/useLogin'
@@ -79,7 +78,9 @@ export default function SimpleCard() {
         justify={'space-between'}
        >
         <Checkbox>Remember me</Checkbox>
-        <Link color={'blue.400'}>Forgot password?</Link>
+        <Link color={'blue.400'} as={Navigator} to="/reset-password">
+         Forgot password?
+        </Link>
        </Stack>
        <Button
         type="submit"

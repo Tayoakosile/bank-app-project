@@ -1,9 +1,10 @@
 import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
-import useAuth from './auth/useAuth'
+import { Route, Switch } from 'react-router-dom'
 import {
  Dashboard,
  Login,
+ ResetPassword,
+ ResetPasswordStatus,
  SignUp,
  VerifiedStatus,
  VerifyAccount,
@@ -36,6 +37,12 @@ const App = () => {
 
    <Route exact path="/verification/verify-account/verify-success">
     <VerifySuccess />
+   </Route>
+   <Route exact path="/reset-password">
+    <ResetPassword />
+   </Route>
+   <Route exact path="/reset-password/:_id/:secretCode">
+    <ResetPasswordStatus />
    </Route>
 
    <Route exact path="/dashboard">

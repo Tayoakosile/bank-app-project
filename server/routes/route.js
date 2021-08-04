@@ -9,12 +9,14 @@ import {
  VerifyUserEmail,
 } from '../controller/controller.js'
 import { AuthorizeUser, checkToken } from '../controller/Auth.js'
-/* 
-import { ResendCode } from '../controller/ResendCode.js'
- */
+/* Resend resend  code */
+
+import ResetPassword from '../controller/ResendCode.js'
+/* Resend resend  code */
 route.post('/', NewUser)
 route.post('/login', Login)
 route.post('/validate', isUserLoginsUnique)
+route.post('/reset-password', ResetPassword)
 
 //verify Email address
 route.post('/verification/verify-account/:_id/:secretCode', VerifyUserEmail)
