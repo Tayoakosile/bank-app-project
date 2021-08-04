@@ -60,20 +60,19 @@ const createNewUser = (req, res) => {
 
      //Creates a verification code and saves it
      NewSecretCode()
-      .save()
       .then(data => {
        const { secretCode } = data
        const verification = `
 Please <a href ='http://localhost:3000/verification/verify-account/${user._id}/${secretCode}' >Verify</a> your account      
       `
-
+       /* Sends verification code to users email account */
        sendMailToUser(user.firstname, user.lastname, user.email, verification)
         .then(result => {
          console.log(result.body)
          res.status(200).json({ body: `Success ${result}` })
         })
         .catch(err => {
-         res.status(400).json({ err: `${err}` })
+         res.status(400).json({ err: `Error ${err}` })
          console.log(err)
         })
       })
