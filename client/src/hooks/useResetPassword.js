@@ -1,32 +1,17 @@
-import React, { useCallback } from 'react'
-import { useForm } from 'react-hook-form'
-import api, { postRequestToServer } from '../api/api'
+import { useState } from 'react'
+import useReactForm from './useReactForm'
 
-const useResendValidationCode = () => {
- const {
-  register,
-  handleSubmit,
-  formState: { errors, isValid, isSubmitting },
-  reset,
- } = useForm({ mode: 'all' })
+const useResetPassword = () => {
+ const { register, errors, isValid, handleSubmit } = useReactForm()
+ const [show, setShow] = useState(false)
+ const [show2, setShow2] = useState(false)
+ const handleClick = () => setShow(!show)
+ const handleClick2 = () => setShow2(!show2)
 
- const RequestPasswordRequest = useCallback(data => {
-  async function findEmail() {
-   try {
-    const resetPassword = await postRequestToServer('/reset-password', data)
-    if (resetPassword) {
-     console.log(resetPassword)
-     console.log(data)
-     reset({ data })
-    }
-   } catch (err) {
-    console.log(err.response)
-   }
-  }
-  findEmail()
- }, [])
-
- return { handleSubmit, register, errors, isValid, RequestPasswordRequest }
+ const resetPassword = password => {
+  console.log(password)
+ }
+ return { register, errors, handleSubmit, show, handleClick, show2, handleClick2 }
 }
 
-export default useResendValidationCode
+export default useResetPassword

@@ -11,7 +11,7 @@ import {
  Image,
  FormErrorMessage,
 } from '@chakra-ui/react'
-import useResetPassword from '../../hooks/useResetPassword'
+import useResetPassword from '../../hooks/useResendValidationCode'
 import useValidateForm from '../../hooks/useValidateForm'
 
 export default function SplitScreen() {

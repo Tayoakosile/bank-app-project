@@ -13,7 +13,8 @@ const ProtectedComponent = ({ children }) => {
   return <Redirect to="/login"></Redirect>
  }
  if (isSuccess) {
-  const { result } = data.authorizedData
+  console.log(data.authorizedData)
+  const { getUserInfo: result } = data.authorizedData
   const { status: UserStatus } = result[0]
   console.log(result)
 

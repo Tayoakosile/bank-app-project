@@ -21,6 +21,8 @@ export const AuthorizeUser = (req, res) => {
    res.sendStatus(403)
   } else {
    //If token is successfully verified, we can send the authorized data
+   console.log(authorizedData)
+
    res.json({
     message: 'Successful log in',
     authorizedData,
