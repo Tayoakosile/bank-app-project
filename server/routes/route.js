@@ -11,7 +11,7 @@ import {
 import { AuthorizeUser, checkToken } from '../controller/Auth.js'
 /* Resend resend  code */
 
-import ResetPassword from '../controller/ResendCode.js'
+import ResetPassword from '../controller/ResetPassword.js'
 /* Resend resend  code */
 route.post('/', NewUser)
 route.post('/login', Login)

@@ -1,18 +1,17 @@
 import {
- Flex,
  Box,
- FormControl,
- FormLabel,
- Input,
- Checkbox,
- Stack,
- Link,
  Button,
+ Flex,
+ FormControl,
+ FormErrorMessage,
+ FormLabel,
  Heading,
+ Input,
+ InputGroup,
+ InputRightElement,
+ Stack,
  Text,
  useColorModeValue,
- InputRightElement,
- InputGroup,
 } from '@chakra-ui/react'
 import useResetPassword from '../../hooks/useResetPassword'
 
@@ -25,6 +24,11 @@ export default function SimpleCard() {
   show2,
   handleClick2,
   errors,
+  isValid,
+  isPasswordSame,
+  password,
+  setShowPassword,
+  resetPassword,
  } = useResetPassword()
 
  return (
@@ -47,7 +51,7 @@ export default function SimpleCard() {
      boxShadow={'lg'}
      p={8}
     >
-     <Stack spacing={4}>
+     <Stack spacing={4} as="form" onSubmit={handleSubmit(resetPassword)}>
       <FormControl id="password" isInvalid={errors.password}>
        <FormLabel>Password</FormLabel>
 
@@ -75,8 +79,13 @@ export default function SimpleCard() {
          </Button>
         </InputRightElement>
        </InputGroup>
+
+       <FormErrorMessage>
+        {errors.password && errors.password.message}
+       </FormErrorMessage>
       </FormControl>
-      <FormControl id="password" isInvalid={errors.confirmPassword}>
+
+      <FormControl id="confirmPassword" isInvalid={errors.confirmPassword}>
        <FormLabel>Confirm Password</FormLabel>
 
        <InputGroup size="md">
@@ -85,16 +94,8 @@ export default function SimpleCard() {
          type={show2 ? 'text' : 'password'}
          placeholder="Confirm password"
          {...register('confirmPassword', {
-          required: 'Password Required',
-          minLength: {
-           value: 6,
-           message:
-            'Short Password are easy to guess, Try one with at least 6 characters ',
-          },
-          pattern: {
-           value: /\d/,
-           message: 'Password must include at least one number',
-          },
+          required: 'Password required',
+          validate: confirmPassword => isPasswordSame(confirmPassword),
          })}
         />
         <InputRightElement width="4.5rem">
@@ -103,27 +104,33 @@ export default function SimpleCard() {
          </Button>
         </InputRightElement>
        </InputGroup>
+       <FormErrorMessage>
+        {errors.confirmPassword && errors.confirmPassword.message}
+       </FormErrorMessage>
+       {errors.confirmPassword &&
+        errors.confirmPassword.type === 'validate' && (
+         <FormErrorMessage>Password doesnt match</FormErrorMessage>
+        )}
       </FormControl>
-      
+
       <Stack spacing={10}>
        <Stack
         direction={{ base: 'column', sm: 'row' }}
         align={'start'}
         justify={'space-between'}
-       >
-       </Stack>
+       ></Stack>
        <Button
         bg={'blue.400'}
         color={'white'}
         _hover={{
-         bg: 'blue.500',
+         bg: 'blue.900',
         }}
+        type="submit"
+        isDisabled={!isValid}
        >
         Reset Password
        </Button>
       </Stack>
-   
-   
      </Stack>
     </Box>
    </Stack>

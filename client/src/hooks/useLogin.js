@@ -19,7 +19,7 @@ const useLogin = () => {
   reset,
   isSubmitting,
   formState: { errors, isValid },
- } = useForm({ mode: 'all' })
+ } = useForm({ mode: 'all'})
 
  //  Rerenders app
 

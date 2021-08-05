@@ -1,4 +1,3 @@
-import React from 'react'
 import { useForm } from 'react-hook-form'
 
 const useReactForm = () => {
@@ -7,9 +6,10 @@ const useReactForm = () => {
   clearErrors,
   handleSubmit,
   reset,
+  getValues,
   setError,
   formState: { errors, isValid, isSubmitting },
- } = useForm()
+ } = useForm({ mode: 'all' })
  return {
   register,
   clearErrors,
@@ -19,6 +19,7 @@ const useReactForm = () => {
   errors,
   isValid,
   isSubmitting,
+  getValues,
  }
 }
 

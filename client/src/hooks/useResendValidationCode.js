@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import api, { postRequestToServer } from '../api/api'
+import { postRequestToServer } from '../api/api'
 
 const useResendValidationCode = () => {
  const {
@@ -8,23 +8,28 @@ const useResendValidationCode = () => {
   handleSubmit,
   formState: { errors, isValid, isSubmitting },
   reset,
- } = useForm({ mode: 'all' })
+ } = useForm({ mode: 'onTouched' })
 
- const RequestPasswordRequest = useCallback(data => {
-  async function findEmail() {
-   try {
-    const resetPassword = await postRequestToServer('/reset-password', data)
-    if (resetPassword) {
-     console.log(resetPassword)
-     console.log(data)
-     reset({ data })
+ const RequestPasswordRequest = useCallback(
+  data => {
+   console.log(data)
+   async function fetchData() {
+    try {
+     const resetPassword = await postRequestToServer('/reset-password', data)
+     if (resetPassword) {
+      console.log(resetPassword)
+      await document.getElementById('resetpasswordform').reset()
+     }
+    } catch (err) {
+     if (err) {
+      console.log(err.response)
+     }
     }
-   } catch (err) {
-    console.log(err.response)
    }
-  }
-  findEmail()
- }, [])
+   fetchData()
+  },
+  [document]
+ )
 
  return { handleSubmit, register, errors, isValid, RequestPasswordRequest }
 }

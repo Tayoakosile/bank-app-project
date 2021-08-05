@@ -22,6 +22,7 @@ export default function SplitScreen() {
    <Flex p={8} flex={1} align={'center'} justify={'center'}>
     <Stack
      as="form"
+     id ="resetpasswordform"
      onSubmit={handleSubmit(RequestPasswordRequest)}
      spacing={4}
      w={'full'}

@@ -5,6 +5,7 @@ import {
  Flex,
  FormControl,
  FormErrorMessage,
+ FormHelperText,
  FormLabel,
  Heading,
  Link,
@@ -39,11 +40,11 @@ export default function SimpleCard() {
         type="email"
         name="email"
         {...register('email', {
-         required: 'Your Email Address is Required',
+         required: 'Please type in your email address ',
          pattern: {
           value:
            /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/,
-          message: 'Invalid Email Address, Please try again',
+          message: 'Please Enter your email in this format email@xxx.com',
          },
          // validate: {
          //  email: email => handleValidateEmail(email, 'email'),
@@ -67,6 +68,7 @@ export default function SimpleCard() {
          },
         })}
        />
+       
        <FormErrorMessage>
         {errors.password && errors.password.message}
        </FormErrorMessage>
