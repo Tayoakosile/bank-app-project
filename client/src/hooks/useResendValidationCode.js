@@ -7,8 +7,7 @@ const useResendValidationCode = () => {
   register,
   handleSubmit,
   formState: { errors, isValid, isSubmitting },
-  reset,
- } = useForm({ mode: 'onTouched' })
+ } = useForm({ mode: 'all' })
 
  const RequestPasswordRequest = useCallback(
   data => {

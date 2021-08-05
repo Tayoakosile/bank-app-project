@@ -1,17 +1,17 @@
 import {
- Box,
- Button,
- Flex,
- FormControl,
- FormErrorMessage,
- FormLabel,
- Heading,
- Input,
- InputGroup,
- InputRightElement,
- Stack,
- Text,
- useColorModeValue,
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Stack,
+  Text,
+  useColorModeValue
 } from '@chakra-ui/react'
 import useResetPassword from '../../hooks/useResetPassword'
 

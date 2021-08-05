@@ -24,8 +24,25 @@ export const Login = (req, res) => {
      console.log('Error:', err)
     } else {
      if (!user) {
-      console.log('Error:', info)
-      res.status(404).send('Incorrect username or Password')
+      console.log('Error:', info.name)
+      /* If users password is incorrect */
+      if (info.name === 'IncorrectUsernameError') {
+       console.log('Incorrect Username')
+       res.status(404).json({
+        err: 'IncorrectEmailError',
+        message: 'This Email Doesnt Exist',
+       })
+      }
+      /* If users password is incorrect */
+      if (info.name === 'IncorrectPasswordError') {
+       console.log('Incorrect password')
+       res
+        .status(404)
+        .json({
+         err: 'IncorrectPasswordError',
+         message: 'Incorrect Password  ',
+        })
+      }
      } else {
       req.login(user, async function (err) {
        try {
@@ -33,7 +50,7 @@ export const Login = (req, res) => {
          console.log('Error:', 'One more error', err)
          res.status(404).json({ success: false, message: err })
         } else {
-         const getUserInfo = await User.find({
+         const getUserInfo = await User.findOne({
           _id: mongoose.Types.ObjectId(`${user._id}`),
          }).populate('account')
 

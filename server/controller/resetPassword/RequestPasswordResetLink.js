@@ -1,12 +1,12 @@
 import mongoose from 'mongoose'
 import passport from 'passport'
-import User from '../Schema/SignUp.js'
-import ResetUserPassport from '../Schema/ResetPassword.js'
+import User from '../../Schema/SignUp.js'
+import ResetUserPassport from '../../Schema/ResetPassword.js'
 import {
  NewSecretCode,
  SecretCodeToUser,
  sendMailToUser,
-} from '../utils/utils.js'
+} from '../../utils/utils.js'
 
 const ResetPassword = async (req, res) => {
  try {

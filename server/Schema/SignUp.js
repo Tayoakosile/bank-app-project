@@ -13,7 +13,6 @@ const NewUser = new Schema({
  verified_on: { type: Date, default: null },
  status: {
   type: String,
-  enum: ['Pending', 'Active'],
   default: 'Pending',
  },
  account: {
