@@ -29,10 +29,10 @@ const useAuth = url => {
   if (isSuccess) {
    setUserId(data.authorizedData.userId)
    setData(data.authorizedData.email)
-   setUser(data)
+   setUser(data.authorizedData)
+   console.log('correct')
   }
- }, [])
- console.log(data)
+ }, [isSuccess,data])
 
  return {
   error,

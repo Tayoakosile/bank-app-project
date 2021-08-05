@@ -1,49 +1,38 @@
-import {
-    Box,
-    chakra,
-    SimpleGrid,
-    Stat,
-    StatLabel,
-    StatNumber,
-    useColorModeValue,
-  } from '@chakra-ui/react';
-  
-  
-  function StatsCard(props) {
-    const { title, stat } = props;
-    return (
-      <Stat
-        px={{ base: 4, md: 8 }}
-        py={'5'}
-        shadow={'xl'}
-        border={'1px solid'}
-        borderColor={useColorModeValue('gray.800', 'gray.500')}
-        rounded={'lg'}>
-        <StatLabel fontWeight={'medium'} isTruncated>
-          {title}
-        </StatLabel>
-        <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
-          {stat}
-        </StatNumber>
-      </Stat>
-    );
+import { Button, ButtonGroup } from '@chakra-ui/button'
+import { Box, Center, HStack, Text, VStack } from '@chakra-ui/layout'
+import { chakra } from '@chakra-ui/system'
+import React, { useEffect, useState } from 'react'
+import useAuth from '../../auth/useAuth'
+import useStore from '../../zustand'
+
+const Stats = () => {
+ const [state, setState] = useState('0.00')
+ const {
+  user: { getUserInfo },
+ } = useStore(state => state)
+ useEffect(() => {
+  if (getUserInfo) {
+   setState(getUserInfo.account.balance)
   }
-  
-  export default function BasicStatistics() {
-    return (
-      <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
-        <chakra.h1
-          textAlign={'center'}
-          fontSize={'4xl'}
-          py={10}
-          fontWeight={'bold'}>
-          What is our company doing?
-        </chakra.h1>
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
-          <StatsCard title={'We serve'} stat={'50,000 people'} />
-          <StatsCard title={'In'} stat={'30 different countries'} />
-          <StatsCard title={'Who speak'} stat={'100 different languages'} />
-        </SimpleGrid>
-      </Box>
-    );
-  }
+ }, [getUserInfo])
+ console.log(state)
+ return (
+  <Box w="90%" mx="auto" mt="12" bg="gray.300" h="32">
+   <Center h="32">
+    <VStack spacing="-1">
+     <Text fontSize="1rem">Total balance</Text>
+     <Text fontSize="2.4rem"> {state}</Text>
+    </VStack>
+   </Center>
+
+   <HStack spacing={12} variant="outline" ml={4} mt={8}>
+    <Button colorScheme="blue" variant="solid" bg ="blue.400" h={12} px={4} >
+     Fund account
+    </Button>
+    <Button h={12}>Send money</Button>
+   </HStack>
+  </Box>
+ )
+}
+
+export default Stats

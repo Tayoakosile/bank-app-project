@@ -64,7 +64,7 @@ export const Login = (req, res) => {
            success: true,
            user,
            message: `Authentication successful`,
-           token: `ddd${token}`,
+           token: `${token}`,
           })
          }
 

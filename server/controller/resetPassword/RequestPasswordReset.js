@@ -1,4 +1,5 @@
 import User from '../../Schema/SignUp.js'
+import NewPassword from '../../Schema/ResetPassword.js'
 import mongoose from 'mongoose'
 
 const RequestPasswordReset = async (req, res) => {
@@ -24,6 +25,7 @@ const RequestPasswordReset = async (req, res) => {
       .status(200)
       .json({ success: true, message: 'Password successfully changed' })
     })
+    NewPassword.deleteMany({ email: user.email })
    })
   })
   /* Reset users password */
