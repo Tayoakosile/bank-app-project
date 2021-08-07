@@ -1,6 +1,7 @@
 import { Button, ButtonGroup } from '@chakra-ui/button'
 import { Box, Center, HStack, Text, VStack } from '@chakra-ui/layout'
 import { chakra } from '@chakra-ui/system'
+import { Link as NavLink } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import useAuth from '../../auth/useAuth'
 import useStore from '../../zustand'
@@ -27,8 +28,16 @@ const Stats = () => {
     </VStack>
    </Center>
 
-   <HStack spacing={12} mx ="auto"   variant="outline" ml={2} mt={8}>
-    <Button colorScheme="blue" variant="solid" bg="blue.400" h={12} px={4}>
+   <HStack spacing={12} mx="auto" variant="outline" ml={2} mt={8}>
+    <Button
+     as={NavLink}
+     to = "/transactionform"
+     colorScheme="blue"
+     variant="solid"
+     bg="blue.400"
+     h={12}
+     px={4}
+    >
      Fund account
     </Button>
     <Button h={12}>Send money</Button>

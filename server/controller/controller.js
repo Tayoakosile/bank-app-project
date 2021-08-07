@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
-import Account from '../Schema/Account.js'
-import Code from '../Schema/SecretCode.js'
-import User from '../Schema/SignUp.js'
+import Account from '../models/Account.js'
+import Code from '../models/SecretCode.js'
+import User from '../models/SignUp.js'
 import { SecretCodeToUser } from '../utils/utils.js'
 export const isUserLoginsUnique = async (req, res) => {
  const query = req.query

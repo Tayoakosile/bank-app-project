@@ -2,9 +2,9 @@
 // External
 import passport from 'passport'
 import passportLocal from 'passport-local'
-import Account from '../../Schema/Account.js'
-import Code from '../../Schema/SecretCode.js'
-import User from '../../Schema/SignUp.js'
+import Account from '../../models/Account.js'
+import Code from '../../models/SecretCode.js'
+import User from '../../models/SignUp.js'
 import {
  NewSecretCode,
  SecretCodeToUser,

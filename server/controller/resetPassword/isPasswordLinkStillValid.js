@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import User from '../../Schema/SignUp.js'
-import ResetUserPassword from '../../Schema/ResetPassword.js'
+import User from '../../models/SignUp.js'
+import ResetUserPassword from '../../models/ResetPassword.js'
 
 const ResetPassword = async (req, res) => {
  try {

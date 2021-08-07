@@ -4,7 +4,8 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import Route from './routes/route.js'
-import User from './Schema/SignUp.js'
+import User from './models/SignUp.js'
+import transactionRoute from './routes/transactionRoute.js'
 
 dotenv.config()
 // App initialization
@@ -36,6 +37,7 @@ const db = mongoose.connection
 db.once('open', () => {
  console.log('Database fully connected')
  app.use('/user', Route)
+ app.use('/user', transactionRoute)
  app.get('/', (req, res) => {
   res.send('Hey there')
  })

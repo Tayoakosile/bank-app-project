@@ -6,7 +6,7 @@ const NewUser = new Schema({
  firstname: String,
  lastname: String,
  username: { type: String, unique: true, required: true, index: true },
- email: { type: String, unique: true, required: true ,index:true},
+ email: { type: String, unique: true, required: true, index: true },
  deleted_on: String,
  deleted_by: String,
  created_on: { type: Date, default: Date.now() },
@@ -16,7 +16,7 @@ const NewUser = new Schema({
   default: 'Pending',
  },
  account: {
-  type: mongoose.Schema.Types.ObjectId,
+  type: mongoose.Types.ObjectId,
   ref: 'Account',
  },
 })

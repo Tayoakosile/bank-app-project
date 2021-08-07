@@ -31,7 +31,6 @@ route.post('/verification/verify-account/:_id/:secretCode', VerifyUserEmail)
 route.get('/authorize', checkToken, AuthorizeUser)
 /* Authorize users */
 
-/* Resend token */
 /* 
 route.post('/verification/get-activation-email', checkToken, ResendCode) */
 /* Resend token */

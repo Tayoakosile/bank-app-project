@@ -1,5 +1,5 @@
-import User from '../../Schema/SignUp.js'
-import NewPassword from '../../Schema/ResetPassword.js'
+import User from '../../models/SignUp.js'
+import NewPassword from '../../models/ResetPassword.js'
 import mongoose from 'mongoose'
 
 const RequestPasswordReset = async (req, res) => {

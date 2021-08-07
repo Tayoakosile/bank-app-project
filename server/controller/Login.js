@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
 import passport from 'passport'
-import Code from '../Schema/SecretCode.js'
-import User from '../Schema/SignUp.js'
+import Code from '../models/SecretCode.js'
+import User from '../models/SignUp.js'
 import {
  NewSecretCode,
  SecretCodeToUser,

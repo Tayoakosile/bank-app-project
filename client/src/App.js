@@ -7,9 +7,11 @@ import {
  ResetPasswordStatus,
  SignUp,
  VerifiedStatus,
+ TransactionForm,
  VerifyAccount,
  VerifyError,
  VerifySuccess,
+ VerifyTransaction,
 } from './pages'
 
 const App = () => {
@@ -47,6 +49,13 @@ const App = () => {
 
    <Route exact path="/dashboard">
     <Dashboard title="title" stat="sta" />
+   </Route>
+
+   <Route exact path="/transactionform">
+    <TransactionForm title="title" stat="sta" />
+   </Route>
+   <Route exact path="/paystack/callback">
+    <VerifyTransaction title="title" stat="sta" />
    </Route>
 
    <Route exact path="/">
