@@ -23,3 +23,15 @@ export const postRequestToServer = (url, data) => {
 
  }
 }
+
+export const getDataFromServer = (url, data) => {
+ if (data) {
+  const res = axios.get(url, data)
+  return res
+ }
+ else{
+    const res = axios.post(url)
+    return res
+
+ }
+}

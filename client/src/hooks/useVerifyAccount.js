@@ -16,7 +16,7 @@ const useVerifyAccount = () => {
   console.log('Zustand email', email)
  }, [email])
 
- //  Send request to  User details
+ //  Send request to  User
  useEffect(() => {
   async function fetchData() {
    try {

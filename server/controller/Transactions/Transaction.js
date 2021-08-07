@@ -1,4 +1,7 @@
-import { initializePayment } from '../../config/Paystack.config.js'
+import {
+ initializePayment,
+ verifyPayment,
+} from '../../config/Paystack.config.js'
 
 export const MakeTransaction = (req, res) => {
  const { amount, email, full_name } = req.body
@@ -19,4 +22,13 @@ export const MakeTransaction = (req, res) => {
  })
 }
 
-export const VerifyTransaction = () => {}
+export const VerifyTransaction = (req, res) => {
+ const { reference, trxref } = req.query
+ console.log(req.query, 'params')
+ verifyPayment(reference, (error, body) => {
+  if (error) {
+   console.log('error', error)
+  }
+  console.log(body)
+ })
+}

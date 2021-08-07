@@ -48,14 +48,14 @@ const App = () => {
    </Route>
 
    <Route exact path="/dashboard">
-    <Dashboard title="title" stat="sta" />
+    <Dashboard  />
    </Route>
 
    <Route exact path="/transactionform">
-    <TransactionForm title="title" stat="sta" />
+    <TransactionForm  />
    </Route>
    <Route exact path="/paystack/callback">
-    <VerifyTransaction title="title" stat="sta" />
+    <VerifyTransaction  />
    </Route>
 
    <Route exact path="/">
