@@ -1,24 +1,10 @@
-import { Button, ButtonGroup } from '@chakra-ui/button'
+import { Button } from '@chakra-ui/button'
 import { Box, Center, HStack, Text, VStack } from '@chakra-ui/layout'
-import { chakra } from '@chakra-ui/system'
+import React from 'react'
 import { Link as NavLink } from 'react-router-dom'
-import React, { useEffect, useState } from 'react'
-import useAuth from '../../auth/useAuth'
-import useStore from '../../zustand'
-
+import useDashboard from '../../hooks/useDashboard'
 const Stats = () => {
- const [userAccount, setUserAccount] = useState('0.00')
- const {
-  user: { getUserInfo },
- } = useStore(state => state)
- useEffect(() => {
-  if (getUserInfo) {
-   setUserAccount(getUserInfo.account)
-  }
- }, [getUserInfo])
-
- const { balance } = userAccount !== undefined && userAccount
-
+ const { balance, initializePayment, onSuccess, onClose } = useDashboard()
  return (
   <Box w="90%" mx="auto" mt="12" bg="gray.300" h="32">
    <Center h="32">
@@ -30,12 +16,15 @@ const Stats = () => {
 
    <HStack spacing={12} mx="auto" variant="outline" ml={2} mt={8}>
     <Button
-     as={NavLink}
-     to = "/transactionform"
+    /*  onClick={() => {
+      initializePayment(onSuccess, onClose)
+     }} */
      colorScheme="blue"
      variant="solid"
      bg="blue.400"
      h={12}
+     as={NavLink}
+     to="/account/fund-account"
      px={4}
     >
      Fund account

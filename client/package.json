@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "framer-motion": "^4",
+    "numeric-keyboard": "^0.7.0",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-countdown": "^2.3.2",

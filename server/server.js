@@ -6,7 +6,6 @@ import cors from 'cors'
 import Route from './routes/route.js'
 import User from './models/SignUp.js'
 import transactionRoute from './routes/transactionRoute.js'
-
 dotenv.config()
 // App initialization
 

@@ -2,12 +2,12 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import {
  Dashboard,
+ FundAccount,
  Login,
  ResetPassword,
  ResetPasswordStatus,
  SignUp,
  VerifiedStatus,
- TransactionForm,
  VerifyAccount,
  VerifyError,
  VerifySuccess,
@@ -40,24 +40,28 @@ const App = () => {
    <Route exact path="/verification/verify-account/verify-success">
     <VerifySuccess />
    </Route>
+
    <Route exact path="/reset-password">
     <ResetPassword />
    </Route>
+
    <Route exact path="/reset-password/:_id/:secretCode">
     <ResetPasswordStatus />
    </Route>
 
    <Route exact path="/dashboard">
-    <Dashboard  />
+    <Dashboard />
    </Route>
 
-   <Route exact path="/transactionform">
-    <TransactionForm  />
-   </Route>
    <Route exact path="/paystack/callback">
-    <VerifyTransaction  />
+    <VerifyTransaction />
    </Route>
-
+   
+   {/* Fund account */}
+   <Route exact path="/account/fund-account">
+    <FundAccount />
+   </Route>
+   {/* Fund account */}
    <Route exact path="/">
     Welcome
    </Route>

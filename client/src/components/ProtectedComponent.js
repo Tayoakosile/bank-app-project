@@ -4,8 +4,6 @@ import useAuth from '../auth/useAuth'
 
 const ProtectedComponent = ({ children }) => {
  const { isSuccess, isLoading, data, isError } = useAuth()
- const [userStatus, setUserStatus] = useState(null)
-
  if (isLoading) {
   return <div>Loading</div>
  }
