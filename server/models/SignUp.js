@@ -2,6 +2,17 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 import passportLocalMongoose from 'passport-local-mongoose'
 
+const transaction = new Schema({
+ source_account_id: String,
+ destination_account_id: String,
+ destination_account_number: String,
+ amount: { type: Number, required: true },
+ created_on: { type: Date, default: Date.now() },
+ status: String,
+ narration: String,
+ transaction_type: String,
+})
+
 const NewUser = new Schema({
  firstname: String,
  lastname: String,
@@ -19,6 +30,7 @@ const NewUser = new Schema({
   type: mongoose.Types.ObjectId,
   ref: 'Account',
  },
+ transactions: [transaction],
 })
 NewUser.plugin(passportLocalMongoose, { usernameField: 'email' })
 const User = mongoose.model('User', NewUser)

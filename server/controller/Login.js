@@ -36,12 +36,10 @@ export const Login = (req, res) => {
       /* If users password is incorrect */
       if (info.name === 'IncorrectPasswordError') {
        console.log('Incorrect password')
-       res
-        .status(404)
-        .json({
-         err: 'IncorrectPasswordError',
-         message: 'Incorrect Password  ',
-        })
+       res.status(404).json({
+        err: 'IncorrectPasswordError',
+        message: 'Incorrect Password  ',
+       })
       }
      } else {
       req.login(user, async function (err) {
@@ -62,7 +60,7 @@ export const Login = (req, res) => {
 
           res.status(200).json({
            success: true,
-           user,
+           user: user._id,
            message: `Authentication successful`,
            token: `${token}`,
           })

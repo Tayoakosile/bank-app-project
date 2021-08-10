@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router'
 import useAuth from '../auth/useAuth'
 
-const ProtectedComponent = ({ children }) => {
+const ProtectedComponent = ({ children ,...rest}) => {
  const { isSuccess, isLoading, data, isError } = useAuth()
  if (isLoading) {
   return <div>Loading</div>
@@ -10,8 +10,9 @@ const ProtectedComponent = ({ children }) => {
  if (isError) {
   return <Redirect to="/login"></Redirect>
  }
+ console.log(data)
  if (isSuccess) {
-  const { getUserInfo: result } = data.authorizedData
+  const { authorizedData: result } = data
   const { status: UserStatus } = result
 
   return (

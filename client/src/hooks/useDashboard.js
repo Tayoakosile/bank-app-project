@@ -7,14 +7,14 @@ const useDashboard = () => {
  const [userDetails, setUserDetails] = useState('***')
 
  const {
-  user: { getUserInfo },
+  user 
  } = useStore(state => state)
- console.log(getUserInfo)
+ console.log(user)
  useEffect(() => {
-  if (getUserInfo) {
-   setUserDetails(getUserInfo)
+  if (user) {
+   setUserDetails(user)
   }
- }, [getUserInfo])
+ }, [user])
 
  const { balance } = userDetails.account !== undefined && userDetails.account
 

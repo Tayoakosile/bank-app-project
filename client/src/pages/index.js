@@ -8,7 +8,8 @@ import VerifyAccount from './VerifyAccount/VerifyAccount'
 import VerifiedStatus from './VerifyAccount/VerifyStatus'
 import VerifyError from './VerifyAccount/VerifyError'
 import VerifySuccess from './VerifyAccount/VerifySuccess'
-import FundAccount from './FundAccount/FundAccountMethod'
+import FundAccount from './FundAccount/FundAccount'
+import FundAccountMethod from './FundAccount/FundAccountMethod'
 
 export {
  SignUp,
@@ -22,4 +23,5 @@ export {
  ResetPassword,
  VerifyTransaction,
  FundAccount,
+ FundAccountMethod,
 }

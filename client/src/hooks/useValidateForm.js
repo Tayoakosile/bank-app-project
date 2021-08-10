@@ -49,9 +49,6 @@ const useValidateForm = () => {
    postRequestToServer('/', form)
     .then(res => {
      newZustandUser(form.email)
-     document.getElementById('myForm').reset()
-     reset({ form })
-     clearErrors({ errors })
      toast({
       title: 'Account Successfully created.',
       position: 'top-right',
@@ -64,7 +61,8 @@ const useValidateForm = () => {
        console.log('completed')
       },
      })
-
+     document.getElementById('myForm').reset()
+     reset({ form })
      return res
     })
     .catch(err => {

@@ -1,17 +1,18 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import {
- Dashboard,
- FundAccount,
+ SignUp,
  Login,
  ResetPassword,
  ResetPasswordStatus,
- SignUp,
  VerifiedStatus,
  VerifyAccount,
  VerifyError,
  VerifySuccess,
  VerifyTransaction,
+ Dashboard,
+ FundAccount,
+ FundAccountMethod,
 } from './pages'
 
 const App = () => {
@@ -56,10 +57,13 @@ const App = () => {
    <Route exact path="/paystack/callback">
     <VerifyTransaction />
    </Route>
-   
+
    {/* Fund account */}
    <Route exact path="/account/fund-account">
     <FundAccount />
+   </Route>
+   <Route exact path="/account/fund-account/method/:method">
+    <FundAccountMethod />
    </Route>
    {/* Fund account */}
    <Route exact path="/">

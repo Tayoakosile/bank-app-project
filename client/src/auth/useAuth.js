@@ -25,6 +25,7 @@ const useAuth = url => {
    return await data
   }
  )
+ console.log(data)
  useEffect(() => {
   if (isSuccess) {
    setUserId(data.authorizedData.userId)
@@ -32,7 +33,7 @@ const useAuth = url => {
    setUser(data.authorizedData)
    console.log('correct')
   }
- }, [isSuccess,data])
+ }, [isSuccess, data, setData])
 
  return {
   error,

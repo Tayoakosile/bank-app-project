@@ -28,7 +28,7 @@ passport.deserializeUser(User.deserializeUser())
 // Mongoose Initialization
 mongoose.connect(process.env.LOCALMONGOURI, {
  useNewUrlParser: true,
- useFindAndModify: true,
+ useFindAndModify: false,
 })
 
 //mongoose Initialization

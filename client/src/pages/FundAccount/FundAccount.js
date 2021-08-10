@@ -1,9 +1,10 @@
 import { Box } from '@chakra-ui/layout'
+import randomatic from 'randomatic'
 import React from 'react'
 import ProtectedComponent from '../../components/ProtectedComponent'
 import PaymentMethod from './PaymentMethod'
 
-const FundAccount= () => {
+const FundAccount = () => {
  const paymentMethod = [
   'card',
   'bank',
@@ -14,8 +15,8 @@ const FundAccount= () => {
  ]
  return (
   <ProtectedComponent>
-   {paymentMethod.map(payWith => (
-    <PaymentMethod method={payWith} />
+   {paymentMethod.map(method => (
+    <PaymentMethod key={randomatic('0a',12)} methodOfPayment={method} />
    ))}
   </ProtectedComponent>
  )
