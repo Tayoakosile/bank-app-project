@@ -5,6 +5,7 @@
   "proxy": "http://localhost:4000/user",
   "dependencies": {
     "@chakra-ui/react": "^1.6.5",
+    "@choc-ui/chakra-autocomplete": "^4.5.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@testing-library/jest-dom": "^5.11.4",

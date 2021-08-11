@@ -16,7 +16,7 @@ const Stats = () => {
 
    <HStack spacing={12} mx="auto" variant="outline" ml={2} mt={8}>
     <Button
-    /*  onClick={() => {
+     /*  onClick={() => {
       initializePayment(onSuccess, onClose)
      }} */
      colorScheme="blue"
@@ -29,7 +29,10 @@ const Stats = () => {
     >
      Fund account
     </Button>
-    <Button h={12}>Send money</Button>
+
+    <Button h={12} as={NavLink} to="/account/transfer/user">
+     Transfer
+    </Button>
    </HStack>
   </Box>
  )

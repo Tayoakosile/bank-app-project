@@ -14,7 +14,8 @@ import {
  FundAccount,
  FundAccountMethod,
  TransactionPin,
- TransactionPinConfirm
+ TransactionPinConfirm,
+ SearchRegisteredUser,
 } from './pages'
 
 const App = () => {
@@ -76,6 +77,15 @@ const App = () => {
     <TransactionPinConfirm />
    </Route>
    {/* Transaction pin */}
+
+
+
+{/* Transfer between users */}
+
+   <Route exact path="/account/transfer/user">
+    <SearchRegisteredUser/>
+   </Route>
+{/* Transfer between users */}
 
    <Route exact path="/">
     Welcome
