@@ -30,6 +30,7 @@ const NewUser = new Schema({
   type: mongoose.Types.ObjectId,
   ref: 'Account',
  },
+ transaction_pin: { type: Number, default: null },
  transactions: [transaction],
 })
 NewUser.plugin(passportLocalMongoose, { usernameField: 'email' })

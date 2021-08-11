@@ -36,7 +36,6 @@ const useLogin = () => {
      /* Make user details available throughout the app*/
      /* Make user details available throughout the app*/
 
-     console.log(form)
      toast({
       position: 'top-right',
       status: 'success',

@@ -11,12 +11,10 @@ const useResendValidationCode = () => {
 
  const RequestPasswordRequest = useCallback(
   data => {
-   console.log(data)
    async function fetchData() {
     try {
      const resetPassword = await postRequestToServer('/reset-password', data)
      if (resetPassword) {
-      console.log(resetPassword)
       await document.getElementById('resetpasswordform').reset()
      }
     } catch (err) {

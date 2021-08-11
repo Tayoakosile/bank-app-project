@@ -10,6 +10,7 @@ import { AuthorizeUser, checkToken } from '../controller/Auth/Auth.js'
 import RequestPasswordResetLink from '../controller/resetPassword/RequestPasswordResetLink.js'
 import isPasswordLinkStillValid from '../controller/resetPassword/isPasswordLinkStillValid.js'
 import RequestPasswordReset from '../controller/resetPassword/RequestPasswordReset.js'
+import TransactionPin from '../controller/Transactions/TransactionPin.js'
 
 const route = express.Router()
 
@@ -35,4 +36,8 @@ route.get('/authorize', checkToken, AuthorizeUser)
 route.post('/verification/get-activation-email', checkToken, ResendCode) */
 /* Resend token */
 
+/* Transaction pin */
+route.put('/transaction/set-pin', TransactionPin)
+
+/* Transaction pin */
 export default route

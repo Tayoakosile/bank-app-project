@@ -10,7 +10,7 @@ const ProtectedComponent = ({ children ,...rest}) => {
  if (isError) {
   return <Redirect to="/login"></Redirect>
  }
- console.log(data)
+ console.log(data.message)
  if (isSuccess) {
   const { authorizedData: result } = data
   const { status: UserStatus } = result

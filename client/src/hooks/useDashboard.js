@@ -9,7 +9,6 @@ const useDashboard = () => {
  const {
   user 
  } = useStore(state => state)
- console.log(user)
  useEffect(() => {
   if (user) {
    setUserDetails(user)
@@ -18,7 +17,6 @@ const useDashboard = () => {
 
  const { balance } = userDetails.account !== undefined && userDetails.account
 
- console.log(process.env.PAYSTACK_API_KEY_PUBLIC)
  /* initialize paystack transaction */
  const config = {
   reference: randomize(`0A1`,14),

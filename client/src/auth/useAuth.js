@@ -11,7 +11,7 @@ const useAuth = url => {
 
  const { setUserId, userId, setData, email, setUser } = useStore(state => state)
  const token = reactLocalStorage.get('userToken', true)
- const { error, isLoading, isSuccess, data, isError, status } = useQuery(
+ const { error, isLoading, isSuccess, data, isError} = useQuery(
   'authorize',
   async () => {
    const { data } = await axios.get('/authorize', {
@@ -25,13 +25,11 @@ const useAuth = url => {
    return await data
   }
  )
- console.log(data)
  useEffect(() => {
   if (isSuccess) {
    setUserId(data.authorizedData.userId)
    setData(data.authorizedData.email)
    setUser(data.authorizedData)
-   console.log('correct')
   }
  }, [isSuccess, data, setData])
 

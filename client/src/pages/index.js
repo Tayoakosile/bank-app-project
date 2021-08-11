@@ -3,6 +3,8 @@ import Login from './Login/Login'
 import Dashboard from './Dashboard/Dashboard'
 import ResetPassword from './ResetPassword/ResetPassword'
 import VerifyTransaction from './Transaction/VerifyTransaction'
+import TransactionPin from './TransactionPin/TransactionPin'
+import TransactionPinConfirm from './TransactionPin/TransactionPinConfirm'
 import ResetPasswordStatus from './ResetPassword/ResetPasswordStatus'
 import VerifyAccount from './VerifyAccount/VerifyAccount'
 import VerifiedStatus from './VerifyAccount/VerifyStatus'
@@ -24,4 +26,6 @@ export {
  VerifyTransaction,
  FundAccount,
  FundAccountMethod,
+ TransactionPin,
+ TransactionPinConfirm
 }

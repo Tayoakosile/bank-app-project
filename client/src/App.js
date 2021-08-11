@@ -13,6 +13,8 @@ import {
  Dashboard,
  FundAccount,
  FundAccountMethod,
+ TransactionPin,
+ TransactionPinConfirm
 } from './pages'
 
 const App = () => {
@@ -66,6 +68,15 @@ const App = () => {
     <FundAccountMethod />
    </Route>
    {/* Fund account */}
+   {/* Transaction pin */}
+   <Route exact path="/account/transaction-pin/set">
+    <TransactionPin />
+   </Route>
+   <Route exact path="/account/transaction-pin/confirm">
+    <TransactionPinConfirm />
+   </Route>
+   {/* Transaction pin */}
+
    <Route exact path="/">
     Welcome
    </Route>
