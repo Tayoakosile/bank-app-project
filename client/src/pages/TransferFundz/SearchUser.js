@@ -3,12 +3,13 @@ import { VStack } from '@chakra-ui/layout'
 import React from 'react'
 import ProtectedComponent from '../../components/ProtectedComponent'
 import useSearchUserToTransfer from '../../hooks/useSearchUSerToTransfer'
+import SearchResult from './SearchResult'
 
 const SearchUser = () => {
  const { handleSearchUserAccountNumber, inputVal } = useSearchUserToTransfer()
  return (
   <ProtectedComponent>
-   <VStack w="80%" mt="8" mx="auto">
+   <VStack w="90%" mt="8" mx="auto">
     <InputGroup>
      <InputLeftElement color="gray.400" fontSize="1em" children="KW" />
      <Input
@@ -18,6 +19,7 @@ const SearchUser = () => {
       val={inputVal}
      />
     </InputGroup>
+    <SearchResult />
    </VStack>
   </ProtectedComponent>
  )
