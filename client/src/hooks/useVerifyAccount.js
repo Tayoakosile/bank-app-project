@@ -11,11 +11,7 @@ const useVerifyAccount = () => {
  // get users details from url parameter
  // set User email address
  const email = useStore(state => state.email)
- // set User email address
- useEffect(() => {
-  console.log('Zustand email', email)
- }, [email])
-
+ 
  //  Send request to  User
  useEffect(() => {
   async function fetchData() {

@@ -8,5 +8,5 @@ const ResetPassword = new Schema({
 })
 ResetPassword.index({ createdAt: 1 }, { expireAfterSeconds: 540 })
 
-const NewPassword = mongoose.model('ResetPassword', ResetPassword)
+const NewPassword =  mongoose.model('ResetPassword', ResetPassword)
 export default NewPassword

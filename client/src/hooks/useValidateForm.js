@@ -10,7 +10,7 @@ const useValidateForm = () => {
  const toast = useToast()
  const history = useHistory()
  //   Global State Manager
- const newZustandUser = useStore(state => state.setData)
+ const { setData } = useStore(state => state)
  const {
   register,
   handleSubmit,
@@ -48,17 +48,16 @@ const useValidateForm = () => {
   if (form) {
    postRequestToServer('/', form)
     .then(res => {
-     newZustandUser(form.email)
      toast({
       title: 'Account Successfully created.',
       position: 'top-right',
       description: 'Your account has been successfully created',
       status: 'success',
-      duration: 4000,
+      duration: 3000,
       isClosable: true,
       onCloseComplete: () => {
+       setData(form.email)
        history.push('/verifyaccount')
-       console.log('completed')
       },
      })
      document.getElementById('myForm').reset()

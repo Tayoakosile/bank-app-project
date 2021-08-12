@@ -34,10 +34,10 @@ export const sendMailToUser = (firstname, lastname, email, verification) => {
 export const SecretCodeToUser = (random, length) => {
  return randomize(random, length)
 }
-export const NewSecretCode = (models, email) => {
- const newSecretCode = new models({
+export const NewSecretCode = (model, email) => {
+ const newSecretCode = new model({
   email,
-  secretCode: SecretCodeToUser('0as', 12),
+  secretCode: SecretCodeToUser('0as', 11),
  })
 
  return newSecretCode.save()

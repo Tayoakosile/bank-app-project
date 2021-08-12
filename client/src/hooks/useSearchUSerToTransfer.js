@@ -1,12 +1,15 @@
 import { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
 import { postRequestToServer, axios } from '../api/api'
+import useStore from '../zustand'
 
 const useSearchUserToTransfer = () => {
  const [inputVal, setInputVal] = useState('')
- const { isLoading, mutate, data, error, isError } = useMutation(
-  ({ url, data }) => {
-   const res = axios.get(url, axios)
+ const { setTransferToUserDetails } = useStore(state => state)
+ const { isLoading, mutate, data, error, isError, isSuccess } = useMutation(
+  ({ url, acctNumber }) => {
+   const res = axios.get(url, { params: { acctNumber } })
+   console.log(res)
    return res
   }
  )
@@ -19,24 +22,27 @@ const useSearchUserToTransfer = () => {
     return
    }
    const request = {
-    url: '/users/search',
-    data: userAccountNumber,
+    url: '/search',
+    acctNumber: userAccountNumber,
    }
    mutate(request)
-   console.log(inputVal)
   },
   [inputVal, mutate]
  )
-
- const people = [
-  { name: 'Dan Abramov', image: 'https://bit.ly/dan-abramov' },
-  { name: 'Kent Dodds', image: 'https://bit.ly/kent-c-dodds' },
-  { name: 'Segun Adebayo', image: 'https://bit.ly/sage-adebayo' },
-  { name: 'Prosper Otemuyiwa', image: 'https://bit.ly/prosper-baba' },
-  { name: 'Ryan Florence', image: 'https://bit.ly/ryan-florence' },
- ]
-
- return { people, setInputVal, inputVal, handleSearchUserAccountNumber }
+ const handleIntraTransfer = data => {
+  setTransferToUserDetails(data)
+ }
+ return {
+  setInputVal,
+  inputVal,
+  handleSearchUserAccountNumber,
+  isLoading,
+  data,
+  error,
+  isError,
+  isSuccess,
+  handleIntraTransfer,
+ }
 }
 
 export default useSearchUserToTransfer

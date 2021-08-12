@@ -11,6 +11,7 @@ import RequestPasswordResetLink from '../controller/resetPassword/RequestPasswor
 import isPasswordLinkStillValid from '../controller/resetPassword/isPasswordLinkStillValid.js'
 import RequestPasswordReset from '../controller/resetPassword/RequestPasswordReset.js'
 import TransactionPin from '../controller/Transactions/TransactionPin.js'
+import SearchUsers from '../controller/SearchUsers/SearchUsers.js'
 
 const route = express.Router()
 
@@ -38,6 +39,9 @@ route.post('/verification/get-activation-email', checkToken, ResendCode) */
 
 /* Transaction pin */
 route.put('/transaction/set-pin', TransactionPin)
-
 /* Transaction pin */
+
+/* Search for user in the database */
+route.get('/search', SearchUsers)
+/* Search for user in the database */
 export default route

@@ -56,6 +56,7 @@ const createNewUser = async (req, res) => {
      console.log(user)
      /* Creates a new secret code to verify users */
      const createVerificationCode = await NewSecretCode(Code, email)
+     
      if (createVerificationCode) {
       const { secretCode } = createVerificationCode
       /* Send the verification code to users email account */

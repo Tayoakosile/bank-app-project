@@ -27,28 +27,32 @@ export const VerifyUserEmail = async (req, res) => {
 
   if (findUser) {
    const { email, account } = findUser
-   console.log('true', findUser.email)
-
+   console.log(findUser)
    const GetCode = await Code.findOne({
     email,
    })
+   console.log('true', GetCode)
+
    if (GetCode) {
     //  If verification code is still valid
-    console.log(GetCode)
-    const updateUserStatus = await User.updateOne({
-     email,
-     status: 'active',
-     verified_on: Date.now(),
-    })
+    const updateUserStatus = await User.updateOne(
+     { email },
+     {
+      status: 'active',
+      verified_on: Date.now(),
+     }
+    )
 
-    const updateAccount = await Account.updateOne({
-     _id: mongoose.Types.ObjectId(`${account}`),
-     account_number: `KW${SecretCodeToUser('0', 8)}`,
-    })
+    const updateAccount = await Account.updateOne(
+     {
+      _id: mongoose.Types.ObjectId(`${account}`),
+     },
+     { account_number: `KW1${SecretCodeToUser('0', 7)}` }
+    )
 
     console.log(updateUserStatus, updateAccount)
 
-    await Code.deleteMany({ email })
+    await Code.deleteMany({ email }) 
    } else {
     res.status(400).json({ success: false, err: 'code not found' })
    }

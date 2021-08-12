@@ -1,12 +1,21 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/input'
 import { VStack } from '@chakra-ui/layout'
+import randomatic from 'randomatic'
 import React from 'react'
 import ProtectedComponent from '../../components/ProtectedComponent'
 import useSearchUserToTransfer from '../../hooks/useSearchUSerToTransfer'
 import SearchResult from './SearchResult'
 
 const SearchUser = () => {
- const { handleSearchUserAccountNumber, inputVal } = useSearchUserToTransfer()
+ const {
+  handleSearchUserAccountNumber,
+  inputVal,
+  data,
+  isLoading,
+  isError,
+  isSuccess,
+  error,
+ } = useSearchUserToTransfer()
  return (
   <ProtectedComponent>
    <VStack w="90%" mt="8" mx="auto">
@@ -19,7 +28,12 @@ const SearchUser = () => {
       val={inputVal}
      />
     </InputGroup>
-    <SearchResult />
+    {isSuccess &&
+     data.data.message.map(user => (
+      <React.Fragment key={randomatic('01', 12)}>
+       <SearchResult user={user} isLoading={isLoading} inputVal={inputVal} />
+      </React.Fragment>
+     ))}
    </VStack>
   </ProtectedComponent>
  )

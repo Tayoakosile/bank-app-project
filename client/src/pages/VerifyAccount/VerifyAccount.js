@@ -9,11 +9,10 @@ import {
  Text,
  useColorModeValue,
 } from '@chakra-ui/react'
-import useAuth from '../../auth/useAuth'
+import useStore from '../../zustand'
 
 export default function SocialProfileSimple() {
-  const {email,data,isSuccess} = useAuth()
-  console.log(data,isSuccess,email)
+  const  {email} = useStore(state =>state)
  return (
   <Center py={6}>
    <Box
@@ -46,7 +45,7 @@ export default function SocialProfileSimple() {
      }}
     />
     <Heading pb={8} fontSize={'xl'} fontFamily={'body'}>
-     Verify your email address
+     Verify your email address 
     </Heading>
 
     <Text
@@ -54,7 +53,7 @@ export default function SocialProfileSimple() {
      color={useColorModeValue('gray.700', 'gray.400')}
      px={3}
     >
-     We have sent a verification code to {email}
+     We have sent a verification code to  {email}
     </Text>
 
     <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>

@@ -6,11 +6,14 @@ const useStore = create(set => ({
  user: '',
  userId: '',
  isUserAuthorized: '',
+ transferToUserDetail: null,
 
  setData: data => set({ email: data }),
  setUser: user => set({ user: user }),
  setUserId: status => set({ userId: status }),
  setUserAuthorized: status => set({ isUserAuthorized: status }),
+ setTransferToUserDetails: userDetails =>
+  set({ transferToUserDetail: userDetails }),
 }))
 
 export default useStore
