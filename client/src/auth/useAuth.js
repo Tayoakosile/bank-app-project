@@ -11,6 +11,7 @@ const useAuth = url => {
 
  const { setUserId, userId, setData, email, setUser } = useStore(state => state)
  const token = reactLocalStorage.get('userToken', true)
+ /*  */
  const { error, isLoading, isSuccess, data, isError} = useQuery(
   'authorize',
   async () => {

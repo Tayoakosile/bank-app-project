@@ -11,7 +11,7 @@ import RequestPasswordResetLink from '../controller/resetPassword/RequestPasswor
 import isPasswordLinkStillValid from '../controller/resetPassword/isPasswordLinkStillValid.js'
 import RequestPasswordReset from '../controller/resetPassword/RequestPasswordReset.js'
 import TransactionPin from '../controller/Transactions/TransactionPin.js'
-import SearchUsers from '../controller/SearchUsers/SearchUsers.js'
+import {SearchUsers,fetchSingleUser} from '../controller/SearchUsers/SearchUsers.js'
 
 const route = express.Router()
 
@@ -44,4 +44,10 @@ route.put('/transaction/set-pin', TransactionPin)
 /* Search for user in the database */
 route.get('/search', SearchUsers)
 /* Search for user in the database */
+
+/* Search for user in the database */
+route.get('/fetch', fetchSingleUser)
+/* Search for user in the database */
+
+
 export default route

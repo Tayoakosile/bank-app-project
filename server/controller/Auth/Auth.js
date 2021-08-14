@@ -31,7 +31,6 @@ export const AuthorizeUser = (req, res) => {
     _id: mongoose.Types.ObjectId(`${_id}`),
    }).populate('account')
    const authorizedData = getUserInfo
-   console.log(authorizedData)
 
    res.json({
     message: 'Successful log in',

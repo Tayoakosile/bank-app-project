@@ -5,6 +5,7 @@ import ResetPassword from './ResetPassword/ResetPassword'
 import VerifyTransaction from './Transaction/VerifyTransaction'
 import TransactionPin from './TransactionPin/TransactionPin'
 import SearchRegisteredUser from './TransferFundz/SearchUser'
+import SetAmountToTransfer from './TransferFundz/SetAmounToTransfer'
 import TransactionPinConfirm from './TransactionPin/TransactionPinConfirm'
 import ResetPasswordStatus from './ResetPassword/ResetPasswordStatus'
 import VerifyAccount from './VerifyAccount/VerifyAccount'
@@ -30,4 +31,5 @@ export {
  FundAccountMethod,
  TransactionPin,
  TransactionPinConfirm,
+ SetAmountToTransfer,
 }

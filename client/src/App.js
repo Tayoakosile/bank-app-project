@@ -16,6 +16,7 @@ import {
  TransactionPin,
  TransactionPinConfirm,
  SearchRegisteredUser,
+ SetAmountToTransfer,
 } from './pages'
 
 const App = () => {
@@ -78,14 +79,16 @@ const App = () => {
    </Route>
    {/* Transaction pin */}
 
-
-
-{/* Transfer between users */}
+   {/* Transfer between users */}
 
    <Route exact path="/account/transfer/user">
-    <SearchRegisteredUser/>
+    <SearchRegisteredUser />
    </Route>
-{/* Transfer between users */}
+
+   <Route exact path="/account/transfer/user/set-amount/:_id">
+    <SetAmountToTransfer />
+   </Route>
+   {/* Transfer between users */}
 
    <Route exact path="/">
     Welcome

@@ -1,15 +1,16 @@
 import { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
+import { useHistory } from 'react-router'
 import { postRequestToServer, axios } from '../api/api'
 import useStore from '../zustand'
 
 const useSearchUserToTransfer = () => {
  const [inputVal, setInputVal] = useState('')
+ const history = useHistory()
  const { setTransferToUserDetails } = useStore(state => state)
  const { isLoading, mutate, data, error, isError, isSuccess } = useMutation(
   ({ url, acctNumber }) => {
    const res = axios.get(url, { params: { acctNumber } })
-   console.log(res)
    return res
   }
  )
@@ -29,8 +30,11 @@ const useSearchUserToTransfer = () => {
   },
   [inputVal, mutate]
  )
+
  const handleIntraTransfer = data => {
-  setTransferToUserDetails(data)
+  if (data) {
+   history.push(`/account/transfer/user/set-amount/${data._id}`)
+  }
  }
  return {
   setInputVal,

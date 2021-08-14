@@ -3,15 +3,14 @@ import { SkeletonCircle, SkeletonText, Skeleton } from '@chakra-ui/skeleton'
 import React from 'react'
 import useSearchUserToTransfer from '../../hooks/useSearchUSerToTransfer'
 
-const SearchResult = ({ user, isLoading,inputVal }) => {
- const { handleIntraTransfer ,} = useSearchUserToTransfer()
+const SearchResult = ({ user, isLoading, inputVal }) => {
+ const { handleIntraTransfer } = useSearchUserToTransfer()
  const {
   firstname,
   lastname,
   account: { account_number },
   username,
  } = user
- console.log(user, isLoading,inputVal)
  return (
   <>
    {isLoading && (
@@ -29,7 +28,7 @@ const SearchResult = ({ user, isLoading,inputVal }) => {
      mx="auto"
      bg="gray.100"
      p="4"
-     onClick={(e) => handleIntraTransfer(user)}
+     onClick={e => handleIntraTransfer(user)}
     >
      <p>{`${firstname} ${lastname}  `}</p>
      <p>{`${account_number}`}</p>
