@@ -4,11 +4,9 @@ import { Input } from '@chakra-ui/input'
 import { Box, Center, Text } from '@chakra-ui/layout'
 import React from 'react'
 import ProtectedComponent from '../../components/ProtectedComponent'
-import useReactForm from '../../hooks/useReactForm'
 import useSetAmountToTransfer from '../../hooks/useSetAmountToTransfer'
 
 const SetAmounToTransfer = () => {
- const { register, errors, handleSubmit, setError, getValues } = useReactForm()
  const { firstname, account_number, lastname, account, isSuccess, isLoading } =
   useSetAmountToTransfer()
 
