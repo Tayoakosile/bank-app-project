@@ -10,6 +10,7 @@ import {
 } from '../utils/utils.js'
 
 export const Login = (req, res) => {
+ console.log(req.body)
  if (!req.body.email) {
   res.status(404).json({ success: false, message: 'Username was not given' })
   console.log('Username not given')
@@ -41,7 +42,8 @@ export const Login = (req, res) => {
         message: 'Incorrect Password  ',
        })
       }
-     } else {
+     } 
+     else {
       req.login(user, async function (err) {
        try {
         if (err) {
@@ -52,20 +54,20 @@ export const Login = (req, res) => {
           _id: mongoose.Types.ObjectId(`${user._id}`),
          }).populate('account')
 
-         if (getUserInfo) {
-          const token = jwt.sign({ getUserInfo }, process.env.JWT_SECRET, {
-           expiresIn: process.env.JWT_EXPIRES_IN,
-          })
-          // Send a token touser
+         console.log(getUserInfo)
 
-          res.status(200).json({
-           success: true,
-           user: user._id,
-           message: `Authentication successful`,
-           token: `${token}`,
-          })
-         }
+         const token = jwt.sign({ getUserInfo }, process.env.JWT_SECRET, {
+          expiresIn: process.env.JWT_EXPIRES_IN,
+         })
 
+         // Send a token to user
+         console.log(getUserInfo,token,user._id)
+         res.status(200).json({
+          success: true,
+          user: user._id,
+          message: `Authentication successful`,
+          token: `${token}`,
+         })
          /* if user status is pending */
          if (user.status === 'Pending') {
           const isUserRegistered = await User.findById({

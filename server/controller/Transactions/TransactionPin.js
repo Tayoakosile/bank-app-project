@@ -53,10 +53,28 @@ export const ValidatePin = async (req, res) => {
        ).populate('account')
 
        if (creditReceiverAccount) {
-           console.log(creditReceiverAccount)
-      
-        
-       
+        const transactionFromSender = {
+         source_account_id: _id,
+         destination_account_id: receiverID,
+         amount: Number(transferSum),
+         status: 'success',
+         transaction_type: 'debit',
+         narration: `Transfer N${transferSum} to ${creditReceiverAccount.account_number} `,
+         destination_account_number: `KweeqFundz ${creditReceiverAccount.account_number}`,
+        }
+        const transactionToReceiver = {
+         source_account_id: receiverID,
+         destination_account_id: _id,
+         amount: Number(transferSum),
+         status: 'success',
+         transaction_type: 'credit',
+         narration: `Transfer of N${transferSum} from ${debitSenderAccount.account_number} `,
+         destination_account_number: `KweeqFundz ${debitSenderAccount.account_number}`,
+        }
+        NewTransaction(User, _id, transactionFromSender)
+        NewTransaction(User, receiverID, transactionToReceiver)
+        res.status(200).json({ success: true, message: 'successfully created' })
+
         console.log(creditReceiverAccount, debitSenderAccount)
        }
       }

@@ -14,7 +14,7 @@ export const isUserEmailUnique = (url, mode, verify) => {
 
 export const postRequestToServer = (url, pin) => {
  if (pin) {
-  const {data} = axios.post(url, pin)
+  const data= axios.post(url, pin)
   return data
  } else {
   const res = axios.post(url)

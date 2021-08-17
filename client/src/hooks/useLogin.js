@@ -24,6 +24,7 @@ const useLogin = () => {
   async data => {
    try {
     const form = await postRequestToServer('/login', data)
+    console.log(form)
     if (form) {
      const {
       data: { token },
@@ -48,7 +49,7 @@ const useLogin = () => {
     console.log(err)
    }
   },
-  [toast, history, ]
+  [toast, history]
  )
  return { register, isValid, handleSubmit, onSubmit, errors }
 }

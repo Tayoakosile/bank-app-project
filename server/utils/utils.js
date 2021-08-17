@@ -1,6 +1,7 @@
+import mongoose from 'mongoose'
 import mailJet from 'node-mailjet'
 import randomize from 'randomatic'
-import Code from '../models/SecretCode.js'
+
 
 export const sendMailToUser = (firstname, lastname, email, verification) => {
  const sendEmail = mailJet.connect(
