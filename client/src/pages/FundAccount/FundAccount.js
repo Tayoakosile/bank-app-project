@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/layout'
 import randomatic from 'randomatic'
 import React from 'react'
 import ProtectedComponent from '../../components/ProtectedComponent'

@@ -4,8 +4,10 @@ import Dashboard from './Dashboard/Dashboard'
 import ResetPassword from './ResetPassword/ResetPassword'
 import VerifyTransaction from './Transaction/VerifyTransaction'
 import TransactionPin from './TransactionPin/TransactionPin'
+
 import SearchRegisteredUser from './TransferFundz/SearchUser'
 import SetAmountToTransfer from './TransferFundz/SetAmounToTransfer'
+import TransferFundzToUser from './TransferFundz/TransferFundzToUser'
 import TransactionPinConfirm from './TransactionPin/TransactionPinConfirm'
 import ResetPasswordStatus from './ResetPassword/ResetPasswordStatus'
 import VerifyAccount from './VerifyAccount/VerifyAccount'
@@ -32,4 +34,5 @@ export {
  TransactionPin,
  TransactionPinConfirm,
  SetAmountToTransfer,
+ TransferFundzToUser,
 }

@@ -13,13 +13,8 @@ const useLogin = () => {
  const {
   register,
   handleSubmit,
-  setError,
-  setValue,
-  clearErrors,
-  reset,
-  isSubmitting,
   formState: { errors, isValid },
- } = useForm({ mode: 'all'})
+ } = useForm({ mode: 'all' })
 
  //  Rerenders app
 
@@ -53,7 +48,7 @@ const useLogin = () => {
     console.log(err)
    }
   },
-  [postRequestToServer, toast, history, setUser]
+  [toast, history, ]
  )
  return { register, isValid, handleSubmit, onSubmit, errors }
 }

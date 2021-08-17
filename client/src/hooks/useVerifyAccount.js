@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
+import { postRequestToServer } from '../api/api'
 import useStore from '../zustand/index'
-import axios, { postRequestToServer } from '../api/api'
-import { useParams, useHistory } from 'react-router-dom'
 
 const useVerifyAccount = () => {
  const [userStatus, setUserStatus] = useState('')
  // get users details from url parameter
  const { _id, secretCode } = useParams()
- const history = useHistory()
  // get users details from url parameter
  // set User email address
  const email = useStore(state => state.email)
- 
+
  //  Send request to  User
  useEffect(() => {
   async function fetchData() {
@@ -26,7 +25,7 @@ const useVerifyAccount = () => {
    }
   }
   fetchData()
- }, [ secretCode, _id])
+ }, [secretCode, _id])
 
  return { email, userStatus }
 }

@@ -1,13 +1,11 @@
 import { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
 import { useHistory } from 'react-router'
-import { postRequestToServer, axios } from '../api/api'
-import useStore from '../zustand'
+import { axios } from '../api/api'
 
 const useSearchUserToTransfer = () => {
  const [inputVal, setInputVal] = useState('')
  const history = useHistory()
- const { setTransferToUserDetails } = useStore(state => state)
  const { isLoading, mutate, data, error, isError, isSuccess } = useMutation(
   ({ url, acctNumber }) => {
    const res = axios.get(url, { params: { acctNumber } })

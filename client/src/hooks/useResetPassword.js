@@ -9,7 +9,6 @@ const useResetPassword = () => {
   errors,
   isValid,
   handleSubmit,
-  setError,
   getValues,
   clearErrors,
  } = useReactForm()
@@ -71,10 +70,7 @@ const useResetPassword = () => {
  /* Check if password link is valid  */
 
  /* Resets users password */
- const resetUserPassword = async () => {
-  try {
-  } catch {}
- }
+ 
  /* Resets users password */
  return {
   register,

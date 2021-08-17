@@ -1,9 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Backen for A bank app project",
+  "description": "Backend app for A bank app project",
   "main": "server.js",
-  "author": "Akosile OluwaTayo Samuel",
+  "author": "Tayo Akosile",
   "license": "MIT",
   "private": false,
   "type": "module",

@@ -6,7 +6,7 @@ const useStore = create(set => ({
  user: '',
  userId: '',
  isUserAuthorized: '',
- transferToUserDetail: null,
+ transferToUserDetail: undefined,
 
  setData: data => set({ email: data }),
  setUser: user => set({ user: user }),

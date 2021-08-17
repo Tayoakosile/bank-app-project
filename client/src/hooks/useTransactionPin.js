@@ -17,17 +17,24 @@ const useTransactionPin = () => {
  }, [user, userDetail._id, userDetail.pin])
  console.log(userDetail)
 
+ /* Set new pin */
+
  const NewPin = async pin => {
   const setTransPin = await axios.put('/transaction/set-pin', {
    _id: userDetail._id,
    pin,
   })
  }
- const redirectToConfirmPassword = (userPin) => {
-     if(userPin){
+ /* Set new pin */
+
+ /* Redirect to a new site to confirm pin */
+ const redirectToConfirmPassword = userPin => {
+     if (userPin) {
          history.push('/account/transaction-pin/confirm')
-     }
+        }
+        /* Redirect to a new site to confirm pin */
  }
+
  return { NewPin, userDetail, redirectToConfirmPassword }
 }
 

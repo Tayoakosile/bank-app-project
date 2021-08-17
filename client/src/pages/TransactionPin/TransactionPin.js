@@ -12,7 +12,7 @@ import {
 import ProtectedComponent from '../../components/ProtectedComponent'
 import useTransactionPin from '../../hooks/useTransactionPin'
 const TransactionPin = () => {
- const { NewPin, userDetail ,redirectToConfirmPassword} = useTransactionPin()
+ const { NewPin, userDetail, redirectToConfirmPassword } = useTransactionPin()
  const { pin } = userDetail
  return (
   <ProtectedComponent>
@@ -21,7 +21,12 @@ const TransactionPin = () => {
      <VStack spacing="24">
       <Heading>Set your Transaction Pin</Heading>
       <HStack>
-       <PinInput onComplete={redirectToConfirmPassword} type="numeric" size="lg" mask>
+       <PinInput
+        onComplete={redirectToConfirmPassword}
+        type="numeric"
+        size="lg"
+        mask
+       >
         <PinInputField />
         <PinInputField />
         <PinInputField />

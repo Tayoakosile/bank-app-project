@@ -1,15 +1,12 @@
+import randomatic from 'randomatic'
+import { useEffect, useState } from 'react'
+import { usePaystackPayment } from 'react-paystack'
+import { useParams } from 'react-router'
+import { axios } from '../api/api'
 import useStore from '../zustand'
 import useReactForm from './useReactForm'
 
-import { usePaystackPayment } from 'react-paystack'
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import { axios } from '../api/api'
-import useAuth from '../auth/useAuth'
-import randomatic from 'randomatic'
-
 const useMakeTransaction = () => {
- const { isSuccess } = useAuth()
  const { method } = useParams()
  const [userDetails, setUserDetails] = useState('')
  const { register, handleSubmit, errors, isValid, getValues } = useReactForm()
@@ -23,7 +20,6 @@ const useMakeTransaction = () => {
    setUserDetails(user)
   }
  }, [user])
-
 
  const { email, _id, account } = userDetails !== undefined && userDetails
  const { _id: accountId } = account !== undefined && account

@@ -42,3 +42,13 @@ export const NewSecretCode = (model, email) => {
 
  return newSecretCode.save()
 }
+
+export const NewTransaction = async (Schema, userId, transaction) => {
+ const transactionMadeByUser = await Schema.findOneAndUpdate(
+  { _id: mongoose.Types.ObjectId(userId) },
+  {
+   $push: { transactions: transaction },
+  }
+ )
+ return transactionMadeByUser
+}

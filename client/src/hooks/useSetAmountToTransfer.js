@@ -1,16 +1,25 @@
 import { useEffect, useState } from 'react'
-import { useMutation, useQuery, QueryClient } from 'react-query'
-import { useParams } from 'react-router'
+import { QueryClient, useQuery } from 'react-query'
+import { useHistory, useParams } from 'react-router-dom'
+import { reactLocalStorage } from 'reactjs-localstorage'
 import { axios } from '../api/api'
+import useStore from '../zustand'
 import useReactForm from './useReactForm'
 
 const useSetAmountToTransfer = () => {
+ const { _id } = useParams()
+ const { user } = useStore(state => state)
+ const userID = user._id
+
+ console.log('Zustand user', user)
+ const history = useHistory()
  const queryClient = new QueryClient()
  const [userInfo, setUserInfo] = useState('')
- const { _id } = useParams()
- const { register, errors, handleSubmit, setError, getValues } = useReactForm()
+ const { register, errors, handleSubmit, setError, isValid } = useReactForm()
 
- const { isLoading, data, error, isSuccess } = useQuery(
+ /*get users _id in the url params and fetch the users information  */
+
+ const { isLoading, data, isSuccess } = useQuery(
   'fetchSingleUser',
   async () => {
    const { data } = await axios.get('/fetch', { params: { _id } })
@@ -27,6 +36,8 @@ const useSetAmountToTransfer = () => {
   }
  )
 
+ /*get users _id in the url params and fetch the users information  */
+ /* Wait for the data to be fetched frm the server then make it shareable to other component */
  useEffect(() => {
   if (isSuccess) {
    console.log(data)
@@ -34,19 +45,39 @@ const useSetAmountToTransfer = () => {
   }
  }, [isSuccess])
 
- const { email, firstname, lastname, account } =
-  userInfo !== undefined && userInfo
+ const { firstname, lastname, account } = userInfo !== undefined && userInfo
  const { account_number } = account !== undefined && account
+ /* Wait for the data to be fetched frm the server then make it shareable to other component */
+
+ console.log(errors)
+ /* User Details */
+
+ const handleUserTransfer = amount => {
+  const receiverInfo = userInfo
+  const loggedInUserID = user._id
+  const transferSum = Number(amount.transfer)
+  const transferBetweenUser = { transferSum, receiverInfo, loggedInUserID }
+  console.log(user._id, receiverInfo._id)
+  reactLocalStorage.setObject('transactionUser', transferBetweenUser)
+  history.push('/account/transfer/user/transfer-confirmation')
+ }
 
  return {
   data,
   isLoading,
-  error,
+  userID,
+  errors,
   firstname,
   account_number,
   lastname,
   account,
+  _id,
   isSuccess,
+  setError,
+  register,
+  handleSubmit,
+  isValid,
+  handleUserTransfer,
  }
 }
 

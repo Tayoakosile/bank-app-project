@@ -10,8 +10,9 @@ import { AuthorizeUser, checkToken } from '../controller/Auth/Auth.js'
 import RequestPasswordResetLink from '../controller/resetPassword/RequestPasswordResetLink.js'
 import isPasswordLinkStillValid from '../controller/resetPassword/isPasswordLinkStillValid.js'
 import RequestPasswordReset from '../controller/resetPassword/RequestPasswordReset.js'
-import TransactionPin from '../controller/Transactions/TransactionPin.js'
+import {TransactionPin,ValidatePin} from '../controller/Transactions/TransactionPin.js'
 import {SearchUsers,fetchSingleUser} from '../controller/SearchUsers/SearchUsers.js'
+import ValidateBalance from '../controller/Transactions/ValidateBalance.js'
 
 const route = express.Router()
 
@@ -39,6 +40,7 @@ route.post('/verification/get-activation-email', checkToken, ResendCode) */
 
 /* Transaction pin */
 route.put('/transaction/set-pin', TransactionPin)
+route.post('/transaction/validatepin', ValidatePin)
 /* Transaction pin */
 
 /* Search for user in the database */
@@ -49,5 +51,11 @@ route.get('/search', SearchUsers)
 route.get('/fetch', fetchSingleUser)
 /* Search for user in the database */
 
+/* Validate user account balance (Check if amount in database is greater than amount user selected) */
+
+route.post('/validatebalance', ValidateBalance)
+
+
+/* Validate user account balance */
 
 export default route

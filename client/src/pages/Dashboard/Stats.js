@@ -4,7 +4,7 @@ import React from 'react'
 import { Link as NavLink } from 'react-router-dom'
 import useDashboard from '../../hooks/useDashboard'
 const Stats = () => {
- const { balance, initializePayment, onSuccess, onClose } = useDashboard()
+ const { balance,  } = useDashboard()
  return (
   <Box w="90%" mx="auto" mt="12" bg="gray.300" h="32">
    <Center h="32">

@@ -7,7 +7,7 @@ const transactionSchema = new Schema({
   {
    source_account_id: { type: String, default: null },
    destination_account_id: { type: String, default: null },
-   destination_bank: { type: String, default: null },
+   destination_account_number: { type: String, default: null },
    amount: { type: Number, required: true },
    created_on: { type: Date, default: Date.now() },
    narration: String,
