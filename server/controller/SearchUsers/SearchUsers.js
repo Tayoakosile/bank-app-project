@@ -3,7 +3,7 @@ import User from '../../models/SignUp.js'
 import mongoose from 'mongoose'
 
 export const SearchUsers = (req, res) => {
- const { acctNumber } = req.query
+ const { acctNumber, loggedInUserID } = req.query
  /* Search for all users with an account number  */
  Account.find(
   {
@@ -21,8 +21,12 @@ export const SearchUsers = (req, res) => {
     User.find({ account: { $in: getAllUserInSearchId } })
      .populate('account')
      .exec((err, result) => {
-      console.log(' response here')
-      return res.status(200).json({ success: true, message: result })
+      if (result) {
+       /* This ensures current logged in user account  is not also sent when user searches  */
+       const updatedResult = result.filter(({ _id }) => _id != loggedInUserID)
+       console.log(updatedResult.length,loggedInUserID)
+       return res.status(200).json({ success: true, message: updatedResult })
+      }
      })
    }
   }

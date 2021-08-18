@@ -23,12 +23,14 @@ const useAuth = url => {
  )
  useEffect(() => {
   if (isSuccess) {
-   setUserId(data.authorizedData.userId)
-   setData(data.authorizedData.email)
-   setUser(data.authorizedData)
+   if (data) {
+    setUserId(data.authorizedData.userId)
+    setData(data.authorizedData.email)
+    setUser(data.authorizedData)
+   }
   }
   console.log(data)
- }, [isSuccess, data, setData, setUser, setUserId, ])
+ }, [isSuccess, data, setData, setUser, setUserId])
 
  return {
   error,

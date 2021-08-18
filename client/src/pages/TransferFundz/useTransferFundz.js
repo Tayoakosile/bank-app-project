@@ -1,12 +1,17 @@
 import { useDisclosure } from '@chakra-ui/hooks'
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { useMutation } from 'react-query'
 import { Redirect, useHistory } from 'react-router-dom'
 import { reactLocalStorage } from 'reactjs-localstorage'
-import { axios, postRequestToServer } from '../../api/api'
+import { axios } from '../../api/api'
 
 const useTransferFundz = () => {
  /* Post request */
+ const history = useHistory()
+ const { isOpen, onToggle } = useDisclosure()
+ /* Get User Transaction details from the local storage */
+ const transferToUserDetailFromLocalStorage =
+  reactLocalStorage.getObject('transactionUser')
  const { mutate, isLoading, isSuccess, isError, data, error } = useMutation(
   async pin => {
    const checkPin = await axios.post('/transaction/validatepin', pin)
@@ -14,14 +19,12 @@ const useTransferFundz = () => {
   }
  )
 
+ useEffect(() => {
+  if (isSuccess) {
+   history.push('/account/transfer/user/transfer-success')
+  }
+ }, [isSuccess])
  /* Post request */
- const { isOpen, onToggle } = useDisclosure()
- /* Get User Transaction details from the local storage */
- console.log(data)
- const transferToUserDetailFromLocalStorage =
-  reactLocalStorage.getObject('transactionUser')
-
- const history = useHistory()
 
  const {
   transferSum,
@@ -66,6 +69,8 @@ const useTransferFundz = () => {
   isError,
   isLoading,
   isOpen,
+  transferToUserDetailFromLocalStorage,
+  history
  }
 }
 

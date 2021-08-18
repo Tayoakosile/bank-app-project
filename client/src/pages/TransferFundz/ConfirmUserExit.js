@@ -13,6 +13,7 @@ import React, { useEffect, useState } from 'react'
 import useTransferFundz from './useTransferFundz'
 import useStore from '../../zustand'
 import { Redirect } from 'react-router'
+import ProtectedComponent from '../../components/ProtectedComponent'
 
 export default function InitialFocus({ isOpen, onOpen, onClose }) {
  const { handlePinValidation, isError, isLoading } = useTransferFundz()
@@ -27,7 +28,7 @@ export default function InitialFocus({ isOpen, onOpen, onClose }) {
  }, [user])
 
  return (
-  <>
+  <ProtectedComponent>
    <Modal
     blockScrollOnMount={true}
     isCentered={true}
@@ -86,6 +87,6 @@ export default function InitialFocus({ isOpen, onOpen, onClose }) {
    {redirectToUserSetPin && (
     <Redirect to="/account/transaction-pin/set"></Redirect>
    )}
-  </>
+  </ProtectedComponent>
  )
 }

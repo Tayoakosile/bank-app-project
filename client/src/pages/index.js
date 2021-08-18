@@ -8,6 +8,7 @@ import TransactionPin from './TransactionPin/TransactionPin'
 import SearchRegisteredUser from './TransferFundz/SearchUser'
 import SetAmountToTransfer from './TransferFundz/SetAmounToTransfer'
 import TransferFundzToUser from './TransferFundz/TransferFundzToUser'
+import TransferSuccess from './TransferFundz/TransferSuccess'
 import TransactionPinConfirm from './TransactionPin/TransactionPinConfirm'
 import ResetPasswordStatus from './ResetPassword/ResetPasswordStatus'
 import VerifyAccount from './VerifyAccount/VerifyAccount'
@@ -35,4 +36,5 @@ export {
  TransactionPinConfirm,
  SetAmountToTransfer,
  TransferFundzToUser,
+ TransferSuccess,
 }

@@ -61,7 +61,6 @@ export const Login = (req, res) => {
          })
 
          // Send a token to user
-         console.log(getUserInfo,token,user._id)
          res.status(200).json({
           success: true,
           user: user._id,

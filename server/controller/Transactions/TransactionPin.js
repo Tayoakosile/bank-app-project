@@ -18,10 +18,9 @@ export const TransactionPin = async (req, res) => {
 
 export const ValidatePin = async (req, res) => {
  const { _id, pin, receiverID, transferSum } = req.body
- console.log(req.body)
  User.findOne({ _id: mongoose.Types.ObjectId(_id) }, async (err, doc) => {
   if (doc) {
-   const { account, transaction_pin } = doc
+   const { account, transaction_pin, firstname } = doc
    const isUserPin = Number(pin) === transaction_pin
    /* If pin is not valid then send error */
    if (!isUserPin) {
@@ -38,12 +37,14 @@ export const ValidatePin = async (req, res) => {
     { new: true }
    ).populate('account')
 
+   /* If transaction was successful */
    if (debitSenderAccount) {
     await User.findById(
      mongoose.Types.ObjectId(receiverID),
      async (err, receiverInfo) => {
       console.log(err, receiverInfo)
       if (receiverInfo) {
+       const { firstname } = receiverInfo
        const creditReceiverAccount = await Account.findByIdAndUpdate(
         mongoose.Types.ObjectId(receiverInfo.account),
         {
@@ -68,12 +69,18 @@ export const ValidatePin = async (req, res) => {
          amount: Number(transferSum),
          status: 'success',
          transaction_type: 'credit',
-         narration: `Transfer of N${transferSum} from ${debitSenderAccount.account_number} `,
+         narration: `Transfer of N${transferSum}  from  ${debitSenderAccount.account_number}`,
          destination_account_number: `KweeqFundz ${debitSenderAccount.account_number}`,
         }
+
+        /* Record transaction in the server */
         NewTransaction(User, _id, transactionFromSender)
         NewTransaction(User, receiverID, transactionToReceiver)
-        res.status(200).json({ success: true, message: 'successfully created' })
+        /* Record transaction in the server */
+        res.status(200).json({
+         success: true,
+         message: 'Transfer successful',
+        })
 
         console.log(creditReceiverAccount, debitSenderAccount)
        }
@@ -83,8 +90,6 @@ export const ValidatePin = async (req, res) => {
    }
 
    /* Else Make transaction */
-
-   console.log(doc.transaction_pin, isUserPin, pin, debitSenderAccount)
   }
  })
  console.log(req.body)

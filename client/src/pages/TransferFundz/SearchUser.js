@@ -4,18 +4,20 @@ import randomatic from 'randomatic'
 import React from 'react'
 import ProtectedComponent from '../../components/ProtectedComponent'
 import useSearchUserToTransfer from '../../hooks/useSearchUSerToTransfer'
+import useStore from '../../zustand'
+import SearchBody from './SearchBody'
 import SearchResult from './SearchResult'
 
 const SearchUser = () => {
+ const { searchUsersResult } = useStore(state => state)
  const {
   handleSearchUserAccountNumber,
   inputVal,
-  data,
-  isLoading,
   isError,
+  isLoading,
   isSuccess,
-  error,
  } = useSearchUserToTransfer()
+ console.log(searchUsersResult)
  return (
   <ProtectedComponent>
    <VStack w="90%" mt="8" mx="auto">
@@ -28,12 +30,13 @@ const SearchUser = () => {
       val={inputVal}
      />
     </InputGroup>
-    {isSuccess &&
-     data.data.message.map(user => (
-      <React.Fragment key={randomatic('01', 12)}>
-       <SearchResult user={user} isLoading={isLoading} inputVal={inputVal} />
-      </React.Fragment>
-     ))}
+    <SearchBody
+     data={searchUsersResult}
+     isError={isError}
+     isLoading={isLoading}
+     isSuccess={isSuccess}
+     inputVal={inputVal}
+    />
    </VStack>
   </ProtectedComponent>
  )

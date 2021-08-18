@@ -17,7 +17,8 @@ import {
  TransactionPinConfirm,
  SearchRegisteredUser,
  SetAmountToTransfer,
- TransferFundzToUser
+ TransferFundzToUser,
+ TransferSuccess,
 } from './pages'
 
 const App = () => {
@@ -90,7 +91,10 @@ const App = () => {
     <SetAmountToTransfer />
    </Route>
    <Route exact path="/account/transfer/user/transfer-confirmation">
-    <TransferFundzToUser/>
+    <TransferFundzToUser />
+   </Route>
+   <Route exact path="/account/transfer/user/transfer-success">
+    <TransferSuccess />
    </Route>
    {/* Transfer between users */}
 
