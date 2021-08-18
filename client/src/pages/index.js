@@ -14,6 +14,7 @@ import ResetPasswordStatus from './ResetPassword/ResetPasswordStatus'
 import VerifyAccount from './VerifyAccount/VerifyAccount'
 import VerifiedStatus from './VerifyAccount/VerifyStatus'
 import VerifyError from './VerifyAccount/VerifyError'
+import Profile from './Profile/Profile'
 import VerifySuccess from './VerifyAccount/VerifySuccess'
 import FundAccount from './FundAccount/FundAccount'
 import FundAccountMethod from './FundAccount/FundAccountMethod'
@@ -35,6 +36,7 @@ export {
  TransactionPin,
  TransactionPinConfirm,
  SetAmountToTransfer,
+ Profile,
  TransferFundzToUser,
  TransferSuccess,
 }

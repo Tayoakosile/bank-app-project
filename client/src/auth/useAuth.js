@@ -19,6 +19,10 @@ const useAuth = url => {
    })
 
    return await data
+  },
+  {
+   refetchOnReconnect: true,
+   refetchOnMount: true,
   }
  )
  useEffect(() => {

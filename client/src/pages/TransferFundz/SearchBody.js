@@ -1,8 +1,16 @@
+import { Box } from '@chakra-ui/layout'
 import randomatic from 'randomatic'
 import React from 'react'
 import SearchResult from './SearchResult'
 
-const SearchBody = ({ data, isLoading, isError, inputVal, isSuccess }) => {
+const SearchBody = ({
+ data,
+ isLoading,
+ handleIntraTransfer,
+ isError,
+ inputVal,
+ isSuccess,
+}) => {
  if (isLoading) {
   return <div>isLoading</div>
  }
@@ -10,18 +18,34 @@ const SearchBody = ({ data, isLoading, isError, inputVal, isSuccess }) => {
   return <div>User not found</div>
  }
 
- if (isSuccess) {
-  return (
-   <div>
-    {isSuccess &&
-     data.data.message.map(user => (
+ return (
+  <div>
+   {isSuccess &&
+    data.data.message.map(user => {
+     const {
+      firstname,
+      lastname,
+      username,
+      account: { account_number },
+     } = user
+     return (
       <React.Fragment key={randomatic('01', 12)}>
-       <SearchResult user={user} isLoading={isLoading} inputVal={inputVal} />
+       <Box
+        w="90%"
+        mx="auto"
+        bg="gray.100"
+        p="4"
+        onClick={e => handleIntraTransfer(user)}
+       >
+        <p>{`${firstname} ${lastname}  `}</p>
+        <p>{`${account_number}`}</p>
+        <p>{`${username}   `}</p>
+       </Box>
       </React.Fragment>
-     ))}
-   </div>
-  )
- }
+     )
+    })}
+  </div>
+ )
 
  return <div>Hello</div>
 }

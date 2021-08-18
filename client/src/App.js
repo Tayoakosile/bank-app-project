@@ -19,6 +19,7 @@ import {
  SetAmountToTransfer,
  TransferFundzToUser,
  TransferSuccess,
+ Profile,
 } from './pages'
 
 const App = () => {
@@ -97,6 +98,12 @@ const App = () => {
     <TransferSuccess />
    </Route>
    {/* Transfer between users */}
+
+   {/* Users Profile */}
+   <Route exact path="/account/profile">
+    <Profile />
+   </Route>
+   {/* Users Profile */}
 
    <Route exact path="/">
     Welcome

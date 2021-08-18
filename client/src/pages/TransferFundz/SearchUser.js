@@ -16,6 +16,7 @@ const SearchUser = () => {
   isError,
   isLoading,
   isSuccess,
+  handleIntraTransfer,
  } = useSearchUserToTransfer()
  console.log(searchUsersResult)
  return (
@@ -35,6 +36,7 @@ const SearchUser = () => {
      isError={isError}
      isLoading={isLoading}
      isSuccess={isSuccess}
+     handleIntraTransfer={handleIntraTransfer}
      inputVal={inputVal}
     />
    </VStack>
