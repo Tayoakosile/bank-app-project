@@ -31,7 +31,7 @@ const Profile = () => {
      <Avatar size="xl" rounded="8" name={`${firstname} ${lastname}`} />
      <Center>
       <FormControl id="email">
-       <FormLabel htmlFor="uploadPic">Change Profile Image</FormLabel>
+       <FormLabel htmlFor="uploadPic">Change Profile Image|</FormLabel>
        <Input type="file" id="uploadPic" d="none" />
       </FormControl>
      </Center>
