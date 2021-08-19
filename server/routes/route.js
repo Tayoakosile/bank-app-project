@@ -1,17 +1,23 @@
 import express from 'express'
-
-import NewUser from '../controller/signUp/NewUser.js'
-import Login from '../controller/Login.js'
+import { AuthorizeUser, checkToken } from '../controller/Auth/Auth.js'
 import {
  isUserLoginsUnique,
  VerifyUserEmail,
 } from '../controller/controller.js'
-import { AuthorizeUser, checkToken } from '../controller/Auth/Auth.js'
-import RequestPasswordResetLink from '../controller/resetPassword/RequestPasswordResetLink.js'
+import Login from '../controller/Login.js'
+import { StoreUserID } from '../controller/Profile/Profile.js'
 import isPasswordLinkStillValid from '../controller/resetPassword/isPasswordLinkStillValid.js'
 import RequestPasswordReset from '../controller/resetPassword/RequestPasswordReset.js'
-import {TransactionPin,ValidatePin} from '../controller/Transactions/TransactionPin.js'
-import {SearchUsers,fetchSingleUser} from '../controller/SearchUsers/SearchUsers.js'
+import RequestPasswordResetLink from '../controller/resetPassword/RequestPasswordResetLink.js'
+import {
+ fetchSingleUser,
+ SearchUsers,
+} from '../controller/SearchUsers/SearchUsers.js'
+import NewUser from '../controller/signUp/NewUser.js'
+import {
+ TransactionPin,
+ ValidatePin,
+} from '../controller/Transactions/TransactionPin.js'
 import ValidateBalance from '../controller/Transactions/ValidateBalance.js'
 
 const route = express.Router()
@@ -52,10 +58,8 @@ route.get('/fetch', fetchSingleUser)
 /* Search for user in the database */
 
 /* Validate user account balance (Check if amount in database is greater than amount user selected) */
-
 route.post('/validatebalance', ValidateBalance)
-
-
 /* Validate user account balance */
+route.post('/profile/upload/:id', StoreUserID)
 
 export default route

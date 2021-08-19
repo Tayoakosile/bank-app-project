@@ -1,12 +1,61 @@
-import { useEffect } from 'react'
+import { Box } from '@chakra-ui/layout'
+import { useToast } from '@chakra-ui/toast'
+import createActivityDetector from 'activity-detector'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
+import { useHistory, useLocation } from 'react-router-dom'
 import { reactLocalStorage } from 'reactjs-localstorage'
 import { axios } from '../api/api'
 import useStore from '../zustand/index'
 
-const useAuth = url => {
+const useAuth = () => {
+ const toast = useToast()
+ const history = useHistory()
+ const location = useLocation().pathname
+ const [isUserInActive, setisUserInActive] = useState(false)
+ /* Detect if the user has been inactive for the past 3 minutes */
+ const activityDetector = createActivityDetector({
+  timeToIdle: 3000,
+  autoInit: false,
+ })
+
+ useEffect(() => {
+  if (location !== '/login') {
+   // I want to start the activity detector now!
+   activityDetector.init()
+  }
+ }, [activityDetector])
+
+ useEffect(() => {
+  activityDetector.on('idle', () => {
+   reactLocalStorage.clear('userToken')
+   const newToken = reactLocalStorage.get('userToken')
+   if (!newToken) {
+    setisUserInActive(true)
+    history.push('/login')
+    toast({
+     render: () => (
+      <Box color="white" p={3} bg="blue.500">
+       You were logged out due to inactivity on your account for a long while
+      </Box>
+     ),
+     duration: null,
+     position: 'top-right',
+     variant: 'left-accent',
+     status: 'warning',
+     isClosable: true,
+    })
+   }
+  })
+  return () => {
+   activityDetector.stop()
+  }
+ }, [activityDetector, history, location])
+
+ /* Detect if the user has been inactive for the past 3 minutes */
+
  const { setUserId, userId, setData, email, setUser } = useStore(state => state)
- const token = reactLocalStorage.get('userToken', true)
+ const token = reactLocalStorage.get('userToken')
  const { error, isLoading, isSuccess, data, isError } = useQuery(
   'authorize',
   async () => {
@@ -25,6 +74,7 @@ const useAuth = url => {
    refetchOnMount: true,
   }
  )
+
  useEffect(() => {
   if (isSuccess) {
    if (data) {
@@ -44,6 +94,8 @@ const useAuth = url => {
   isError,
   userId,
   email,
+  isUserInActive,
+  setisUserInActive,
  }
 }
 

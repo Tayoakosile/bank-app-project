@@ -16,6 +16,7 @@ const transaction = new Schema({
 const NewUser = new Schema({
  firstname: String,
  lastname: String,
+ profileImg: { type: String, default: null },
  username: { type: String, unique: true, required: true, index: true },
  email: { type: String, unique: true, required: true, index: true },
  deleted_on: String,

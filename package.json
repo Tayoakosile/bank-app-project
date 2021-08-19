@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "is-image": "^3.0.0",
     "mjml": "^4.10.2",
     "node-mailjet": "^3.3.4",
     "nodemailer-mailgun-transport": "^2.1.3",

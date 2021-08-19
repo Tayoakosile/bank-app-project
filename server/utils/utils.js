@@ -1,7 +1,10 @@
 import mongoose from 'mongoose'
 import mailJet from 'node-mailjet'
 import randomize from 'randomatic'
+import crypto from 'crypto'
 
+import GridFsStorage from 'multer-gridfs-storage'
+import multer from 'multer'
 
 export const sendMailToUser = (firstname, lastname, email, verification) => {
  const sendEmail = mailJet.connect(
@@ -52,4 +55,30 @@ export const NewTransaction = async (Schema, userId, transaction) => {
   }
  )
  return transactionMadeByUser
+}
+const fileStorage = (promise) => {
+ const storage = new GridFsStorage({
+  db: promise,
+  file: (req, file) => {
+   return new Promise((resolve, reject) => {
+    crypto.randomBytes(16, (err, buf) => {
+     if (err) {
+      return reject(err)
+     }
+     const filename = buf.toString('hex') + path.extname(file.originalname)
+     const fileInfo = {
+      filename: filename,
+      bucketName: 'AllRecordLabelSongsAndImages',
+     }
+     resolve(fileInfo)
+    })
+   })
+  },
+ })
+ return storage
+}
+
+export const upload = (promise) => {
+ const multerImage = promise
+ return multerImage
 }

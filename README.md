@@ -36,5 +36,5 @@ This repo contains A Bank Webapp in which users can :
 
 2. User verified
 
-- Generate a random account number for them say 10 digits and some Alphabets -
+- Generate a random account number say 10 digits and some Alphabets -
   EK1093912123 and create the account - must not clash with an existing account.

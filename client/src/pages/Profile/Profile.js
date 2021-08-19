@@ -1,43 +1,57 @@
-import { Avatar, AvatarBadge } from '@chakra-ui/avatar'
-import { Box, Center, VStack } from '@chakra-ui/layout'
-import React, { useEffect, useState } from 'react'
-import {
- FormControl,
- FormLabel,
- FormErrorMessage,
- FormHelperText,
- Input,
-} from '@chakra-ui/react'
-import useAuth from '../../auth/useAuth'
+import { Avatar } from '@chakra-ui/avatar'
+import { Center, VStack } from '@chakra-ui/layout'
+import { FormControl, FormLabel, Input } from '@chakra-ui/react'
+import React from 'react'
+import useUpdateProfile from '../../hooks/useUpdateProfile'
+import ProtectedComponent from '../../components/ProtectedComponent'
+import UpdateProfileForm from './UpdateProfileForm'
 
 const Profile = () => {
- const { data, isSuccess } = useAuth()
-
- const [userInfo, setUser] = useState()
- useEffect(() => {
-  if (isSuccess) {
-   setUser(data.authorizedData)
-  }
- }, [isSuccess, data])
- console.log(data, userInfo)
- const { firstname, lastname, email, username } =
-  userInfo !== undefined && userInfo
+ const {
+  handleImageUpload,
+  updateUserProfile,
+  imageDisplayLink,
+  firstname,
+  isSuccess,
+  isLoading,
+  lastname,
+  profileImg,
+  email,
+  username,
+ } = useUpdateProfile()
 
  return (
-  <>
+  <ProtectedComponent>
    {isSuccess && (
-    <VStack mt="12" spacing="8" w="80%" mx="auto">
-     {/* You can also change the borderColor and bg of the badge */}
-     <Avatar size="xl" rounded="8" name={`${firstname} ${lastname}`} />
+    <VStack mt="12" spacing="4" w="80%" mx="auto">
+     <Avatar
+      size="2xl"
+      rounded="3"
+      shadow="md"
+      borderRadius="3"
+      loading="lazy"
+      accept="image/*"
+      name={`${firstname} ${lastname}`}
+      src={
+       updateUserProfile.image
+        ? updateUserProfile.image &&
+          URL.createObjectURL(updateUserProfile.image)
+        : imageDisplayLink
+      }
+     />
+
      <Center>
-      <FormControl id="email">
-       <FormLabel htmlFor="uploadPic">Change Profile Image|</FormLabel>
-       <Input type="file" id="uploadPic" d="none" />
+      <FormControl id="file">
+       <FormLabel htmlFor="file" fontWeight="normal">
+        Change Image {isLoading && `loading ooo `}
+       </FormLabel>
+       <Input type="file" id="file" d="none" onChange={handleImageUpload} />
       </FormControl>
      </Center>
     </VStack>
    )}
-  </>
+   <UpdateProfileForm />
+  </ProtectedComponent>
  )
 }
 
