@@ -62,6 +62,7 @@ export const VerifyUserEmail = async (req, res) => {
         await Code.deleteMany({ email });
         res.status(200).json({ success: true, data: "User verified" });
       } else {
+        console.log("Verification code has expired");
         res.status(400).json({ success: false, err: "code not found" });
       }
       //  If verification code is still valid
