@@ -2,9 +2,10 @@ import SignUp from './SignUp/SignUp'
 import Login from './Login/Login'
 import Dashboard from './Dashboard/Dashboard'
 import ResetPassword from './ResetPassword/ResetPassword'
+import ResetPasswordCodeSent from './ResetPassword/ResetPasswordCodeSent'
 import VerifyTransaction from './Transaction/VerifyTransaction'
 import TransactionPin from './TransactionPin/TransactionPin'
-
+import Home from './Home/Home'
 import SearchRegisteredUser from './TransferFundz/SearchUser'
 import SetAmountToTransfer from './TransferFundz/SetAmounToTransfer'
 import TransferFundzToUser from './TransferFundz/TransferFundzToUser'
@@ -38,5 +39,7 @@ export {
  SetAmountToTransfer,
  Profile,
  TransferFundzToUser,
+ Home,
+ ResetPasswordCodeSent,
  TransferSuccess,
 }

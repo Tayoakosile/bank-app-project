@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
  Button,
@@ -12,32 +12,65 @@ import {
  Stack,
  Image,
  FormErrorMessage,
+ Box,
 } from '@chakra-ui/react'
 import useResetPassword from '../../hooks/useResendValidationCode'
 import useValidateForm from '../../hooks/useValidateForm'
+import Back from '../../components/Back'
+import useStore from '../../zustand'
 
 export default function SplitScreen() {
- const { register, errors, handleSubmit, RequestPasswordRequest, isValid } =
-  useResetPassword()
+ const {
+  register,
+  errors,
+  handleSubmit,
+  RequestPasswordRequest,
+  isValid,
+  isLoading,
+ } = useResetPassword()
+ /* Gets user email from login page and sets it */
+ const { email } = useStore(state => state)
+ const [isUserEmail, setUserEmail] = useState(email)
+ console.log('email', email)
+ /* Gets user email from login page and sets it */
+
  return (
-  <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
-   <Flex p={8} flex={1} align={'center'} justify={'center'}>
+  <Stack
+   minH={'100vh'}
+   bg="brand.500"
+   px={7}
+   direction={{ base: 'column', md: 'row' }}
+  >
+   {/* Go back */}
+   <Box pt="4" ml="-2">
+    <Back />
+   </Box>
+   {/* Go back */}
+   <Flex pt={12} align={'center'} justify={'center'}>
     <Stack
      as="form"
-     id ="resetpasswordform"
+     id="resetpasswordform"
      onSubmit={handleSubmit(RequestPasswordRequest)}
-     spacing={4}
+     spacing={8}
      w={'full'}
      maxW={'md'}
     >
-     <Heading fontSize={'2xl'} textAlign="center" pb="12">
+     <Heading color="white" fontSize={'2xl'} pb="4">
       Lets help reset your password
      </Heading>
-     <FormControl id="email" isInvalid={errors.email}>
-      <FormLabel>Email address</FormLabel>
+     <FormControl
+      className="monsecure-form"
+      id="email"
+      h="20"
+      isInvalid={errors.email}
+     >
       <Input
+       fontWeight="normal !important"
        type="email"
-       placeholder="Type in your email address"
+       variant="flushed"
+       value={isUserEmail}
+       _placeholder={{ color: 'white' }}
+       placeholder="Email address"
        {...register('email', {
         required: 'Your Email Address is Required',
         pattern: {
@@ -45,10 +78,18 @@ export default function SplitScreen() {
           /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/,
          message: 'Invalid Email Address, Please try again',
         },
-      
        })}
+       onChange={e => setUserEmail(e.target.value)}
+       color="white !important"
       />
-      <FormErrorMessage>
+      <FormErrorMessage
+       transition="all 0.3s ease-in"
+       className="monsecure_error"
+       fontWeight="normal"
+       p="3"
+       bg="rgba(221, 44, 0, 0.87)"
+       color="white"
+      >
        {errors.email && errors.email.message}
       </FormErrorMessage>
      </FormControl>
@@ -56,11 +97,19 @@ export default function SplitScreen() {
      <Stack spacing={6}>
       <Button
        type="submit"
-       isDisabled={!isValid}
-       colorScheme={'blue'}
+       bg={'white'}
+       isLoading={isLoading}
+       loadingText="Sending Reset Link"
+       size="lg"
+       fontSize="sm"
+       textTransform="uppercase"
+       w="98%"
+       mx="auto"
+       h="16"
+       color={'brand.500'}
        variant={'solid'}
       >
-       Request Password Reset Link
+       Get reset link
       </Button>
      </Stack>
     </Stack>

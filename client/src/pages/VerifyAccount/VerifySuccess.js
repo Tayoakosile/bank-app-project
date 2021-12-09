@@ -8,4 +8,5 @@ const VerifySuccess = () => {
     )
 }
 
+
 export default VerifySuccess

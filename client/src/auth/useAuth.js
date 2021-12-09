@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/layout'
 import { useToast } from '@chakra-ui/toast'
 import createActivityDetector from 'activity-detector'
 import { useEffect, useState } from 'react'
@@ -15,17 +14,9 @@ const useAuth = () => {
  const [isUserInActive, setisUserInActive] = useState(false)
  /* Detect if the user has been inactive for the past 3 minutes */
  const activityDetector = createActivityDetector({
-  timeToIdle: 3000,
-  autoInit: false,
+  timeToIdle: 10000,
  })
-
- useEffect(() => {
-  if (location !== '/login') {
-   // I want to start the activity detector now!
-   activityDetector.init()
-  }
- }, [activityDetector])
-
+/* 
  useEffect(() => {
   activityDetector.on('idle', () => {
    reactLocalStorage.clear('userToken')
@@ -39,7 +30,7 @@ const useAuth = () => {
        You were logged out due to inactivity on your account for a long while
       </Box>
      ),
-     duration: null,
+     duration: 4000,
      position: 'top-right',
      variant: 'left-accent',
      status: 'warning',
@@ -50,8 +41,8 @@ const useAuth = () => {
   return () => {
    activityDetector.stop()
   }
- }, [activityDetector, history, location])
-
+ }, [activityDetector, history, location,toast])
+ */
  /* Detect if the user has been inactive for the past 3 minutes */
 
  const { setUserId, userId, setData, email, setUser } = useStore(state => state)

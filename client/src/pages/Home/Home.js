@@ -1,15 +1,11 @@
 import React from 'react'
-import useAuth from '../../auth/useAuth'
+import useHome from '../../hooks/useHome'
+import Intro from './Intro'
+import Next from './Next'
 
 const Home = () => {
-    return (
-        <div>
-{
-    useAuth()
-&&  'yoo'
-}            
-        </div>
-    )
+ const { showNextPage } = useHome()
+ return <>{showNextPage ? <Next /> : <Intro />}</>
 }
 
 export default Home

@@ -1,5 +1,4 @@
 import axiosAsync from 'axios'
-import { useForm } from 'react-hook-form'
 
 export const axios = axiosAsync.create({
  baseURL: 'http://localhost:4000/user',

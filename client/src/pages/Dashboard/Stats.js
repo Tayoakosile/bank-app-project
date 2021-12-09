@@ -18,7 +18,7 @@ const Stats = () => {
     <Button
      /*  onClick={() => {
       initializePayment(onSuccess, onClose)
-     }} */
+     }} */ 
      colorScheme="blue"
      variant="solid"
      bg="blue.400"

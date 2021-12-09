@@ -5,7 +5,9 @@ import {
  Login,
  ResetPassword,
  ResetPasswordStatus,
+ ResetPasswordCodeSent,
  VerifiedStatus,
+ Home,
  VerifyAccount,
  VerifyError,
  VerifySuccess,
@@ -49,13 +51,17 @@ const App = () => {
     <VerifySuccess />
    </Route>
 
+   {/* Reset password */}
    <Route exact path="/reset-password">
     <ResetPassword />
    </Route>
-
+   <Route exact path="/reset-confirm">
+    <ResetPasswordCodeSent />
+   </Route>
    <Route exact path="/reset-password/:_id/:secretCode">
     <ResetPasswordStatus />
    </Route>
+   {/* Reset password */}
 
    <Route exact path="/dashboard">
     <Dashboard />
@@ -106,7 +112,7 @@ const App = () => {
    {/* Users Profile */}
 
    <Route exact path="/">
-    Welcome
+    <Home />
    </Route>
   </Switch>
  )

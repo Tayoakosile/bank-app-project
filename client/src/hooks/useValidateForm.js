@@ -1,15 +1,50 @@
 import { useToast } from '@chakra-ui/react'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import { isUserEmailUnique, postRequestToServer } from '../api/api'
 import useStore from '../zustand/index'
 
 const useValidateForm = () => {
- // This will either send a success or error toast depending on user form validation
+ /* Labels */
+ const [isFirstNameActive, setIsFirstNameActive] = useState(false)
+ const [isLastNameActive, setIsLastNameActive] = useState(false)
+ const [isUserNameActive, setIsUserNameActive] = useState(false)
+ const [isEmailActive, setIsEmailActive] = useState(false)
+ const [isPasswordActive, setIsPasswordActive] = useState(false)
+ const [showPassword, setShowPassword] = useState(true)
+
+ /* Toggles password visibility */
+ const handleShowPassword = () => setShowPassword(!showPassword)
+ /* Toggles password visibility */
+
+ /* Make label stay on top if user has inputed a value */
+
+ /* First name check */
+ const handleFirstNameChange = text =>
+  text !== '' ? setIsFirstNameActive(true) : setIsFirstNameActive(false)
+
+ /* Last name check */
+ const handleLastNameChange = text =>
+  text !== '' ? setIsLastNameActive(true) : setIsLastNameActive(false)
+
+ /* Username check */
+ const handleUserNameChange = text =>
+  text !== '' ? setIsUserNameActive(true) : setIsUserNameActive(false)
+
+ /* Email check */
+ const handleEmailChange = text =>
+  text !== '' ? setIsEmailActive(true) : setIsEmailActive(false)
+
+ /* Email check */
+ const handlePasswordChange = text =>
+  text !== '' ? setIsPasswordActive(true) : setIsPasswordActive(false)
+
  const toast = useToast()
  const history = useHistory()
+
  //   Global State Manager
+
  const { setData } = useStore(state => state)
  const {
   register,
@@ -20,11 +55,9 @@ const useValidateForm = () => {
   reset,
   isSubmitting,
   formState: { errors, isValid },
- } = useForm({ mode: 'all' })
+ } = useForm({ mode: 'all', shouldFocusError: true })
 
- // Checks if user password contains a number
- console.log(errors)
-
+ /* Checks if user is already registered in database, throws error if registered */
  const handleValidateEmail = useCallback(
   (verify, mode) => {
    isUserEmailUnique('/validate', mode, verify)
@@ -39,7 +72,6 @@ const useValidateForm = () => {
      return false
     })
   },
-
   [setError]
  )
 
@@ -70,17 +102,29 @@ const useValidateForm = () => {
     })
   }
  }
- // Submit form
+
  return {
   register,
   handleSubmit,
   onSubmit,
-  isSubmitting,
-  handleValidateEmail,
   errors,
-  isValid,
   clearErrors,
   setValue,
+  showPassword,
+  handleValidateEmail,
+  handleFirstNameChange,
+  handleLastNameChange,
+  handleUserNameChange,
+  handleEmailChange,
+  handlePasswordChange,
+  handleShowPassword,
+  isFirstNameActive,
+  isSubmitting,
+  isLastNameActive,
+  isEmailActive,
+  isUserNameActive,
+  isValid,
+  isPasswordActive,
  }
 }
 

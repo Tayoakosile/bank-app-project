@@ -39,6 +39,7 @@ const createNewUser = async (req, res) => {
   /* If account number was successfully created */
 
   if (createUserAccountNumber) {
+     //   Get ser unique id
    const { _id } = createUserAccountNumber
    console.log(createUserAccountNumber)
    const form = {

@@ -59,7 +59,7 @@ const FundAccount = () => {
        type="submit"
        w="70%"
        colorScheme="blue"
-       h="12"
+       h="16"
       >
        Next
       </Button>
