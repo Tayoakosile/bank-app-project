@@ -12,6 +12,7 @@ const useAuth = () => {
  const history = useHistory()
  const location = useLocation().pathname
  const [isUserInActive, setisUserInActive] = useState(false)
+ 
  /* Detect if the user has been inactive for the past 3 minutes */
  const activityDetector = createActivityDetector({
   timeToIdle: 10000,
