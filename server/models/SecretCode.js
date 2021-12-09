@@ -8,5 +8,5 @@ const SecretCode = new Schema({
 });
 SecretCode.index({ createdAt: 1 }, { expireAfterSeconds: 600 });
 
-const Code = mongoose.model("Code", SecretCode);
-export default Code;
+const SecretCodeThatLastForTenMinutes = mongoose.model("Code", SecretCode);
+export default SecretCodeThatLastForTenMinutes;

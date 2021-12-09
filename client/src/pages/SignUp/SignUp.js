@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Button,
   Center,
@@ -15,12 +14,12 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import React from "react";
 import { Animated } from "react-animated-css";
-import { Link as NavLink } from "react-router-dom";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { GoMail } from "react-icons/go";
-import { MdError } from "react-icons/md";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Link as NavLink } from "react-router-dom";
 import FulLogo from "../../assets/img/logo/FulLogo";
 import Header from "../../components/Heading";
 import useValidateForm from "../../hooks/useValidateForm";
@@ -33,11 +32,11 @@ export default function SplitScreen() {
     isValid,
     errors,
     isSubmitting,
-    isFirstNameActive,
-    isLastNameActive,
-    isUserNameActive,
-    isEmailActive,
-    isPasswordActive,
+    isFirstNameTypedIn,
+    isLastNameTypedIn,
+    isUserNameTypedIn,
+    isEmailAddressTypedIn,
+    isPasswordTypedIn,
     handleValidateEmail,
     handleFirstNameChange,
     handleLastNameChange,
@@ -75,7 +74,7 @@ export default function SplitScreen() {
             as="h2"
             fontWeight="bolder"
             fontSize={"2xl"}
-            text="Let's get your account up and running."
+            text="Let's get your ssaccount up and running."
             pb={"4"}
             w="90%"
           />
@@ -100,9 +99,8 @@ export default function SplitScreen() {
                 transitionProperty="color, font-weight"
                 fontSize="sm"
                 bg={errors.firstname ? "" : "white"}
-                px={errors.firstname ? "" : ""}
                 color={errors.firstname ? "#a12000" : "brand.600"}
-                className={isFirstNameActive && "Active"}
+                className={isFirstNameTypedIn && "Active"}
                 opacity={errors.firstname ? "1" : ".80"}
                 fontWeight={errors.firstname ? "bold" : "bold"}
               >
@@ -154,7 +152,7 @@ export default function SplitScreen() {
               <FormLabel
                 htmlFor="lastname"
                 fontSize="sm"
-                className={isLastNameActive ? "Active" : ""}
+                className={isLastNameTypedIn ? "Active" : ""}
                 color={errors.lastname ? "rgba(221, 44, 0, 0.87)" : "brand.600"}
                 opacity={errors.lastname ? "1" : ".80"}
                 fontWeight={errors.lastname ? "semibold" : "semibold"}
@@ -215,7 +213,7 @@ export default function SplitScreen() {
               bg={errors.firstname ? "" : "white"}
               px={errors.firstname ? "" : "1"}
               zIndex={errors.firstname ? "" : "4"}
-              className={isUserNameActive ? "Active" : ""}
+              className={isUserNameTypedIn ? "Active" : ""}
               opacity={errors.username ? "1" : ".80"}
               fontWeight={errors.username ? "semibold" : "semibold"}
             >
@@ -270,7 +268,7 @@ export default function SplitScreen() {
               htmlFor="email"
               fontSize="sm"
               color={errors.email ? "#a12000" : "brand.600"}
-              className={isEmailActive && "Active"}
+              className={isEmailAddressTypedIn && "Active"}
               opacity={errors.email ? "1" : ".80"}
               fontWeight={errors.email ? "bold" : "bold"}
             >
@@ -331,12 +329,12 @@ export default function SplitScreen() {
               htmlFor="password"
               fontSize="sm"
               color={errors.password ? "#a12000" : "brand.600"}
-              className={isPasswordActive ? "Active" : ""}
+              className={isPasswordTypedIn ? "Active" : ""}
               opacity={errors.password ? "1" : ".80"}
               fontWeight={errors.password ? "bold" : "bold"}
-              bg={errors.password ? "" : "white"}
-              px={errors.password ? "" : "1"}
-              zIndex={errors.password ? "" : "4"}
+              bg={errors.password ? "transparent" : "white"}
+              px={errors.password ? "transparent" : "1"}
+              zIndex={errors.password ? "transparent" : "4"}
             >
               Password
             </FormLabel>
@@ -383,8 +381,10 @@ export default function SplitScreen() {
           <VStack mt={6} spacing={8}>
             <Button
               bg="rgb(17, 79, 166)"
-              isLoading={false}
+              loadingText ="Creating your account"
+              isLoading={isSubmitting}
               type="submit"
+              isDisabled={!isValid}
               textTransform="capitalize"
               fontSize="sm"
               size="lg"

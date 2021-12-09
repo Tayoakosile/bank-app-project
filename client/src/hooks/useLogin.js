@@ -1,11 +1,10 @@
 import { useToast } from '@chakra-ui/react'
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 import { useHistory } from 'react-router'
 import { reactLocalStorage } from 'reactjs-localstorage'
 import { postRequestToServer } from '../api/api'
-import useStore from '../zustand'
 
 const useLogin = () => {
  const history = useHistory()
@@ -39,12 +38,12 @@ const useLogin = () => {
 
   if (isError) {
    const { data } = error.response
-   data.err == 'IncorrectEmailError' &&
+   data.err === 'IncorrectEmailError' &&
     setError('email', {
      type: 'required',
      message: `This Email Isnt Registered,Please Sign Up to continue`,
     })
-   data.err == 'IncorrectPasswordError' &&
+   data.err === 'IncorrectPasswordError' &&
     setError('password', {
      type: 'required',
      message: `Oops, Password is incorrect`,

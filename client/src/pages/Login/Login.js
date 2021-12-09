@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Center,
-  Flex,
   FormControl,
   FormErrorIcon,
   FormErrorMessage,
@@ -39,7 +38,8 @@ export default function SimpleCard() {
     handleShowPassword,
   } = useValidateForm();
 
-  const { isSuccess, isUserInActive } = useAuth();
+  const { isSuccess } = useAuth();
+//   If user is successfully logged in and still returns to login page return to  
   if (isSuccess) {
     return <Redirect to="/dashboard"></Redirect>;
   }

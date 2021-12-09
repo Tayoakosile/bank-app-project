@@ -1,50 +1,51 @@
 html,
 body {
- height: 100%;
+  height: 100%;
 }
 #root {
- height: 100%;
+  height: 100%;
 }
 .home-intro {
- background: url('./assets/img/home.png') no-repeat center center fixed;
- background-size: cover;
- position: relative;
- height: 100%;
+  background: url("./assets/img/home.png") no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  height: 100%;
 }
 /* Sign up */
 .signup {
- background: url('./assets/img/home.png') no-repeat center center fixed;
- background-size: cover;
- position: relative;
- width: 100%;
+  background: url("./assets/img/home.png") no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  width: 100%;
 }
 /* Sign up */
 
 /* Form signup*/
 .monsecure-form input {
- font-weight: bold;
- font-size: 14px;
- color: #0e3e84;
+  font-weight: bold;
+  font-size: 14px;
+  color: #0e3e84;
 }
 .monsecure-form label {
- transform-origin: top left;
- transition: all 0.2s ease-out;
- position: absolute;
- font-weight: normal;
- letter-spacing: .7px;
- transform: translate(0, 12px) scale(1);
+  transform-origin: top left;
+  transition: all 0.2s ease-out;
+  position: absolute;
+  font-weight: normal;
+  background: transparent;
+  letter-spacing: 0.7px;
+  transform: translate(0, 12px) scale(1);
 }
 
 .monsecure-form:focus-within label {
- transform: translate(0, -11px) scale(0.9);
+  transform: translate(0, -11px) scale(0.9);
 }
 .monsecure-form .Active {
- transform: translate(0, -11px) scale(0.9);
+  transform: translate(0, -11px) scale(0.9);
 }
 
 /* Label error */
 .monsecure_error {
- font-size: 12px !important;
- font-weight: bold;
+  font-size: 12px !important;
+  font-weight: bold;
 }
 /* Form signup*/

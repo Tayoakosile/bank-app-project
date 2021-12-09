@@ -1,33 +1,35 @@
-import { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
-import { postRequestToServer } from '../api/api'
-import useStore from '../zustand/index'
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import { postRequestToServer } from "../api/api";
+import useStore from "../zustand/index";
 
 const useVerifyAccount = () => {
- const [userStatus, setUserStatus] = useState('')
- // get users details from url parameter
- const { _id, secretCode } = useParams()
- // get users details from url parameter
- // set User email address
- const email = useStore(state => state.email)
+  // send post request with verification code
 
- //  Send request to  User
- useEffect(() => {
-  async function fetchData() {
-   try {
-    const verifyAccount = await postRequestToServer(
-     `/verification/verify-account/${_id}/${secretCode}`
-    )
-    await setUserStatus(verifyAccount)
-    console.log(verifyAccount)
-   } catch (err) {
-    console.log(err)
-   }
-  }
-  fetchData()
- }, [secretCode, _id])
+  const [userStatus, setUserStatus] = useState("");
 
- return { email, userStatus }
-}
+  // get users details from url parameter
+  const { _id, secretCode } = useParams();
+  // get users details from url parameter
 
-export default useVerifyAccount
+  // set User email address into zustandstate
+  const email = useStore((state) => state.email);
+
+  const { data, isError, isSuccess, error, isLoading } = useQuery(
+    "verifcationcode",
+    () =>
+      postRequestToServer(`/verification/verify-account/${_id}/${secretCode}`)
+  );
+
+  useEffect(() => {
+    if (isSuccess) {
+      data && setUserStatus(data.email);
+    }
+    console.log("errors here", data, isError, isSuccess, error,isLoading);
+  }, [data, isError, isSuccess, error, isLoading]);
+
+  return { email, userStatus, data, isError, isSuccess, error, isLoading };
+};
+
+export default useVerifyAccount;
