@@ -1,13 +1,38 @@
 import { Button } from "@chakra-ui/button";
-import { GrSend } from "react-icons/gr";
-import { Heading, HStack, Text, VStack } from "@chakra-ui/layout";
+import { VscBell } from "react-icons/vsc";
+import {
+  Box,
+  Divider,
+  Heading,
+  HStack,
+  Spacer,
+  Text,
+  VStack,
+} from "@chakra-ui/layout";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../auth/useAuth";
 import ProtectedComponent from "../../components/ProtectedComponent";
 import useDashboard from "../../hooks/useDashboard";
 import Loader from "../../pages/Loading/IsLoading";
+import Icon from "@chakra-ui/icon";
+import { Link } from "react-router-dom";
 
 const Account = () => {
+  const AccountUserName = (text) => {
+    return (
+      <Text color="white" fontSize="sm" fontWeight="normal">
+        {text}
+      </Text>
+    );
+  };
+  const AccountHeader = (text) => {
+    return (
+      <Heading fontWeight="bold" fontSize="lg" as="h3" color="gray.300">
+        {text}
+      </Heading>
+    );
+  };
+
   const [loggedInUserDetails, setLoggedInUserDetails] = useState("");
 
   const { balance } = useDashboard();
@@ -15,53 +40,61 @@ const Account = () => {
 
   // if user successfully logs in and if data is ready, set state
   useEffect(() => {
+    if (isLoading) {
+      return <Loader />;
+    }
     data && setLoggedInUserDetails(data.authorizedData);
-  }, [isSuccess, data]);
+  }, [isSuccess, data, isLoading]);
 
-  console.log(data, loggedInUserDetails);
+  console.log(data, loggedInUserDetails, isLoading);
 
-  if (isLoading) {
-    return <Loader />;
-  }
   return (
     <ProtectedComponent>
       <VStack
-        spacing="10"
+        spacing="12"
         as="section"
-        h="70vh"
+        h="64"
         bg="brand.600"
         alignItems="flex-start"
-        p="3"
+        p="5"
       >
         {/* Greeting and username */}
 
-        <HStack alignItems="flex-start">
-          <VStack spacing="1" pt="4" alignItems="flex-start">
-            <Text color="brand.100" fontSize="sm" fontWeight="semibold">
-              Hi, {data ? loggedInUserDetails.firstname : "there"}
-            </Text>
-            <Heading fontWeight="bold" fontSize="xl" as="h3" color="gray.200">
-              {/* Shows name of user */}
-              Welcome Back
-            </Heading>
+        <HStack alignItems="flex-start" w="full">
+          <VStack spacing="0" pt="4" alignItems="flex-start">
+            {AccountUserName(
+              `Hi, ${data ? loggedInUserDetails.firstname : "there"}`
+            )}
+            {AccountHeader("Welcome Back")}
           </VStack>
+          <Spacer />
+          {/* Notification bell */}
+          <Box as={Link} to="/notifications">
+            <Icon as={VscBell} color="brand.100" w="7" h="7" />
+          </Box>
+          {/* Notification bell */}
         </HStack>
         {/* Greeting and username */}
 
         {/* Available Balance */}
         <VStack spacing="0" alignItems="center" width="100%" mx="auto">
-          <Text color="white" fontWeight="bold" color="brand.200" fontSize="md">
+          <Text color="white" fontWeight="bold" color="brand.200" fontSize="sm">
             Available Balance
           </Text>
-          <Heading color="white" fontSize="5xl">
-            <span>&#8358;</span>
-            {balance}.00
+          <Heading display="flex" alignItems="center" color="brand.100">
+            <Text mt="5" mr="1" fontSize="xl" as="span" alignSelf="flex-start">
+              &#8358;
+            </Text>
+            <Text color="white" fontSize="6xl" as="span">
+              {balance}
+            </Text>{" "}
+            <Text as="span" mt="6" fontSize="2xl">
+              .00
+            </Text>
           </Heading>
         </VStack>
 
-        {/* Buttons to send and recieve money */}
-
-        {/* Buttons to send and recieve money */}
+        {/* Account Number */}
       </VStack>
     </ProtectedComponent>
 
