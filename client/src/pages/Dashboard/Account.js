@@ -1,6 +1,6 @@
-import { Button, ButtonGroup } from "@chakra-ui/button";
-import { Center, Flex, Heading, HStack, Text, VStack } from "@chakra-ui/layout";
-import { chakra } from "@chakra-ui/system";
+import { Button } from "@chakra-ui/button";
+import { GrSend } from "react-icons/gr";
+import { Heading, HStack, Text, VStack } from "@chakra-ui/layout";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../auth/useAuth";
 import ProtectedComponent from "../../components/ProtectedComponent";
@@ -61,21 +61,6 @@ const Account = () => {
 
         {/* Buttons to send and recieve money */}
 
-        <HStack
-          justifyContent="center"
-          variant="outline"
-          w="full"
-          spacing="6"
-          size="lg"
-          bg="red"
-        >
-          <chakra.button bg="white" color="brand.500">
-            Save
-          </chakra.button>
-          <Button color="white" bg="brand.500">
-            Cancel
-          </Button>
-        </HStack>
         {/* Buttons to send and recieve money */}
       </VStack>
     </ProtectedComponent>
