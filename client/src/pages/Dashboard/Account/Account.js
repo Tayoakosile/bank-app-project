@@ -61,7 +61,7 @@ const Account = () => {
         p="5"
       >
         {/* Greeting and username */}
-
+        {/* Greeting and username */}
         <HStack alignItems="flex-start" w="full">
           <VStack spacing="0" pt="4" alignItems="flex-start">
             {AccountUserName(

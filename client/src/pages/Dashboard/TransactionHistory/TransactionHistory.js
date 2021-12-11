@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from "react";
 import { Button } from "@chakra-ui/button";
 import { Box, HStack, Spacer, Text } from "@chakra-ui/layout";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 import randomatic from "randomatic";
-import useAuth from "../../../auth/useAuth";
-
-import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
-
-const daysSelection = ["Today", "Yesterday", "This Week"];
+import React from "react";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import useTransactionHistory from "../../../hooks/useTransactionHistory";
 const TransactionHistory = () => {
-  const [storeUserSelection, setStoreUseSelection] = useState("Today");
-  const { data } = useAuth();
-  const [transactions, setTransactions] = useState("");
-
-  useEffect(() => {
-    if (data) {
-      setTransactions(data.authorizedData.transactions);
-    }
-  }, [data]);
-
-  console.log(transactions);
+  const {
+    daysSelection,
+    storeUserSelection,
+    setStoreUseSelection,
+    transactions,
+  } = useTransactionHistory();
 
   return (
     <Box px="5" mt="10">

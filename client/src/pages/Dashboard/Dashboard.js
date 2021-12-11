@@ -15,7 +15,6 @@ const Dashboard = () => {
       <Box  py="6">
         <AccountButton />
       </Box>
-
         <TransactionHistory />
     </ProtectedComponent>
   );
