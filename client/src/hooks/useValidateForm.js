@@ -20,28 +20,35 @@ const useValidateForm = () => {
 
   /* Make label stay on top if user has inputed a value */
 
-  
   /* THis enables the "firstname" label to float if the firstname has been typed in*/
-  const handleFirstNameChange = (firstname) =>
-    firstname == ""
+  const handleFirstNameChange = (firstName) =>
+    firstName == "" || firstName <= 0
       ? setIsFirstNameTypedIn(false)
       : setIsFirstNameTypedIn(true);
 
   /* THis enables the "lastname" label to float if the lastname has been typed in*/
-  const handleLastNameChange = (lastname) =>
-    lastname == "" ? setIsLastNameTypedIn(false) : setIsLastNameTypedIn(true);
+  const handleLastNameChange = (lastName) =>
+    lastName == "" || lastName <= 0
+      ? setIsLastNameTypedIn(false)
+      : setIsLastNameTypedIn(true);
 
   /* THis enables the "username" label to float if the username has been typed in*/
-  const handleUserNameChange = (text) =>
-    text == "" ? setIsUserNameTypedIn(false) : setIsUserNameTypedIn(true);
+  const handleUserNameChange = (userName) =>
+    userName == "" || userName <= 0
+      ? setIsUserNameTypedIn(false)
+      : setIsUserNameTypedIn(true);
 
   /* THis enables the "email" label to float if the email has been typed in*/
   const handleEmailChange = (email) =>
-    email == "" ? setIsEmailTypedIn(false) : setIsEmailTypedIn(true);
+    email == "" || email <= 0
+      ? setIsEmailTypedIn(false)
+      : setIsEmailTypedIn(true);
 
   /* THis enables the "password" label to float if the password has been typed in*/
   const handlePasswordChange = (password) =>
-    password == "" ? setIsPasswordTypedIn(false) : setIsPasswordTypedIn(true);
+    password == "" || password <= 0
+      ? setIsPasswordTypedIn(false)
+      : setIsPasswordTypedIn(true);
 
   const toast = useToast();
   const history = useHistory();

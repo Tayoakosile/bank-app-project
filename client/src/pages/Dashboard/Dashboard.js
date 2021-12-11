@@ -2,7 +2,8 @@ import { Box, Heading } from "@chakra-ui/layout";
 import React from "react";
 import ProtectedComponent from "../../components/ProtectedComponent";
 import useStore from "../../zustand";
-import BasicStatistics from "./Account";
+import Account from "./Account/Account";
+import AccountButton from "./Account/AccountButton";
 import TransactionHistory from "./TransactionHistory/TransactionHistory";
 const Dashboard = () => {
   // Get users details from global state
@@ -10,12 +11,15 @@ const Dashboard = () => {
 
   return (
     <ProtectedComponent>
-      <BasicStatistics />
-      <Box mt="7rem">
-        <TransactionHistory />
+      <Account />
+      <Box  py="6">
+        <AccountButton />
       </Box>
+
+        <TransactionHistory />
     </ProtectedComponent>
   );
 };
 
 export default Dashboard;
+    

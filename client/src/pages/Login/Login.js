@@ -30,8 +30,8 @@ export default function SimpleCard() {
     useLogin();
   const { setData } = useStore((state) => state);
   const {
-    isPasswordActive,
-    isEmailActive,
+    isPasswordTypedIn,
+    isEmailAddressTypedIn,
     showPassword,
     handleEmailChange,
     handlePasswordChange,
@@ -39,7 +39,7 @@ export default function SimpleCard() {
   } = useValidateForm();
 
   const { isSuccess } = useAuth();
-//   If user is successfully logged in and still returns to login page return to  
+  //   If user is successfully logged in and still returns to login page return to
   if (isSuccess) {
     return <Redirect to="/dashboard"></Redirect>;
   }
@@ -78,9 +78,10 @@ export default function SimpleCard() {
                 isInvalid={errors.email}
               >
                 <FormLabel
+                  name="email"
                   color={errors.email ? "#a12000" : "brand.600"}
                   fontSize="sm"
-                  className={isEmailActive ? "Active" : ""}
+                  className={isEmailAddressTypedIn ? "Active" : ""}
                   opacity={errors.email ? "1" : ".80"}
                   fontWeight={errors.email ? "bold" : "bold"}
                   bg={errors.email ? "" : "white"}
@@ -95,7 +96,7 @@ export default function SimpleCard() {
                     type="email"
                     name="email"
                     {...register("email", {
-                      required: "A valid password is required",
+                      required: "A valid email is required",
                       pattern: {
                         value:
                           /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/,
@@ -107,6 +108,7 @@ export default function SimpleCard() {
                       // },
                     })}
                     onChange={(e) => {
+                      handleEmailChange(e.target.value);
                       handleEmailChange(e.target.value);
                       setData(e.target.value);
                     }}
@@ -137,9 +139,10 @@ export default function SimpleCard() {
                 isInvalid={errors.password}
               >
                 <FormLabel
+                  name="password"
                   color={errors.password ? "#a12000" : "brand.600"}
                   fontSize="sm"
-                  className={isPasswordActive ? "Active" : ""}
+                  className={isPasswordTypedIn ? "Active" : ""}
                   opacity={errors.password ? "1" : ".80"}
                   fontWeight={errors.password ? "bold" : "bold"}
                   bg={errors.password ? "" : "white"}

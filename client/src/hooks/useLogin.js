@@ -1,58 +1,58 @@
-import { useToast } from '@chakra-ui/react'
-import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import { useMutation } from 'react-query'
-import { useHistory } from 'react-router'
-import { reactLocalStorage } from 'reactjs-localstorage'
-import { postRequestToServer } from '../api/api'
+import { useToast } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import { useHistory } from "react-router";
+import { reactLocalStorage } from "reactjs-localstorage";
+import { postRequestToServer } from "../api/api";
 
 const useLogin = () => {
- const history = useHistory()
- const toast = useToast()
- const {
-  register,
-  handleSubmit,
-  setError,
-  formState: { errors, isValid },
- } = useForm({ mode: 'onBlur' })
+  const history = useHistory();
+  const toast = useToast();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isValid },
+  } = useForm({ mode: "all", shouldFocusError: true });
 
- const { mutate, isLoading, isError, isSuccess, data, error } = useMutation(
-  formDetails => {
-   const form = postRequestToServer('/login', formDetails)
-   return form
-  }
- )
+  const { mutate, isLoading, isError, isSuccess, data, error } = useMutation(
+    (formDetails) => {
+      const form = postRequestToServer("/login", formDetails);
+      return form;
+    }
+  );
 
- const onSubmit = data => {
-  mutate(data)
- }
+  const onSubmit = (data) => {
+    mutate(data);
+  };
 
- useEffect(() => {
-  console.log(isLoading, isError, isSuccess, data)
-  /* If there was an error returned from the form */
-  if (isSuccess) {
-   const { data: usersDetails } = data
-   reactLocalStorage.set('userToken', usersDetails.token)
-   history.push('dashboard')
-  }
+  useEffect(() => {
+    console.log(isLoading, isError, isSuccess, data);
+    /* If there was an error returned from the form */
+    if (isSuccess) {
+      const { data: usersDetails } = data;
+      reactLocalStorage.set("userToken", usersDetails.token);
+      history.push("dashboard");
+    }
 
-  if (isError) {
-   const { data } = error.response
-   data.err === 'IncorrectEmailError' &&
-    setError('email', {
-     type: 'required',
-     message: `This Email Isnt Registered,Please Sign Up to continue`,
-    })
-   data.err === 'IncorrectPasswordError' &&
-    setError('password', {
-     type: 'required',
-     message: `Oops, Password is incorrect`,
-    })
-   console.log(data)
-  }
- }, [isLoading, isError, isSuccess, data, error])
+    if (isError) {
+      const { data } = error.response;
+      data.err === "IncorrectEmailError" &&
+        setError("email", {
+          type: "required",
+          message: `This Email Isnt Registered,Please Sign Up to continue`,
+        });
+      data.err === "IncorrectPasswordError" &&
+        setError("password", {
+          type: "required",
+          message: `Oops, Password is incorrect`,
+        });
+      console.log(data);
+    }
+  }, [isLoading, isError, isSuccess, data, error]);
 
- return { register, isValid, handleSubmit, onSubmit, errors, isLoading }
-}
+  return { register, isValid, handleSubmit, onSubmit, errors, isLoading };
+};
 
-export default useLogin
+export default useLogin;

@@ -10,10 +10,10 @@ import {
   VStack,
 } from "@chakra-ui/layout";
 import React, { useEffect, useState } from "react";
-import useAuth from "../../auth/useAuth";
-import ProtectedComponent from "../../components/ProtectedComponent";
-import useDashboard from "../../hooks/useDashboard";
-import Loader from "../../pages/Loading/IsLoading";
+import useAuth from "../../../auth/useAuth";
+import ProtectedComponent from "../../../components/ProtectedComponent";
+import useDashboard from "../../../hooks/useDashboard";
+import Loader from "../../Loading/IsLoading";
 import Icon from "@chakra-ui/icon";
 import { Link } from "react-router-dom";
 
@@ -51,6 +51,8 @@ const Account = () => {
   return (
     <ProtectedComponent>
       <VStack
+        borderBottomRightRadius="36"
+        borderBottomLeftRadius="36"
         spacing="12"
         as="section"
         h="64"
@@ -78,17 +80,21 @@ const Account = () => {
 
         {/* Available Balance */}
         <VStack spacing="0" alignItems="center" width="100%" mx="auto">
-          <Text color="white" fontWeight="bold" color="brand.200" fontSize="sm">
+          <Text color="white" fontWeight="bold" color="brand.100" fontSize="sm">
             Available Balance
           </Text>
-          <Heading display="flex" alignItems="center" color="brand.100">
-            <Text mt="5" mr="1" fontSize="xl" as="span" alignSelf="flex-start">
+          <Heading display="flex" alignItems="center" color="brand.200">
+            <Text mt="3" mr="1" fontSize="2xl" as="span" alignSelf="flex-start">
               &#8358;
             </Text>
-            <Text color="white" fontSize="6xl" as="span">
+            <Text
+              color="white"
+              fontSize={balance == 0 ? "6xl" : "5xl"}
+              as="span"
+            >
               {balance}
             </Text>{" "}
-            <Text as="span" mt="6" fontSize="2xl">
+            <Text as="span" mt="4" fontSize="2xl">
               .00
             </Text>
           </Heading>
@@ -97,36 +103,6 @@ const Account = () => {
         {/* Account Number */}
       </VStack>
     </ProtectedComponent>
-
-    // <Box w="90%" mx="auto" mt="12" bg="gray.300" h="32">
-    //   <Center h="32">
-    //     <VStack spacing="-1">
-    //       <Text fontSize="1rem">Total balance</Text>
-    //       <Text fontSize="2.4rem"> {balance}</Text>
-    //     </VStack>
-    //   </Center>
-
-    //   <HStack spacing={12} mx="auto" variant="outline" ml={2} mt={8}>
-    //     <Button
-    //       /*  onClick={() => {
-    //   initializePayment(onSuccess, onClose)
-    //  }} */
-    //       colorScheme="blue"
-    //       variant="solid"
-    //       bg="blue.400"
-    //       h={12}
-    //       as={NavLink}
-    //       to="/account/fund-account"
-    //       px={4}
-    //     >
-    //       Fund account
-    //     </Button>
-
-    //     <Button h={12} as={NavLink} to="/account/transfer/user">
-    //       Transfer
-    //     </Button>
-    //   </HStack>
-    // </Box>
   );
 };
 
