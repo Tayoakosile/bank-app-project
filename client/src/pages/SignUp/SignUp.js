@@ -74,7 +74,7 @@ export default function SplitScreen() {
             as="h2"
             fontWeight="bolder"
             fontSize={"2xl"}
-            text="Let's get your ssaccount up and running."
+            text="Let's get your account up and running."
             pb={"4"}
             w="90%"
           />

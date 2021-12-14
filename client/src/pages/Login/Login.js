@@ -185,7 +185,7 @@ export default function LoginIntoUserAccount() {
                 </FormErrorMessage>
               </FormControl>
 
-              <Stack spacing={10} mt=".8rem !important">
+              <Stack spacing={6} mb ="4" mt=".8rem !important">
                 <Stack
                   direction={{ base: "column", sm: "row" }}
                   align={"flex-end"}

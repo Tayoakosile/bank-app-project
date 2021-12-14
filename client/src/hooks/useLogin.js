@@ -41,7 +41,7 @@ const useLogin = () => {
       data.err === "IncorrectEmailError" &&
         setError("email", {
           type: "required",
-          message: `This Email Isnt Registered,Please Sign Up to continue`,
+          message: `Email not found, Please Sign Up to continue`,
         });
       data.err === "IncorrectPasswordError" &&
         setError("password", {
