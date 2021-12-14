@@ -25,7 +25,7 @@ import useLogin from "../../hooks/useLogin";
 import useValidateForm from "../../hooks/useValidateForm";
 import useStore from "../../zustand";
 
-export default function SimpleCard() {
+export default function LoginIntoUserAccount() {
   const { handleSubmit, register, onSubmit, errors, isValid, isLoading } =
     useLogin();
   const { setData } = useStore((state) => state);
@@ -147,7 +147,7 @@ export default function SimpleCard() {
                   fontWeight={errors.password ? "bold" : "bold"}
                   bg={errors.password ? "" : "white"}
                   px={errors.password ? "" : "1"}
-                  zIndex={errors.password ? "" : "4"}
+                  zIndex={errors.password ? "6" : "4"}
                 >
                   Password
                 </FormLabel>

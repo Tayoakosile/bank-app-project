@@ -77,7 +77,7 @@ const useValidateForm = () => {
         .catch((err) => {
           setError(`${mode}`, {
             type: "required",
-            message: `This ${mode} is already registered, Try using a different ${mode} or login to our account`,
+            message: `This ${mode} is already registered, Try using a different ${mode} or login to your account`,
           });
           return false;
         });
