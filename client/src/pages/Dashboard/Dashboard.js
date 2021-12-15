@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import React from "react";
 import ProtectedComponent from "../../components/ProtectedComponent";
 import useStore from "../../zustand";
@@ -11,14 +11,15 @@ const Dashboard = () => {
 
   return (
     <ProtectedComponent>
-      <Account />
-      <Box  py="6">
-        <AccountButton />
-      </Box>
+      <Box mb="64" as="section">
+        <Account />
+        <Box py="6">
+          <AccountButton />
+        </Box>
         <TransactionHistory />
+      </Box>
     </ProtectedComponent>
   );
 };
 
 export default Dashboard;
-    
