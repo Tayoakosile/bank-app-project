@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GrHomeRounded } from "react-icons/gr";
+import { IoHomeSharp } from "react-icons/io5";
 import { FiBarChart } from "react-icons/fi";
 import { useHistory, useLocation } from "react-router-dom";
 const useBottomNavBar = () => {
@@ -19,31 +19,30 @@ const useBottomNavBar = () => {
     {
       title: "Home",
 
-      icon: (
-        <GrHomeRounded bg="red" style={{ fontSize: "18px", color: "yellow" }} />
-      ),
+      icon: <IoHomeSharp style={{ fontSize: "18px", color: "yellow" }} />,
 
       activeIcon: (
-        <GrHomeRounded
-          style={{ fontSize: "18px", fill: "#cfdced78", strokeWidth: "1" }}
+        <IoHomeSharp
+          style={{ fontSize: "18px", fill: "#a0b8db", strokeWidth: "1" }}
         />
       ),
       onClick: () => history.push("/dashboard"),
     },
 
+    
     {
       title: "Transaction History",
 
       icon: <FiBarChart style={{ fontSize: "18px" }} />,
 
-      activeIcon: <FiBarChart style={{ fontSize: "18px", color: "#fff" }} />,
+      activeIcon: <FiBarChart style={{ fontSize: "18px", color: "red" }} />,
       onClick: () => history.push("/transactionhistory"),
     },
 
     {
       title: "Profile",
       icon: <FiBarChart style={{ fontSize: "18px" }} />,
-      activeIcon: <FiBarChart style={{ fontSize: "18px", color: "#fff" }} />,
+      activeIcon: <FiBarChart style={{ fontSize: "18px", color: "red" }} />,
       activeBgColor: "red",
       onClick: () => history.push("/setting"),
       //   onClick: () => alert(" clicked"),

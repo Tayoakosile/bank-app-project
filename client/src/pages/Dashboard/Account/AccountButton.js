@@ -14,9 +14,16 @@ const AccountButton = () => {
         w="40"
         borderRadius="2px"
       >
-        Top-Up
+        Fund account
       </Button>
-      <Button bg="brand.600" h="12" w="40" borderRadius="2px">
+      <Button
+        as={Link}
+        to="/account/transfer/user"
+        bg="brand.600"
+        h="12"
+        w="40"
+        borderRadius="2px"
+      >
         Send
       </Button>
     </HStack>

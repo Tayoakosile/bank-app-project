@@ -7,8 +7,7 @@ const EmptyTransactionBoard = () => {
   return (
     <Box
       mx="5"
-          mt="6"
-          mb ="64"
+      mt="6"
       h="48"
       bg="brand.50"
       borderRadius="2px"

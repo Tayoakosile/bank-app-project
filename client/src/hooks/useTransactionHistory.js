@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAuth from "../auth/useAuth";
 
 const useTransactionHistory = () => {
-  const { data } = useAuth();
+  const { data, isLoading } = useAuth();
 
   const daysSelection = ["Today", "Yesterday", "This Week"];
   const [storeUserSelection, setStoreUseSelection] = useState("Today");
@@ -20,6 +20,7 @@ const useTransactionHistory = () => {
     daysSelection,
     storeUserSelection,
     setStoreUseSelection,
+    isLoading ,
     transactions,
   };
 };

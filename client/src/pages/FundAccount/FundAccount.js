@@ -1,24 +1,14 @@
-import randomatic from 'randomatic'
-import React from 'react'
-import ProtectedComponent from '../../components/ProtectedComponent'
-import PaymentMethod from './PaymentMethod'
+import React from "react";
+import Back from "../../components/Back";
+import { Box, Heading } from "@chakra-ui/layout";
 
 const FundAccount = () => {
- const paymentMethod = [
-  'card',
-  'bank',
-  'ussd',
-  'qr',
-  'mobile_money',
-  'bank_transfer',
- ]
- return (
-  <ProtectedComponent>
-   {paymentMethod.map(method => (
-    <PaymentMethod key={randomatic('0a',12)} methodOfPayment={method} />
-   ))}
-  </ProtectedComponent>
- )
-}
+  return (
+    <Box>
+        <Back/>
+      <Heading>Send Money</Heading>
+    </Box>
+  );
+};
 
-export default FundAccount
+export default FundAccount;

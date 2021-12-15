@@ -12,10 +12,26 @@ const BottomMobileNav = () => {
     <>
       {ToggleBottomNavVisibility && (
         <ProtectedComponent>
-          <Box position="fixed" zIndex="12" bottom="0" h="12" as="nav">
+          <Box
+            position="fixed"
+            zIndex="12"
+            bottom="0"
+            h="12"
+            overflow=" hidden"
+            as="nav"
+            _before={{
+              content:"''",
+              position: "absolute",
+              top: "0px",
+              left: "0px",
+              bottom: "0px",
+              right: "0px",
+              border: "1px solid orange",
+            }}
+          >
             <BottomNavigation
               items={bottomNavItems}
-              activeBgColor=""
+              activeBgColor="transparent"
               activeTextColor="#0e3e84"
               defaultSelected={0}
             ></BottomNavigation>

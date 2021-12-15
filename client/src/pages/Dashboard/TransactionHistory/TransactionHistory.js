@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useTransactionHistory from "../../../hooks/useTransactionHistory";
 import EmptyTransactionBoard from "./EmptyTransactionBoard";
 import LastTransaction from "./LastTransaction";
@@ -8,11 +8,20 @@ const TransactionHistory = () => {
     storeUserSelection,
     setStoreUseSelection,
     transactions,
+    isLoading,
   } = useTransactionHistory();
-  console.log(transactions);
+  useEffect(() => {
+    if (isLoading) {
+      return <div>running F</div>;
+    }
+  });
   return (
     <React.Fragment>
-      {transactions ? <EmptyTransactionBoard /> : <LastTransaction />}
+      {transactions == [] || transactions <= 0 ? (
+        <EmptyTransactionBoard />
+      ) : (
+        <LastTransaction />
+      )}
     </React.Fragment>
   );
 };

@@ -1,47 +1,38 @@
-import { Input, InputGroup, InputLeftElement } from '@chakra-ui/input'
-import { VStack } from '@chakra-ui/layout'
-import randomatic from 'randomatic'
-import React from 'react'
-import ProtectedComponent from '../../components/ProtectedComponent'
-import useSearchUserToTransfer from '../../hooks/useSearchUSerToTransfer'
-import useStore from '../../zustand'
-import SearchBody from './SearchBody'
-import SearchResult from './SearchResult'
+import React from "react";
+import { Box, HStack, Text, Center, VStack } from "@chakra-ui/react";
+import Back from "../../components/Back";
+import ProtectedComponent from "../../components/ProtectedComponent";
+import FulLogo from "../../assets/img/logo/FulLogo";
 
 const SearchUser = () => {
- const { searchUsersResult } = useStore(state => state)
- const {
-  handleSearchUserAccountNumber,
-  inputVal,
-  isError,
-  isLoading,
-  isSuccess,
-  handleIntraTransfer,
- } = useSearchUserToTransfer()
- console.log(searchUsersResult)
- return (
-  <ProtectedComponent>
-   <VStack w="90%" mt="8" mx="auto">
-    <InputGroup>
-     <InputLeftElement color="gray.400" fontSize="1em" children="KW" />
-     <Input
-      type="number"
-      onChange={handleSearchUserAccountNumber}
-      placeholder="Search by users account number"
-      val={inputVal}
-     />
-    </InputGroup>
-    <SearchBody
-     data={searchUsersResult}
-     isError={isError}
-     isLoading={isLoading}
-     isSuccess={isSuccess}
-     handleIntraTransfer={handleIntraTransfer}
-     inputVal={inputVal}
-    />
-   </VStack>
-  </ProtectedComponent>
- )
-}
+  return (
+    <ProtectedComponent>
+      {/* Go back button */}
+      <HStack pl="4" pt="6" spacing="6">
+        <Back />
+        <Text fontWeight="bold" fontSize="2xl">
+          Send Money
+        </Text>
+      </HStack>
+      {/* Go back button */}
 
-export default SearchUser
+      {/* Send money to user account */}
+      <HStack px="6" my="12">
+        {/* Send money to monsecure members */}
+        <VStack bg="brand.500" h="36" w="50%">
+          <Text>
+            <FulLogo showText={true} />
+          </Text>
+        </VStack>
+
+        {/* Send money to bank account*/}
+        <Box bg="thirdColor.500" h="36" w="50%">
+          {" "}
+        </Box>
+      </HStack>
+      <Box>Beneficiaries</Box>
+    </ProtectedComponent>
+  );
+};
+
+export default SearchUser;

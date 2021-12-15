@@ -11,12 +11,16 @@ const Dashboard = () => {
 
   return (
     <ProtectedComponent>
-      <Box mb="64" as="section">
+      <Box h="full" mb="64" as="section">
         <Account />
         <Box py="6">
           <AccountButton />
         </Box>
-        <TransactionHistory />
+        <Box mb="12">
+          <TransactionHistory />
+          <TransactionHistory />
+          <Box h="12" mt ="12"></Box>
+        </Box>
       </Box>
     </ProtectedComponent>
   );
