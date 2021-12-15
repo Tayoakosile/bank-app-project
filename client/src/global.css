@@ -34,7 +34,15 @@ body {
   letter-spacing: 0.7px;
   transform: translate(0, 12px) scale(1);
 }
-
+.monsecure-transfer label {
+  transform: translate(55px, 7px) scale(1);
+  
+}
+/* Remarks (What the money is for) */
+.monsecure-remarks{
+  transform: translate(0px, 7px) scale(1);
+  
+}
 
 
 
@@ -47,6 +55,10 @@ body {
 .monsecure-form:focus-within label {
   transform: translate(0, -11px) scale(0.9);
 }
+.monsecure-transfer:focus-within label {
+  transform: translate(0, -20px) scale(0.9) !important;
+}
+
 .monsecure-form .Active {
   transform: translate(0, -11px) scale(0.9);
 }

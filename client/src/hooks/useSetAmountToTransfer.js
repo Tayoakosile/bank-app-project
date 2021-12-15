@@ -6,7 +6,7 @@ import { axios } from '../api/api'
 import useStore from '../zustand'
 import useReactForm from './useReactForm'
 
-const useSetAmountToTransfer = () => {
+const useIntraTransferTransfer = () => {
  const { _id } = useParams()
  const { user } = useStore(state => state)
  const userID = user._id
@@ -81,4 +81,4 @@ const useSetAmountToTransfer = () => {
  }
 }
 
-export default useSetAmountToTransfer
+export default useIntraTransferTransfer

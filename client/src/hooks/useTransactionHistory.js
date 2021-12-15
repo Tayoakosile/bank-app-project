@@ -14,7 +14,6 @@ const useTransactionHistory = () => {
     }
   }, [data]);
 
-  console.log(transactions);
 
   return {
     daysSelection,

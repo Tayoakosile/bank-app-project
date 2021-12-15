@@ -22,31 +22,31 @@ const useValidateForm = () => {
 
   /* THis enables the "firstname" label to float if the firstname has been typed in*/
   const handleFirstNameChange = (firstName) =>
-    firstName == "" || firstName <= 0
+    firstName === "" || firstName <= 0
       ? setIsFirstNameTypedIn(false)
       : setIsFirstNameTypedIn(true);
 
   /* THis enables the "lastname" label to float if the lastname has been typed in*/
   const handleLastNameChange = (lastName) =>
-    lastName == "" || lastName <= 0
+    lastName === "" || lastName <= 0
       ? setIsLastNameTypedIn(false)
       : setIsLastNameTypedIn(true);
 
   /* THis enables the "username" label to float if the username has been typed in*/
   const handleUserNameChange = (userName) =>
-    userName == "" || userName <= 0
+    userName === "" || userName <= 0
       ? setIsUserNameTypedIn(false)
       : setIsUserNameTypedIn(true);
 
   /* THis enables the "email" label to float if the email has been typed in*/
   const handleEmailChange = (email) =>
-    email == "" || email <= 0
+    email === "" || email <= 0
       ? setIsEmailTypedIn(false)
       : setIsEmailTypedIn(true);
 
   /* THis enables the "password" label to float if the password has been typed in*/
   const handlePasswordChange = (password) =>
-    password == "" || password <= 0
+    password === "" || password <= 0
       ? setIsPasswordTypedIn(false)
       : setIsPasswordTypedIn(true);
 

@@ -75,7 +75,6 @@ const useAuth = () => {
     setUser(data.authorizedData)
    }
   }
-  console.log(data)
  }, [isSuccess, data, setData, setUser, setUserId])
 
  return {

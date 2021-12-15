@@ -18,7 +18,7 @@ import {
   TransactionPin,
   TransactionPinConfirm,
   SearchRegisteredUser,
-  SetAmountToTransfer,
+  IntraTransferTransfer,
   TransferFundzToUser,
   TransferSuccess,
   Profile,
@@ -86,10 +86,10 @@ const App = () => {
         <Route exact path="/account/transfer/user">
           <SearchRegisteredUser />
         </Route>
-        <Route exact path="/account/transfer/user/set-amount/:_id">
-          <SetAmountToTransfer />
+        <Route exact path="/account/transfer/monsecure">
+          <IntraTransferTransfer />
         </Route>
-        <Route exact path="/account/transfer/user/transfer-confirmation">
+        <Route exact path="/account/transfer/bank">
           <TransferFundzToUser />
         </Route>
         <Route exact path="/account/transfer/user/transfer-success">

@@ -50,7 +50,7 @@ route.post('/transaction/validatepin', ValidatePin)
 /* Transaction pin */
 
 /* Search for user in the database */
-route.get('/search', SearchUsers)
+route.post('/search', SearchUsers)
 /* Search for user in the database */
 
 /* Search for user in the database */

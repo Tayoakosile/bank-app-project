@@ -26,7 +26,7 @@ const Back = ({ noBackground }) => {
         bg={noBackground ? "brand.500" : "transparent"}
         p="2"
         rounded="full"
-        variant={noBackground ? "" : "outline"}
+        variant={noBackground ? "" : "ghost"}
         icon={<BackArrow />}
         color={noBackground ? "white" : "brand.500"}
         size="md"

@@ -7,7 +7,7 @@ import VerifyTransaction from "./Transaction/VerifyTransaction";
 import TransactionPin from "./TransactionPin/TransactionPin";
 import Home from "./Home/Home";
 import SearchRegisteredUser from "./TransferFundz/SearchUser";
-import SetAmountToTransfer from "./TransferFundz/SetAmounToTransfer";
+import IntraTransferTransfer from "./TransferFundz/IntraTransfer";
 import TransferFundzToUser from "./TransferFundz/TransferFundzToUser";
 import TransferSuccess from "./TransferFundz/TransferSuccess";
 import TransactionPinConfirm from "./TransactionPin/TransactionPinConfirm";
@@ -37,7 +37,7 @@ export {
   FundAccountMethod,
   TransactionPin,
   TransactionPinConfirm,
-  SetAmountToTransfer,
+  IntraTransferTransfer,
   Profile,
   TransferFundzToUser,
   Home,
