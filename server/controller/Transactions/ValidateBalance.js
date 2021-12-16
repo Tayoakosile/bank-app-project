@@ -2,7 +2,7 @@ import Mongoose from 'mongoose'
 import User from '../../models/SignUp.js'
 
 const ValidateBalance = async (req, res) => {
- const { userID: _id, amount } = req.body
+ const { userId: _id, amount } = req.body
  console.log(req.body)
  /* Search for users then validate if amount typed in is lesser than balance  */
 

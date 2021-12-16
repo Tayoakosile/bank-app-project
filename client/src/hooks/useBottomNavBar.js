@@ -4,13 +4,16 @@ import { FiBarChart } from "react-icons/fi";
 import { useHistory, useLocation } from "react-router-dom";
 const useBottomNavBar = () => {
   // Manages nav visibility based on page url
-  const [ToggleBottomNavVisibility, setToggleNavVisibility] = useState(null);
+  const [ToggleBottomNavVisibility, setToggleNavVisibility] = useState(false);
   // Manages nav visibility based on page url
   const history = useHistory();
   const location = useLocation().pathname;
 
   useEffect(() => {
-    location === "/" || location === "/signup" || location === "/login"
+    location === "/" ||
+    location === "/signup" ||
+    location === "/login" ||
+    location === "/account/transfer/monsecure"
       ? setToggleNavVisibility(false)
       : setToggleNavVisibility(true);
   }, [location]);
@@ -29,7 +32,6 @@ const useBottomNavBar = () => {
       onClick: () => history.push("/dashboard"),
     },
 
-    
     {
       title: "Transaction History",
 

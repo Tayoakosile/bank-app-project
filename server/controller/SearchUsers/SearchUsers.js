@@ -20,19 +20,19 @@ export const SearchUsers = (req, res) => {
         const getAllUserInSearchId = doc.map(({ _id }) => _id);
 
         /* Else search for the doc id and populate the account then send to the user*/
-        User.find({ account: { $in: getAllUserInSearchId } })
-        .exec((err, result) => {
-          if (result) {
-            /* This ensures current logged in user account number  is not also sent when user searches */
-            const updatedResult = result.filter(
-              ({ _id }) => _id != loggedInUserID
-            );
-            console.log(updatedResult.length, updatedResult);
-            return res
-              .status(200)
-              .json({ success: true, message: updatedResult });
+        User.findOne(
+          { account: { $in: getAllUserInSearchId } },
+          (err, result) => {
+            if (result) {
+              /* This ensures current logged in user account number  is not also sent when user searches */
+              const updatedResult = result;
+              console.log(updatedResult, updatedResult);
+              return res
+                .status(200)
+                .json({ success: true, message: updatedResult });
+            }
           }
-        });
+        );
       }
     }
   );

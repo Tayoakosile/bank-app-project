@@ -30,23 +30,19 @@ body {
   transform-origin: top left;
   transition: all 0.2s ease-out;
   position: absolute;
-  font-weight: normal;
   letter-spacing: 0.7px;
   transform: translate(0, 12px) scale(1);
 }
 .monsecure-transfer label {
   transform: translate(55px, 7px) scale(1);
-  
+}
+.monsecure-disabled label {
+  transform: translate(55px, 13px) scale(1);
 }
 /* Remarks (What the money is for) */
-.monsecure-remarks{
+.monsecure-remarks {
   transform: translate(0px, 7px) scale(1);
-  
 }
-
-
-
-
 
 /* Bottom nav */
 

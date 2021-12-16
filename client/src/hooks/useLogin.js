@@ -14,15 +14,18 @@ const useLogin = () => {
     handleSubmit,
     setError,
     formState: { errors, isValid },
-  } = useForm({ mode: "all", shouldFocusError: true });
+  } = useForm();
 
+  // Sends users details to the server
   const { mutate, isLoading, isError, isSuccess, data, error } = useMutation(
     (formDetails) => {
       const form = postRequestToServer("/login", formDetails);
       return form;
     }
   );
+  // Sends users details to the server
 
+  // Initiate sendng of users details to the server
   const onSubmit = (data) => {
     mutate(data);
   };

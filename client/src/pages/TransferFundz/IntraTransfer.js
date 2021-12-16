@@ -1,8 +1,18 @@
 import { Avatar } from "@chakra-ui/avatar";
 import { Button } from "@chakra-ui/button";
-import { FormControl, FormLabel } from "@chakra-ui/form-control";
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+} from "@chakra-ui/form-control";
+import {
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+} from "@chakra-ui/input";
 import { HStack, Text, VStack } from "@chakra-ui/layout";
+import { Textarea } from "@chakra-ui/textarea";
 import React from "react";
 import Back from "../../components/Back";
 import ProtectedComponent from "../../components/ProtectedComponent";
@@ -17,13 +27,31 @@ const IntraTransfer = () => {
     setUserInput,
     getValues,
     numberWithCommas,
+    userToCreditDetails,
+    isSuccess,
+    isLoading,
+    isError,
+    errors,
+    isValid,
+    isAccountNumber,
+    isAmountTypedIn,
+    isRemarksTypedIn,
+    handleAccountNumberChange,
+    handleAmountIn,
+    handleRemarks,
+    isAmountAboutToTransferUpToFiftyNaira,
   } = useTransferFund();
+
+  // user searched details
+  //  const { profileImg, firstname, lastname } = userToCreditDetails;
+  // user searched details
+
   return (
     <ProtectedComponent>
       <VStack as="section" spacing="12" p="6" pl="3" alignItems="flex-start">
         <HStack spacing="4">
           <Back noBackground={false} />
-          <Text fontSize="xl" fontWeight="bold" color="brand.800">
+          <Text fontSize="lg" fontWeight="bold" color="brand.800">
             To Monsecure
           </Text>
         </HStack>
@@ -34,33 +62,48 @@ const IntraTransfer = () => {
           onSubmit={handleSubmit(submitTransfer)}
           pl="3"
           w="full"
-          spacing="12"
+          spacing="10"
         >
-          <FormControl w="full" className="monsecure-form monsecure-transfer">
+          <FormControl
+            isInvalid={errors.accountNumber}
+            w="full"
+            className="monsecure-form monsecure-transfer"
+          >
             <FormLabel
               htmlFor="accountNumber"
               transitionDuration="0.3s"
               transition="ease-in"
+              color={errors.accountNumber ? "red.500" : "initial"}
               whiteSpace="nowrap"
               transitionProperty="color, font-weight"
+              className={isAccountNumber && "Active"}
             >
               Account Number
             </FormLabel>
             <InputGroup>
               <InputLeftElement
                 children="KW"
-                color="brand.200"
+                color={errors.accountNumber ? "red.200" : "brand.200"}
                 fontWeight="bold"
                 pointerEvents="none"
               />
 
               <Input
                 type="number"
-                {...register("accountNumber", {
-                  required: "Account Number Required",
-                })}
+                {...register(
+                  "accountNumber",
+                  {
+                    required: "Please type in your account number",
+                    minLength: {
+                      value: 8,
+                      message: "Account number must be more than 8 digits",
+                    },
+                  },
+                  { message: "type in your account num" }
+                )}
                 onChange={(e) => {
                   setUserInput(e.target.value);
+                  handleAccountNumberChange(e.target.value);
                 }}
                 onPaste={(e) => {
                   setUserInput(e.target.value);
@@ -72,13 +115,20 @@ const IntraTransfer = () => {
                 fontSize="4!important"
               />
             </InputGroup>
+            <FormErrorMessage
+              className="monsecure_error"
+              fontWeight="bold"
+              color="#dd2c00de"
+            >
+              {errors.accountNumber && errors.accountNumber.message}
+            </FormErrorMessage>
           </FormControl>
           {/* SHows owner of the account */}
-          <FormControl w="full" className="monsecure-form monsecure-transfer">
+          <FormControl w="full" className="monsecure-form monsecure-disabled">
             <FormLabel
-              fontSize="lg"
+              fontSize="md"
               htmlFor="accountNumber"
-              color="brand.800"
+              color={isError ? "red.600" : "brand.800"}
               zIndex="4"
               transitionDuration="0.3s"
               transition="ease-in"
@@ -86,17 +136,25 @@ const IntraTransfer = () => {
               fontWeight="bold"
               transitionProperty="color, font-weight"
             >
-              To Account
+              {isLoading && "loading"}
+              {isSuccess &&
+                ` ${userToCreditDetails.firstname} ${userToCreditDetails.lastname}`}{" "}
+              {isError && ` ${userToCreditDetails.firstname} `}{" "}
             </FormLabel>
 
-            <InputGroup>
+            <InputGroup size="lg" border={isError && "1px red"}>
               <InputLeftElement
                 pointerEvents="none"
                 children={
                   <Avatar
                     size="sm"
                     bg="brand.50"
-                    name=""
+                    name={
+                      !isLoading
+                        ? isSuccess &&
+                          `${userToCreditDetails.firstname} ${userToCreditDetails.lastname}`
+                        : `${userToCreditDetails.firstname} ${userToCreditDetails.lastname}`
+                    }
                     color="brand.500"
                     fontWeight="bold"
                   />
@@ -115,29 +173,55 @@ const IntraTransfer = () => {
 
           {/* User input amount about to be sent to user */}
 
-          <FormControl w="full" className="monsecure-form ">
+          <FormControl
+            w="full"
+            className="monsecure-form"
+            isInvalid={errors.amount}
+          >
             <FormLabel
               htmlFor="accountNumber"
               transitionDuration="0.3s"
               transition="ease-in"
               whiteSpace="nowrap"
+              className={isAmountTypedIn && "Active"}
               transitionProperty="color, font-weight"
+              color={errors.amount ? "#dd2c00de" : "initial"}
             >
               Amount
             </FormLabel>
-
-            <Input
-              type="number"
-              variant="flushed"
-              fontSize="4!important"
-              //   {...register("amount", { required: "Amount required" })}
-            />
+            <InputGroup colorScheme="brand" size="sm">
+              <Input
+                type="number"
+                variant="flushed"
+                fontSize="4!important"
+                {...register("amount", {
+                  required: "Amount required",
+                  valueAsNumber: true,
+                  validate: (value) =>
+                    isAmountAboutToTransferUpToFiftyNaira(value),
+                })}
+                onChange={(e) => handleAmountIn(e.target.value)}
+              />
+              <InputRightElement
+                color={errors.amount ? "#dd2c00de" : "initial"}
+                children="N"
+              />
+            </InputGroup>
+            <FormErrorMessage
+              className="monsecure_error"
+              fontWeight="bold"
+              color="#dd2c00de"
+            >
+              {errors.amount && errors.amount.message}
+            </FormErrorMessage>
           </FormControl>
+
           <FormControl w="full" className="monsecure-form monsecure-remarks">
             <FormLabel
               htmlFor="accountNumber"
               transitionDuration="0.3s"
               transition="ease-in"
+              className={isRemarksTypedIn && "Active"}
               whiteSpace="nowrap"
               transitionProperty="color, font-weight"
             >
@@ -148,17 +232,24 @@ const IntraTransfer = () => {
               </Text>
             </FormLabel>
 
-            <Input
+            <Textarea
               type="text"
+              mt="2"
+              size="sm"
               variant="flushed"
+              colorScheme="brand"
               fontSize="4!important"
               {...register("remarks")}
+              onChange={(e) => handleRemarks(e.target.value)}
             />
           </FormControl>
-          <VStack pt={16} w="full">
+
+          {/* Submit  button */}
+          <VStack pt={12} w="full">
             <Button
               bg="rgb(17, 79, 166)"
               loadingText="Creating your account"
+              isDisabled={!isValid}
               // isLoading={isSubmitting}
               type="submit"
               // isDisabled={!isValid}
