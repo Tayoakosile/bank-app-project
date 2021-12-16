@@ -24,11 +24,12 @@ body {
 .monsecure-form input {
   font-weight: bold;
   font-size: 14px;
-  color: #0e3e84;
+  color: #031021;
 }
 .monsecure-form label {
   transform-origin: top left;
   transition: all 0.2s ease-out;
+
   position: absolute;
   letter-spacing: 0.7px;
   transform: translate(0, 12px) scale(1);
@@ -36,6 +37,15 @@ body {
 .monsecure-transfer label {
   transform: translate(55px, 7px) scale(1);
 }
+
+.monsecure-amount label {
+  transform: translate(3px, 0px) scale(1);
+}
+
+.monsecure-amount:focus-within label {
+  transform: translate(0px, -18px) scale(1) !important;
+}
+
 .monsecure-disabled label {
   transform: translate(55px, 13px) scale(1);
 }

@@ -1,3 +1,4 @@
+import { useDisclosure } from "@chakra-ui/hooks";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
@@ -5,12 +6,24 @@ import { postRequestToServer } from "../api/api";
 import useAuth from "../auth/useAuth";
 
 const useTransferFund = () => {
+  // Modal controller
+  const { isError: dataSentEro } = useMutation();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  // Modal controller
+
   const [userToCreditDetails, setCreditUserDetails] = React.useState({
     profile: null,
     firstname: "To",
     lastname: "Account",
   });
+  const [isUserAccountBalanceLow, setIsUserAccountBalanceLow] = useState(true);
+
+  // open modal
+  const [isShowModal, setIsShowModal] = useState(false);
+  // open modal
+
   // Keeps the label floating
+
   const [isAccountNumber, setisAccountNumber] = useState(false);
   const [isAmountTypedIn, setisAmountTypedIn] = useState(false);
   const [isRemarksTypedIn, setIsRemarksTypedIn] = useState(false);
@@ -22,8 +35,8 @@ const useTransferFund = () => {
       : setisAccountNumber(true);
 
   /* THis enables the "lastname" label to float if the lastname has been typed in*/
-  const handleAmountIn = (lastName) =>
-    lastName === "" || lastName <= 0
+  const handleAmountIn = (amount) =>
+    amount === "" || amount <= 0
       ? setisAmountTypedIn(false)
       : setisAmountTypedIn(true);
 
@@ -52,15 +65,15 @@ const useTransferFund = () => {
     const form = postRequestToServer("/search", formDetails);
     return form;
   });
-
+ 
   const {
     register,
     getValues,
     handleSubmit,
-    setError,
+    resetField,
     clearErrors,
     formState: { errors, isValid },
-  } = useForm({ mode: "onBlur" });
+  } = useForm({ mode: "all" });
   const [userInput, setUserInput] = React.useState("");
 
   //   If user input the 8 digit account number, search for it in the database
@@ -69,27 +82,38 @@ const useTransferFund = () => {
       mutate({ acctNumber: userInput, loggedInUserID: userId });
     }
   }, [userInput]);
-  console.log(errors);
+
+  //submit user details
   const submitTransfer = (data) => {
-    console.log(errors, isValid, "errors");
     console.log(data, getValues("amount"));
+    setIsShowModal(true);
   };
 
   // Check if amount about to transfer is up to #50
   const isAmountAboutToTransferUpToFiftyNaira = (usersAmount) => {
     const loggedInUserId = userId;
-    console.log(usersAmount);
+    
     if (usersAmount >= 50) {
       // Check if amount user typed in is greater than users account balance
       postRequestToServer("/validatebalance", {
         userId: loggedInUserId,
         amount: usersAmount,
       })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        .then((res) => {
+          console.log(res);
+          setIsUserAccountBalanceLow(true);
+        })
+        .catch((err) => {
+          const balance = err.response.data.balance;
+          setIsUserAccountBalanceLow(
+            `Insufficient balance, you have 
+            ₦${balance}.00 left`
+          );
+        });
+      return isUserAccountBalanceLow;
+    } else {
+      return "Amount must be up to 50 naira";
     }
-
-    return "Amount must be up to 50 naira";
   };
 
   useEffect(() => {
@@ -130,6 +154,11 @@ const useTransferFund = () => {
     handleAmountIn,
     handleRemarks,
     isAmountAboutToTransferUpToFiftyNaira,
+    isOpen,
+    onOpen,
+    onClose,
+    isShowModal,
+    submitTransfer,
   };
 };
 

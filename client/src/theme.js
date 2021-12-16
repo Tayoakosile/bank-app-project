@@ -27,16 +27,16 @@ const theme = extendTheme(
         900: "#2d0a06",
       },
       thirdColor: {
-          100: "#d0e0f6",
-          200: "#a2c1ed",
-          300: "#73a2e5",
-          400: "#4583dc",
-          500: "#1664d3",
-          600: "#1250a9",
-          700: "#0d3c7f",
-          800: "#092854",
-          900: "#04142a"
-},
+        100: "#d0e0f6",
+        200: "#a2c1ed",
+        300: "#73a2e5",
+        400: "#4583dc",
+        500: "#1664d3",
+        600: "#1250a9",
+        700: "#0d3c7f",
+        800: "#092854",
+        900: "#04142a",
+      },
     },
     fonts: {
       body: "Montserrat",
@@ -45,7 +45,6 @@ const theme = extendTheme(
   },
   withDefaultColorScheme({
     colorScheme: "brand",
-    components: ["Button"],
   })
 );
 export default theme;

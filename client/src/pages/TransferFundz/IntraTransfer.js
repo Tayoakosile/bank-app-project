@@ -17,16 +17,13 @@ import React from "react";
 import Back from "../../components/Back";
 import ProtectedComponent from "../../components/ProtectedComponent";
 import useTransferFund from "../../hooks/useTransferFund";
+import ConfirmUserTransfer from "./ConfirmUserTransfer";
 
 const IntraTransfer = () => {
   const {
     register,
-    handleSubmit,
-    submitTransfer,
-    userInput,
+    handleUserSubmit,
     setUserInput,
-    getValues,
-    numberWithCommas,
     userToCreditDetails,
     isSuccess,
     isLoading,
@@ -36,6 +33,8 @@ const IntraTransfer = () => {
     isAccountNumber,
     isAmountTypedIn,
     isRemarksTypedIn,
+    submitTransfer,
+    handleSubmit,
     handleAccountNumberChange,
     handleAmountIn,
     handleRemarks,
@@ -175,7 +174,7 @@ const IntraTransfer = () => {
 
           <FormControl
             w="full"
-            className="monsecure-form"
+            className="monsecure-form monsecure-amount"
             isInvalid={errors.amount}
           >
             <FormLabel
@@ -185,7 +184,7 @@ const IntraTransfer = () => {
               whiteSpace="nowrap"
               className={isAmountTypedIn && "Active"}
               transitionProperty="color, font-weight"
-              color={errors.amount ? "#dd2c00de" : "initial"}
+              color={errors.amount ? "#dd2c00de" : "brand.500"}
             >
               Amount
             </FormLabel>
@@ -193,18 +192,21 @@ const IntraTransfer = () => {
               <Input
                 type="number"
                 variant="flushed"
-                fontSize="4!important"
                 {...register("amount", {
                   required: "Amount required",
                   valueAsNumber: true,
                   validate: (value) =>
                     isAmountAboutToTransferUpToFiftyNaira(value),
                 })}
-                onChange={(e) => handleAmountIn(e.target.value)}
+                onChange={({ target }) => {
+                  handleAmountIn(target.value);
+                }}
               />
               <InputRightElement
-                color={errors.amount ? "#dd2c00de" : "initial"}
-                children="N"
+                color={errors.amount ? "#dd2c00de" : "brand.500"}
+                children="₦"
+                fontSize="md"
+                fontWeight="bold"
               />
             </InputGroup>
             <FormErrorMessage
@@ -249,7 +251,6 @@ const IntraTransfer = () => {
             <Button
               bg="rgb(17, 79, 166)"
               loadingText="Creating your account"
-              isDisabled={!isValid}
               // isLoading={isSubmitting}
               type="submit"
               // isDisabled={!isValid}
@@ -266,6 +267,7 @@ const IntraTransfer = () => {
         </VStack>
         {/* FOrm Here */}
       </VStack>
+      <ConfirmUserTransfer />
     </ProtectedComponent>
   );
 };
