@@ -1,3 +1,4 @@
+
 import SignUp from "./SignUp/SignUp";
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
@@ -20,6 +21,9 @@ import VerifySuccess from "./VerifyAccount/VerifySuccess";
 import FundAccount from "./FundAccount/FundAccount";
 import Navigation from "./Navigation/BottomMobileNav";
 import FundAccountMethod from "./FundAccount/FundAccountMethod";
+import ConfirmUserTransfer from "./TransferFundz/ConfirmUserTransfer";
+import TransferInfo from "./TransferFundz/TransferInfo";
+import TransactionSuccessful from "./TransferFundz/TransactionSuccessful";
 
 export {
   SignUp,
@@ -44,4 +48,7 @@ export {
   ResetPasswordCodeSent,
   TransferSuccess,
   Navigation,
+  ConfirmUserTransfer,
+  TransferInfo,
+  TransactionSuccessful,
 };

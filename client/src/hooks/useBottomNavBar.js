@@ -11,8 +11,12 @@ const useBottomNavBar = () => {
 
   useEffect(() => {
     location === "/" ||
+    location === "/account/fund-account" ||
     location === "/signup" ||
     location === "/login" ||
+    location === "/account/transfer/monsecure-success" ||
+    location === "/account/transfer/monsecure/confirm" ||
+    location === "/account/transfer/monsecure/confirm/pin" ||
     location === "/account/transfer/monsecure"
       ? setToggleNavVisibility(false)
       : setToggleNavVisibility(true);

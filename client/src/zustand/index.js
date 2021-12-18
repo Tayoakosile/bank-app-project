@@ -8,12 +8,12 @@ const useStore = create((set) => ({
   userId: "",
   isUserAuthorized: "",
   transferToUserDetail: undefined,
-  searchUsersResult: "",
+  userAmountToFund: "",
 
   setData: (data) => set({ email: data }),
   setUser: (user) => set({ user: user }),
   setUserToCreditDetails: (userToCredit) => set({ userToCredit: userToCredit }),
-  setSearchUsersResult: (user) => set({ searchUsersResult: user }),
+  setUserAmountToFund: (user) => set({ userAmountToFund: user }),
   setUserId: (status) => set({ userId: status }),
   setUserAuthorized: (status) => set({ isUserAuthorized: status }),
   setTransferToUserDetails: (userDetails) =>

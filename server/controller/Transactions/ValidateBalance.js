@@ -2,12 +2,11 @@ import Mongoose from "mongoose";
 import User from "../../models/SignUp.js";
 
 const ValidateBalance = async (req, res) => {
-  const { userId: _id, amount } = req.body;
+  const { userId, amount } = req.body;
   console.log(req.body);
   /* Search for users then validate if amount typed in is lesser than balance  */
-
   const { account } = await User.findById(
-    Mongoose.Types.ObjectId(_id)
+    Mongoose.Types.ObjectId(userId)
   ).populate("account");
   console.log(account);
 

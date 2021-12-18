@@ -8,7 +8,7 @@ import {
 const route = express.Router()
 
 route.post('/transaction/pay', MakeTransaction)
-route.get('/transaction/verify', VerifyTransaction)
+route.post('/transaction/verify', VerifyTransaction)
 
 /* Transactions */
 export default route

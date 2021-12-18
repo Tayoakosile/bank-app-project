@@ -2,11 +2,7 @@ import request from 'request'
 
 export const initializePayment = (form, mycallback) => {
  const SECRET_KEY = process.env.PAYSTACK_API_KEY_PRIVATE
- console.log(
-  ' Paystack secret key',
-  SECRET_KEY,
-  process.env.PAYSTACK_API_KEY_PRIVATE
- )
+ 
  const options = {
   url: 'https://api.paystack.co/transaction/initialize',
   headers: {

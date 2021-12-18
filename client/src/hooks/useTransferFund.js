@@ -1,13 +1,16 @@
 import { useDisclosure } from "@chakra-ui/hooks";
+import { requiredChakraThemeKeys } from "@chakra-ui/theme";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
+import { useHistory } from "react-router-dom";
+import { reactLocalStorage } from "reactjs-localstorage";
 import { postRequestToServer } from "../api/api";
 import useAuth from "../auth/useAuth";
 
 const useTransferFund = () => {
+  const history = useHistory();
   // Modal controller
-  const { isError: dataSentEro } = useMutation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   // Modal controller
 
@@ -17,13 +20,10 @@ const useTransferFund = () => {
     lastname: "Account",
   });
   const [isUserAccountBalanceLow, setIsUserAccountBalanceLow] = useState(true);
-
   // open modal
   const [isShowModal, setIsShowModal] = useState(false);
   // open modal
-
   // Keeps the label floating
-
   const [isAccountNumber, setisAccountNumber] = useState(false);
   const [isAmountTypedIn, setisAmountTypedIn] = useState(false);
   const [isRemarksTypedIn, setIsRemarksTypedIn] = useState(false);
@@ -35,6 +35,7 @@ const useTransferFund = () => {
       : setisAccountNumber(true);
 
   /* THis enables the "lastname" label to float if the lastname has been typed in*/
+  
   const handleAmountIn = (amount) =>
     amount === "" || amount <= 0
       ? setisAmountTypedIn(false)
@@ -65,34 +66,62 @@ const useTransferFund = () => {
     const form = postRequestToServer("/search", formDetails);
     return form;
   });
- 
+
   const {
     register,
     getValues,
     handleSubmit,
-    resetField,
+    setError,
+    trigger,
     clearErrors,
     formState: { errors, isValid },
-  } = useForm({ mode: "all" });
+  } = useForm({ mode: "onBlur" });
   const [userInput, setUserInput] = React.useState("");
-
   //   If user input the 8 digit account number, search for it in the database
+
+  const validateAccountNumber = (accountNumber) => {
+    if (accountNumber.length >= 8) {
+      mutate({ acctNumber: accountNumber, loggedInUserID: userId });
+    }
+
+    console.log(isError);
+    return isError ? "Invalid Account Number" : true;
+  };
+
+  // Validate if account number is registered  in the database
   useEffect(() => {
     if (userInput.length >= 8) {
       mutate({ acctNumber: userInput, loggedInUserID: userId });
     }
   }, [userInput]);
 
-  //submit user details
+  //set  user transaction  details to local storage
   const submitTransfer = (data) => {
-    console.log(data, getValues("amount"));
-    setIsShowModal(true);
+    const _id = userId;
+    if (data) {
+      const { firstname, lastname, _id: receiverID } = userToCreditDetails;
+      reactLocalStorage.setObject("transactionDetails", {
+        ...data,
+        receiverID,
+        firstname,
+        lastname,
+        _id,
+      });
+
+      const isTransactionDetailsInLocalStorage = Object.keys(
+        reactLocalStorage.getObject("transactionDetails")
+      ).length;
+
+      console.log(isTransactionDetailsInLocalStorage);
+      isTransactionDetailsInLocalStorage > 0 &&
+        history.push("/account/transfer/monsecure/confirm");
+    }
   };
 
   // Check if amount about to transfer is up to #50
   const isAmountAboutToTransferUpToFiftyNaira = (usersAmount) => {
     const loggedInUserId = userId;
-    
+
     if (usersAmount >= 50) {
       // Check if amount user typed in is greater than users account balance
       postRequestToServer("/validatebalance", {
@@ -102,6 +131,7 @@ const useTransferFund = () => {
         .then((res) => {
           console.log(res);
           setIsUserAccountBalanceLow(true);
+          return true;
         })
         .catch((err) => {
           const balance = err.response.data.balance;
@@ -112,19 +142,24 @@ const useTransferFund = () => {
         });
       return isUserAccountBalanceLow;
     } else {
+      // setError("amount", {
+      //   type: "validate",
+      //   message: "Amount must be up to 50 naira",
+      // });
       return "Amount must be up to 50 naira";
     }
   };
 
+  console.log(errors);
   useEffect(() => {
     if (!isLoading) {
-      // If data is not loading
+      // If done loading
       if (isSuccess) {
-        const { profileImg, firstname, lastname } =
+        const { profileImg, firstname, lastname, _id } =
           ProfileOfUserSearchedByCurrentUser.data.message;
-        setCreditUserDetails({ profileImg, firstname, lastname });
-        console.log("userToCreditDetails", userToCreditDetails);
+        setCreditUserDetails({ profileImg, firstname, lastname, _id });
       }
+
       if (isError) {
         setCreditUserDetails({
           profileImg: null,
@@ -132,7 +167,8 @@ const useTransferFund = () => {
         });
       }
     }
-  }, [isSuccess, isError, isLoading]);
+  }, [isSuccess, isError, isLoading, ProfileOfUserSearchedByCurrentUser]);
+
   return {
     register,
     getValues,
@@ -150,7 +186,9 @@ const useTransferFund = () => {
     isAccountNumber,
     isAmountTypedIn,
     isRemarksTypedIn,
+    trigger,
     handleAccountNumberChange,
+    validateAccountNumber,
     handleAmountIn,
     handleRemarks,
     isAmountAboutToTransferUpToFiftyNaira,

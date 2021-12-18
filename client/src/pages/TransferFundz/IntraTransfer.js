@@ -1,4 +1,5 @@
 import { Avatar } from "@chakra-ui/avatar";
+
 import { Button } from "@chakra-ui/button";
 import {
   FormControl,
@@ -17,7 +18,6 @@ import React from "react";
 import Back from "../../components/Back";
 import ProtectedComponent from "../../components/ProtectedComponent";
 import useTransferFund from "../../hooks/useTransferFund";
-import ConfirmUserTransfer from "./ConfirmUserTransfer";
 
 const IntraTransfer = () => {
   const {
@@ -30,6 +30,7 @@ const IntraTransfer = () => {
     isError,
     errors,
     isValid,
+    validateAccountNumber,
     isAccountNumber,
     isAmountTypedIn,
     isRemarksTypedIn,
@@ -39,6 +40,7 @@ const IntraTransfer = () => {
     handleAmountIn,
     handleRemarks,
     isAmountAboutToTransferUpToFiftyNaira,
+    trigger,
   } = useTransferFund();
 
   // user searched details
@@ -89,26 +91,27 @@ const IntraTransfer = () => {
 
               <Input
                 type="number"
-                {...register(
-                  "accountNumber",
-                  {
-                    required: "Please type in your account number",
-                    minLength: {
-                      value: 8,
-                      message: "Account number must be more than 8 digits",
-                    },
+                {...register("accountNumber", {
+                  required: "Please type in your account number",
+
+                  validate: (accountNumber) =>
+                    validateAccountNumber(accountNumber),
+                  minLength: {
+                    value: 8,
+                    message: "Account number must be more than 8 digits",
                   },
-                  { message: "type in your account num" }
-                )}
+                })}
                 onChange={(e) => {
                   setUserInput(e.target.value);
                   handleAccountNumberChange(e.target.value);
                 }}
                 onPaste={(e) => {
                   setUserInput(e.target.value);
+                  handleAccountNumberChange(e.target.value);
                 }}
                 onPasteCapture={(e) => {
                   setUserInput(e.target.value);
+                  handleAccountNumberChange(e.target.value);
                 }}
                 variant="flushed"
                 fontSize="4!important"
@@ -135,7 +138,8 @@ const IntraTransfer = () => {
               fontWeight="bold"
               transitionProperty="color, font-weight"
             >
-              {isLoading && "loading"}
+              {isLoading && "Loading"}
+              {userToCreditDetails.fist}
               {isSuccess &&
                 ` ${userToCreditDetails.firstname} ${userToCreditDetails.lastname}`}{" "}
               {isError && ` ${userToCreditDetails.firstname} `}{" "}
@@ -199,7 +203,10 @@ const IntraTransfer = () => {
                     isAmountAboutToTransferUpToFiftyNaira(value),
                 })}
                 onChange={({ target }) => {
-                  handleAmountIn(target.value);
+                  {
+                    // trigger("amount");
+                    handleAmountIn(target.value);
+                  }
                 }}
               />
               <InputRightElement
@@ -247,7 +254,11 @@ const IntraTransfer = () => {
           </FormControl>
 
           {/* Submit  button */}
-          <VStack pt={12} w="full">
+          <VStack pt={8} w="full" spacing={4}>
+            <Text fontSize="xs" color="gray.500">
+              {" "}
+              Please confirm transfer details are correct
+            </Text>
             <Button
               bg="rgb(17, 79, 166)"
               loadingText="Creating your account"
@@ -261,13 +272,12 @@ const IntraTransfer = () => {
               h="14"
               variant={"solid"}
             >
-              Continue
+              Next
             </Button>
           </VStack>
         </VStack>
         {/* FOrm Here */}
       </VStack>
-      <ConfirmUserTransfer />
     </ProtectedComponent>
   );
 };

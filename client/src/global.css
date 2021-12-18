@@ -75,3 +75,9 @@ body {
   font-weight: bold;
 }
 /* Form signup*/
+
+/* Paystack button */
+.button[data-testid="testCardsPaymentButton"] {
+  background: yellow !important;
+}
+/* Paystack button */

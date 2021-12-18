@@ -23,6 +23,9 @@ import {
   TransferSuccess,
   Profile,
   Navigation,
+  ConfirmUserTransfer,
+  TransferInfo,
+  TransactionSuccessful,
 } from "./pages";
 
 const App = () => {
@@ -89,6 +92,18 @@ const App = () => {
         <Route exact path="/account/transfer/monsecure">
           <IntraTransferTransfer />
         </Route>
+        <Route exact path="/account/transfer/monsecure/confirm">
+          <ConfirmUserTransfer />
+        </Route>
+
+        <Route exact path="/account/transfer/monsecure/confirm/pin">
+          <TransferInfo />
+        </Route>
+
+        <Route exact path="/account/transfer/monsecure-success">
+          <TransactionSuccessful />
+        </Route>
+
         <Route exact path="/account/transfer/bank">
           <TransferFundzToUser />
         </Route>

@@ -20,7 +20,7 @@ const TransactionPin = () => {
     <Center mt="32">
      <VStack spacing="24">
       <Heading>Set your Transaction Pin</Heading>
-      <HStack>
+      <HStack>  
        <PinInput
         onComplete={redirectToConfirmPassword}
         type="numeric"
