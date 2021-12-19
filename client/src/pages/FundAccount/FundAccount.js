@@ -56,7 +56,6 @@ const FundAccount = () => {
             onChange={({ target }) => {
               handleAmountIn(target.value);
               setUserAmountToFund(Number(target.value));
-              console.log(target.value);
             }}
           />
         </FormControl>

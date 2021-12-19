@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import randomatic from "randomatic";
 import {
   initializePayment,
   verifyPayment,
@@ -6,28 +7,31 @@ import {
 import Account from "../../models/Account.js";
 import User from "../../models/SignUp.js";
 
-export const MakeTransaction = (req, res) => {
-  const { amount, email, full_name } = req.body;
-  const form = { amount, email, full_name };
-  form.metadata = {
-    full_name: form.full_name,
-  };
-  form.amount *= 100;
-  initializePayment(form, (error, body) => {
-    if (error) {
-      //handle errors
-      console.log(error);
-      return;
+export const VerifyReferenceInTransaction = (req, res) => {
+  // Get transaction reference
+  const { ref } = req.body;
+  console.log(ref, "reference", req.body, req.query);
+  User.findOne(
+    { "transactions.ref": ref },
+    {
+      "transactions.$": 1,
+    },
+    (err, userProfile) => {
+      console.log(err, userProfile);
+      // IF ref was found in transaction array, send a ok response to the server
+      if (!userProfile || err || userProfile === null) {
+        res
+          .status(404)
+          .json({ success: false, message: "Ref not found in database" });
+      }
+      userProfile && res.status(200).json({ success: true, data: userProfile });
     }
-    const response = JSON.parse(body);
-    res.status(200).json({ success: true, response });
-    console.log(body);
-  });
+  );
 };
 
+// After user funds account, verify and store it in the backend here
 export const VerifyTransaction = (req, res) => {
   const { reference, trxref } = req.body;
-  console.log("reference", reference);
 
   verifyPayment(reference, (error, body) => {
     if (error) {
@@ -53,6 +57,8 @@ export const VerifyTransaction = (req, res) => {
         created_at,
         transactionType,
         narration,
+        transaction_type: "credit",
+        ref: randomatic("0A", 10),
       };
 
       /* Update user account balance */
@@ -63,7 +69,10 @@ export const VerifyTransaction = (req, res) => {
           $push: { transactions: transaction },
         }
       )
-        .then((res) => {
+        .then((transaction) => {
+          // Get the reference used to recognize transaction
+          const { ref } = transaction.transactions.slice(-1)[0];
+          // if paystack callback Freturn success
           if (status === "success") {
             Account.findByIdAndUpdate(
               mongoose.Types.ObjectId(accountId),
@@ -77,6 +86,7 @@ export const VerifyTransaction = (req, res) => {
 
                 if (doc) {
                   console.log(doc);
+                  res.status(200).json({ success: true, ref });
                 }
               }
             );

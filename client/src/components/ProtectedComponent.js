@@ -12,7 +12,7 @@ const ProtectedComponent = ({ children}) => {
  }
  
  if (isSuccess) {
-  const { authorizedData: result } = data
+  const { authorizedData: result } =  data 
   const { status: UserStatus } = result
 
   return (

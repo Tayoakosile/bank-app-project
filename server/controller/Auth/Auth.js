@@ -36,7 +36,7 @@ export const AuthorizeUser = (req, res) => {
     message: 'Successful log in',
     authorizedData,
    })
-   console.log("SUCCESS: Connected to protected route", authorizedData);
+   console.log("SUCCESS: Connected to protected route");
   }
  })
 }

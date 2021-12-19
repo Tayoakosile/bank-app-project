@@ -14,6 +14,7 @@ import {
   VerifyTransaction,
   Dashboard,
   FundAccount,
+  FundSuccess,
   FundAccountMethod,
   TransactionPin,
   TransactionPinConfirm,
@@ -73,6 +74,11 @@ const App = () => {
         <Route exact path="/account/fund-account">
           <FundAccount />
         </Route>
+
+        <Route exact path="/account/fund-success/:ref">
+          <FundSuccess />
+        </Route>
+
         <Route exact path="/account/fund-account/method/:method">
           <FundAccountMethod />
         </Route>

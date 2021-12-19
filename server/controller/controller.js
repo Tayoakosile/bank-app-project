@@ -50,7 +50,7 @@ export const VerifyUserEmail = async (req, res) => {
           {
             _id: mongoose.Types.ObjectId(`${account}`),
           },
-          { account_number: `KW1${SecretCodeToUser("0", 7)}` }
+          { account_number: `MS1${SecretCodeToUser("0", 9)}` }
         );
         console.log(
           "user acccount successfully updated",

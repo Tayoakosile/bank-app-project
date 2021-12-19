@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import randomatic from "randomatic";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { usePaystackPayment } from "react-paystack";
 import useStore from "../zustand";
 import { useMutation } from "react-query";
 import { postRequestToServer } from "../api/api";
 
 const useFundAccount = () => {
+  const history = useHistory();
   const { email, userId, user, userAmountToFund } = useStore((state) => state);
   const accountId = user !== "" && user.account._id;
   const {
@@ -18,7 +20,7 @@ const useFundAccount = () => {
 
   const { isLoading, isError, isSuccess, data, error, mutate } = useMutation(
     (fundAccountDetails) => {
-      postRequestToServer("/transaction/verify", fundAccountDetails);
+      return postRequestToServer("/transaction/verify", fundAccountDetails);
     }
   );
   /* THis enables the "amount" label to float if the lastname has been typed in*/
@@ -65,7 +67,14 @@ const useFundAccount = () => {
   };
   //   Validates user payment
   useEffect(() => {
-    console.log(isLoading, isError, isSuccess, data, error);
+    if (!isLoading) {
+      if (isSuccess) {
+        const { data: transactionReference } = data;
+        console.log(transactionReference, "reference");
+        history.push(`/account/fund-success/${transactionReference.ref}`);
+        console.log(isLoading, isError, isSuccess, data, "data here", error);
+      }
+    }
   }, [isLoading, isError, isSuccess, data, error]);
 
   return {

@@ -18,11 +18,12 @@ import VerifiedStatus from "./VerifyAccount/VerifyStatus";
 import VerifyError from "./VerifyAccount/VerifyError";
 import Profile from "./Profile/Profile";
 import VerifySuccess from "./VerifyAccount/VerifySuccess";
-import FundAccount from "./FundAccount/FundAccount";
 import Navigation from "./Navigation/BottomMobileNav";
 import FundAccountMethod from "./FundAccount/FundAccountMethod";
 import ConfirmUserTransfer from "./TransferFundz/ConfirmUserTransfer";
 import TransferInfo from "./TransferFundz/TransferInfo";
+import FundAccount from "./FundAccount/FundAccount";
+import FundSuccess from "./FundAccount/FundSuccess";
 import TransactionSuccessful from "./TransferFundz/TransactionSuccessful";
 
 export {
@@ -51,4 +52,5 @@ export {
   ConfirmUserTransfer,
   TransferInfo,
   TransactionSuccessful,
+  FundSuccess,
 };

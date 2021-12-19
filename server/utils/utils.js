@@ -1,10 +1,9 @@
+import crypto from "crypto";
 import mongoose from "mongoose";
+import GridFsStorage from "multer-gridfs-storage";
 import mailJet from "node-mailjet";
 import randomize from "randomatic";
-import crypto from "crypto";
 
-import GridFsStorage from "multer-gridfs-storage";
-import multer from "multer";
 
 export const sendMailToUser = (firstname, lastname, email, verification) => {
   const sendEmail = mailJet.connect(
