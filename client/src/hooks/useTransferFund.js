@@ -35,7 +35,7 @@ const useTransferFund = () => {
       : setisAccountNumber(true);
 
   /* THis enables the "lastname" label to float if the lastname has been typed in*/
-  
+
   const handleAmountIn = (amount) =>
     amount === "" || amount <= 0
       ? setisAmountTypedIn(false)
@@ -75,7 +75,7 @@ const useTransferFund = () => {
     trigger,
     clearErrors,
     formState: { errors, isValid },
-  } = useForm({ mode: "onBlur" });
+  } = useForm();
   const [userInput, setUserInput] = React.useState("");
   //   If user input the 8 digit account number, search for it in the database
 
@@ -95,7 +95,7 @@ const useTransferFund = () => {
     }
   }, [userInput]);
 
-  //set  user transaction  details to local storage
+  //set user transaction  details to local storage
   const submitTransfer = (data) => {
     const _id = userId;
     if (data) {
@@ -106,6 +106,7 @@ const useTransferFund = () => {
         firstname,
         lastname,
         _id,
+        destination_bank: "Monsecure",
       });
 
       const isTransactionDetailsInLocalStorage = Object.keys(
@@ -121,7 +122,6 @@ const useTransferFund = () => {
   // Check if amount about to transfer is up to #50
   const isAmountAboutToTransferUpToFiftyNaira = (usersAmount) => {
     const loggedInUserId = userId;
-
     if (usersAmount >= 50) {
       // Check if amount user typed in is greater than users account balance
       postRequestToServer("/validatebalance", {
@@ -131,7 +131,7 @@ const useTransferFund = () => {
         .then((res) => {
           console.log(res);
           setIsUserAccountBalanceLow(true);
-          return true;
+          return false;
         })
         .catch((err) => {
           const balance = err.response.data.balance;

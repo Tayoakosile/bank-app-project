@@ -5,6 +5,9 @@ import passportLocalMongoose from "passport-local-mongoose";
 const transaction = new Schema({
   source_account_id: String,
   destination_account_id: String,
+  destination_bank: String,
+  receiver_name: String,
+  sender_name: String,
   destination_account_number: String,
   amount: { type: Number, required: true },
   created_at: { type: Date, default: Date.now() },

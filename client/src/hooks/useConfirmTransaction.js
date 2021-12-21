@@ -36,16 +36,23 @@ const useConfirmTransaction = () => {
   //   Verifies users ,if pin is valid,it then continues with the transfer
   const handleVerifyPin = (userPin) => {
     const pin = Number(userPin);
-    const { _id, receiverID, amount: transferSum } = userTransactions;
-    mutate({ _id, pin, receiverID, transferSum });
+    const {
+      _id,
+      receiverID,
+      destination_bank,
+      amount: transferSum,
+      remarks: narration,
+    } = userTransactions;
+    mutate({ _id, pin, receiverID, transferSum, narration, destination_bank });
     // _id, pin, receiverID, transferSum;
   }; //   Verifies users pin
 
   // Response from server about errors
   useEffect(() => {
     if (isSuccess) {
-      console.log(data);
-      history.push("/account/transfer/monsecure-success");
+      console.log(data.data.message);
+      data.data &&
+        history.replace(`/account/fund-success/${data.data.message}`);
     }
   }, [isError, error, data, isSuccess]);
   // Response from server about errors

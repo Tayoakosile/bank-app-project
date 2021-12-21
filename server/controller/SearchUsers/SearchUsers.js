@@ -9,10 +9,10 @@ export const SearchUsers = (req, res) => {
   /* Search for all users with an account number  */
   Account.find(
     {
-      account_number: { $regex: `KW${acctNumber}`, $options: "i" },
+      account_number: { $regex: `MS${acctNumber}`, $options: "i" },
     },
     (err, doc) => {
-      console.log(err, doc.length,doc);
+      console.log(err, doc.length, doc);
       /* If no user was found, return error */
       if (doc.length === 0 || err) {
         res.status(400).json({ success: false, message: "No user found" });
@@ -25,7 +25,7 @@ export const SearchUsers = (req, res) => {
             if (result) {
               /* This ensures current logged in user account number  is not also sent when user searches */
               const updatedResult = result;
-              console.log("updatedResult", updatedResult,"updated");
+              console.log("updatedResult", updatedResult, "updated");
               return res
                 .status(200)
                 .json({ success: true, message: updatedResult });

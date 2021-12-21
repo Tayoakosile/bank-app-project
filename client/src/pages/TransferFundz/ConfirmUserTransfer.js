@@ -10,14 +10,21 @@ import useConfirmTransaction from "../../hooks/useConfirmTransaction";
 const TransferInfo = () => {
   const history = useHistory();
   const { userTransactions } = useConfirmTransaction();
-  const isUserTransactonInLocalStorage = Object.keys(userTransactions).length;
+  const isUserTransactionInLocalStorage = Object.keys(userTransactions).length;
 
-  const { accountNumber, amount, firstname, lastname } =
-    isUserTransactonInLocalStorage !== 0 && userTransactions;
+  console.log(userTransactions);
+  const {
+    accountNumber,
+    amount,
+    firstname,
+    lastname,
+    remarks,
+    destination_bank,
+  } = isUserTransactionInLocalStorage !== 0 && userTransactions;
 
   return (
     <ProtectedComponent>
-      {isUserTransactonInLocalStorage !== 0 ? (
+      {isUserTransactionInLocalStorage !== 0 ? (
         <>
           <Box px="6" pt="6">
             <FulLogo w="12" h="12" color="brand.700" fill="brand.700" />
@@ -39,7 +46,7 @@ const TransferInfo = () => {
                 <Heading
                   size="sm"
                   letterSpacing=".9px"
-                >{`KW${accountNumber}`}</Heading>
+                >{`MS${accountNumber}`}</Heading>
               </HStack>
               <HStack spacing="4" w="full">
                 <Text>Name</Text>
@@ -59,12 +66,22 @@ const TransferInfo = () => {
               </HStack>
 
               <HStack spacing="4" w="full">
-                <Text>Fee</Text>
+                <Text>Receiver's Bank</Text>
                 <Spacer />
                 <Heading size="sm" letterSpacing=".9px">
-                  ₦ 0.00
+                  {destination_bank}
                 </Heading>
               </HStack>
+
+              {remarks && (
+                <HStack spacing="4" w="full">
+                  <Text>Remarks</Text>
+                  <Spacer />
+                  <Heading size="sm" letterSpacing=".9px">
+                    {remarks}
+                  </Heading>
+                </HStack>
+              )}
             </VStack>
             <Button
               w="80%"
@@ -73,7 +90,8 @@ const TransferInfo = () => {
                 history.push("/account/transfer/monsecure/confirm/pin");
               }}
             >
-              Pay ₦ {amount}.00
+              {`  Transfer ₦${amount} to ${firstname}
+               `}
             </Button>
           </VStack>
         </>

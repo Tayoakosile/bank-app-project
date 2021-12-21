@@ -1,4 +1,3 @@
-
 import SignUp from "./SignUp/SignUp";
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
@@ -17,6 +16,7 @@ import VerifyAccount from "./VerifyAccount/VerifyAccount";
 import VerifiedStatus from "./VerifyAccount/VerifyStatus";
 import VerifyError from "./VerifyAccount/VerifyError";
 import Profile from "./Profile/Profile";
+import Notification from "./Notification/Notification";
 import VerifySuccess from "./VerifyAccount/VerifySuccess";
 import Navigation from "./Navigation/BottomMobileNav";
 import FundAccountMethod from "./FundAccount/FundAccountMethod";
@@ -53,4 +53,5 @@ export {
   TransferInfo,
   TransactionSuccessful,
   FundSuccess,
+  Notification,
 };

@@ -24,7 +24,7 @@ const useDashboard = () => {
   amount: 20000,
   publicKey: `pk_test_694a577e5f90d7aa51e008eb96a6349436c0744a`,
   channels: ['card'],
-  label: 'Fund your account',
+  label: 'Fund youssr account',
   metadata: {
    name: 'tayo',
   },

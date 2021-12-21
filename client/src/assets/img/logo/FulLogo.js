@@ -4,9 +4,9 @@ import { Text, HStack } from "@chakra-ui/layout";
 import { ReactComponent as Logo } from "./logo.svg";
 import { Link } from "react-router-dom";
 
-const FulLogo = ({ w, h, fs, color, fill, spacing, showText }) => {
+const FulLogo = ({ w, h, fs, color, fill, spacing, showText, ...rest }) => {
   return (
-    <HStack  spacing={spacing ? spacing : "2"}>
+    <HStack {...rest} spacing={spacing ? spacing : "2"}>
       <Icon as={Logo} w={w} h={h} fill={fill} />
       <Text
         fontSize={fs ? fs : "xl"}

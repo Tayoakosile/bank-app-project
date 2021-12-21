@@ -7,7 +7,6 @@ import ProtectedComponent from "../../components/ProtectedComponent";
 
 const BottomMobileNav = () => {
   const { ToggleBottomNavVisibility, bottomNavItems } = useBottomNavBar();
-  console.log("nave here", ToggleBottomNavVisibility);
   return (
     <>
       {ToggleBottomNavVisibility && (

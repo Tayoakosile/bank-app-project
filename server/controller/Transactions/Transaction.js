@@ -24,13 +24,29 @@ export const VerifyReferenceInTransaction = (req, res) => {
           .status(404)
           .json({ success: false, message: "Ref not found in database" });
       }
-      userProfile && res.status(200).json({ success: true, data: userProfile });
+      if (userProfile) {
+        User.findById(mongoose.Types.ObjectId(userProfile._id))
+          .select(
+            "-status -email -profileImg  -created_on -verified_on -transaction_pin -username -deleted_by -transactions -deleted_by"
+          )
+          .populate("account", "-_id -balance -__v")
+          .exec((err, doc) => {
+            if (doc) {
+              const { transactions } = userProfile;
+              console.log(transactions[0], doc);
+              res
+                .status(200)
+                .json({ success: true, data: { transactions, doc } });
+            }
+          });
+      }
     }
   );
 };
 
 // After user funds account, verify and store it in the backend here
 export const VerifyTransaction = (req, res) => {
+  const ref = randomatic("0A", 10);
   const { reference, trxref } = req.body;
 
   verifyPayment(reference, (error, body) => {
@@ -58,7 +74,7 @@ export const VerifyTransaction = (req, res) => {
         transactionType,
         narration,
         transaction_type: "credit",
-        ref: randomatic("0A", 10),
+        ref,
       };
 
       /* Update user account balance */
@@ -71,7 +87,7 @@ export const VerifyTransaction = (req, res) => {
       )
         .then((transaction) => {
           // Get the reference used to recognize transaction
-          const { ref } = transaction.transactions.slice(-1)[0];
+          // const { ref } = transaction.transactions.slice(-1)[0];
           // if paystack callback Freturn success
           if (status === "success") {
             Account.findByIdAndUpdate(
@@ -83,7 +99,6 @@ export const VerifyTransaction = (req, res) => {
               (err, doc) => {
                 // console.log(doc, err)
                 /* if successful  */
-
                 if (doc) {
                   console.log(doc);
                   res.status(200).json({ success: true, ref });

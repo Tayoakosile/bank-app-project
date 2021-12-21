@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
 import randomatic from "randomatic";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 import { usePaystackPayment } from "react-paystack";
-import useStore from "../zustand";
 import { useMutation } from "react-query";
+import { useHistory } from "react-router-dom";
 import { postRequestToServer } from "../api/api";
+import useStore from "../zustand";
 
 const useFundAccount = () => {
   const history = useHistory();
@@ -26,7 +26,16 @@ const useFundAccount = () => {
   /* THis enables the "amount" label to float if the lastname has been typed in*/
   const [isAmountTypedIn, setisAmountTypedIn] = useState(false);
 
+  // Check if amount about to recharge is up to #50 naira
+  const isAmountAboutToTransferUpToFiftyNaira = (value) => {
+    if (Number(value) <= 49) {
+      return "#50 naira is the Minimum amount to fund account";
+    }
+  };
+  // Check if amount about to recharge is up to #50 naira
+
   //   Initialize paystack payment
+  console.log(userAmountToFund);
   const initializePayment = usePaystackPayment({
     email,
     amount: userAmountToFund * 100,
@@ -35,9 +44,9 @@ const useFundAccount = () => {
     channels: ["card"],
     text: "Fund your account",
     metadata: {
-      transactionType: "credit",
+      transactionType: "Wallet Fund",
       userId,
-      narration: "Wallet funding",
+      narration: `Funded Wallet with an amount of ${userAmountToFund}`,
       accountId,
     },
     publicKey: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
@@ -54,13 +63,13 @@ const useFundAccount = () => {
     // If funding account is successful, run this function
     const onSuccess = (reference) => {
       mutate(reference);
-      console.log(reference);
     };
 
     // implementation for  whatever you want to do when the Paystack dialog closed.
-    const onClose = () => {
-      console.log("closed");
+    const onClose = (reference) => {
+      console.log("closed", reference);
     };
+
     if (amount) {
       initializePayment(onSuccess, onClose);
     }
@@ -70,9 +79,7 @@ const useFundAccount = () => {
     if (!isLoading) {
       if (isSuccess) {
         const { data: transactionReference } = data;
-        console.log(transactionReference, "reference");
         history.push(`/account/fund-success/${transactionReference.ref}`);
-        console.log(isLoading, isError, isSuccess, data, "data here", error);
       }
     }
   }, [isLoading, isError, isSuccess, data, error]);
@@ -83,6 +90,9 @@ const useFundAccount = () => {
     register,
     handleSubmit,
     FundAccount,
+    isAmountAboutToTransferUpToFiftyNaira,
+    errors,
+    isLoading,
   };
 };
 

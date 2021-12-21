@@ -83,7 +83,7 @@ const IntraTransfer = () => {
             </FormLabel>
             <InputGroup>
               <InputLeftElement
-                children="KW"
+                children="MS"
                 color={errors.accountNumber ? "red.200" : "brand.200"}
                 fontWeight="bold"
                 pointerEvents="none"
@@ -93,12 +93,11 @@ const IntraTransfer = () => {
                 type="number"
                 {...register("accountNumber", {
                   required: "Please type in your account number",
-
                   validate: (accountNumber) =>
                     validateAccountNumber(accountNumber),
                   minLength: {
-                    value: 8,
-                    message: "Account number must be more than 8 digits",
+                    value: 9,
+                    message: "Account number must be more than 9 digits",
                   },
                 })}
                 onChange={(e) => {
@@ -204,7 +203,7 @@ const IntraTransfer = () => {
                 })}
                 onChange={({ target }) => {
                   {
-                    // trigger("amount");
+                    isAmountAboutToTransferUpToFiftyNaira(Number(target.value));
                     handleAmountIn(target.value);
                   }
                 }}

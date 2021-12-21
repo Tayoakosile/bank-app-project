@@ -15,6 +15,7 @@ import {
   Dashboard,
   FundAccount,
   FundSuccess,
+  Notification,
   FundAccountMethod,
   TransactionPin,
   TransactionPinConfirm,
@@ -40,6 +41,9 @@ const App = () => {
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="/notifications">
+          <Notification />
         </Route>
         <Route path="/verifyaccount">
           <VerifyAccount />
