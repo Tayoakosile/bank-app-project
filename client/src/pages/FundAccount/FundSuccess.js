@@ -72,6 +72,12 @@ const FundSuccess = () => {
                 <Text>Recipient</Text>
                 <Heading size="sm">{`${transactionUserDetails.firstname} ${transactionUserDetails.lastname}(${transactionUserDetails.account.account_number})`}</Heading>
               </HStack>
+              <HStack w="full" justifyContent="space-between">
+                <Text>Amount in Words</Text>
+                <Heading size="sm">{` ${NumberToWords.toWords(
+                  transactionDetails.amount
+                )} Naira  `}</Heading>
+              </HStack>
 
               <HStack w="full" justifyContent="space-between">
                 <Text>Transaction Type</Text>
@@ -80,23 +86,24 @@ const FundSuccess = () => {
                 `}
                 </Heading>
               </HStack>
-
-              <HStack w="full" justifyContent="space-between">
-                <Text>Receiver</Text>
-                <Heading size="sm">
-                  {`${transactionDetails.receiver_name} 
+              {transactionDetails.receiver_name && (
+                <HStack w="full" justifyContent="space-between">
+                  <Text>Receiver</Text>
+                  <Heading size="sm">
+                    {`${transactionDetails.receiver_name} 
                 `}
-                </Heading>
-              </HStack>
-
-              <HStack w="full" justifyContent="space-between">
-                <Text> Account Number</Text>
-                <Heading size="sm">
-                  {`${transactionDetails.destination_account_number} 
+                  </Heading>
+                </HStack>
+              )}
+              {transactionDetails.destination_account_number && (
+                <HStack w="full" justifyContent="space-between">
+                  <Text> Account Number</Text>
+                  <Heading size="sm">
+                    {`${transactionDetails.destination_account_number} 
                 `}
-                </Heading>
-              </HStack>
-
+                  </Heading>
+                </HStack>
+              )}
               {/* Transaction Reference */}
               <HStack w="full" justifyContent="space-between">
                 <Text>Transaction Reference</Text>
@@ -115,20 +122,19 @@ const FundSuccess = () => {
                     )}`}
                 </Heading>
               </HStack>
-
-              <HStack w="full" justifyContent="space-between">
-                <Text>Receiving Bank</Text>
-                <Heading size="sm">
-                  {transactionDetails && transactionDetails.destination_bank}
-                </Heading>
-              </HStack>
-
+              {transactionDetails.destination_bank && (
+                <HStack w="full" justifyContent="space-between">
+                  <Text>Receiving Bank</Text>
+                  <Heading size="sm">
+                    {transactionDetails && transactionDetails.destination_bank}
+                  </Heading>
+                </HStack>
+              )}
               {transactionDetails.narration && (
                 <HStack w="full" justifyContent="space-between">
                   <Text>Remarks</Text>
                   <Heading size="sm">
-                    {transactionDetails &&
-                      transactionDetails.transactionDetails.narration}
+                    {transactionDetails && transactionDetails.narration}
                   </Heading>
                 </HStack>
               )}

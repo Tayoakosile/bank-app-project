@@ -5,6 +5,7 @@ import {
   verifyPayment,
 } from "../../config/Paystack.config.js";
 import Account from "../../models/Account.js";
+import Notifications from "../../models/Notifications.js";
 import User from "../../models/SignUp.js";
 
 export const VerifyReferenceInTransaction = (req, res) => {
@@ -53,10 +54,9 @@ export const VerifyTransaction = (req, res) => {
     if (error) {
       console.log("error", error);
     }
+    // Data gotten from Paystack
     const { data } = JSON.parse(body);
-    console.log(data);
     if (data) {
-      console.log(data);
       const {
         metadata: { userId, transactionType, narration, accountId },
         amount,
@@ -73,12 +73,11 @@ export const VerifyTransaction = (req, res) => {
         created_at,
         transactionType,
         narration,
-        transaction_type: "credit",
+        transaction_type: "Fund",
         ref,
       };
 
       /* Update user account balance */
-
       User.findOneAndUpdate(
         { _id: mongoose.Types.ObjectId(userId) },
         {
@@ -99,6 +98,13 @@ export const VerifyTransaction = (req, res) => {
               (err, doc) => {
                 // console.log(doc, err)
                 /* if successful  */
+
+                // const notification = {
+                //   message,
+                //   user_id:userId,
+                //   Status:
+                // };
+
                 if (doc) {
                   console.log(doc);
                   res.status(200).json({ success: true, ref });

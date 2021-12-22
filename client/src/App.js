@@ -71,9 +71,10 @@ const App = () => {
         <Route exact path="/dashboard">
           <Dashboard />
         </Route>
-        <Route exact path="/paystack/callback">
+        {/* <Route exact path="/paystack/callback">
           <VerifyTransaction />
         </Route>
+         */}
         {/* Fund account */}
         <Route exact path="/account/fund-account">
           <FundAccount />
@@ -83,9 +84,9 @@ const App = () => {
           <FundSuccess />
         </Route>
 
-        <Route exact path="/account/fund-account/method/:method">
+        {/* <Route exact path="/account/fund-account/method/:method">
           <FundAccountMethod />
-        </Route>
+        </Route> */}
         {/* Fund account */}
         {/* Transaction pin */}
         <Route exact path="/account/transaction-pin/set">

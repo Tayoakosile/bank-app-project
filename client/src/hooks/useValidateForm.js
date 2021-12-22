@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useToast } from "@chakra-ui/react";
+import { useMutation } from "react-query";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -6,13 +8,20 @@ import { isUserEmailUnique, postRequestToServer } from "../api/api";
 import useStore from "../zustand/index";
 
 const useValidateForm = () => {
-  /* Labels ss*/
   const [isFirstNameTypedIn, setIsFirstNameTypedIn] = useState(false);
+  /* Labels */
   const [isLastNameTypedIn, setIsLastNameTypedIn] = useState(false);
   const [isUserNameTypedIn, setIsUserNameTypedIn] = useState(false);
   const [isEmailAddressTypedIn, setIsEmailTypedIn] = useState(false);
   const [isPasswordTypedIn, setIsPasswordTypedIn] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
+  // Send users details to backed and create account
+  const { mutate, isLoading, isSuccess, isError, data, error } = useMutation(
+    (form) => {
+      return postRequestToServer("/", form);
+    }
+  );
+  // Send users details to backed and create account
 
   /* Toggles passwords visibility */
   const handleShowPassword = () => setShowPassword(!showPassword);
@@ -62,7 +71,7 @@ const useValidateForm = () => {
     setError,
     setValue,
     clearErrors,
-    reset,
+    getValues,
     isSubmitting,
     formState: { errors, isValid },
   } = useForm({ mode: "all", shouldFocusError: true });
@@ -88,31 +97,33 @@ const useValidateForm = () => {
   // Submit form
   const onSubmit = (form) => {
     if (form) {
-      postRequestToServer("/", form)
-        .then((res) => {
-          toast({
-            title: "Account Successfully created.",
-            position: "top-right",
-            description: "Your account has been successfully created",
-            status: "success",
-            duration: 3000,
-            isClosable: true,
-            onCloseComplete: () => {
-              setData(form.email);
-              history.push("/verifyaccount");
-            },
-          });
-          document.getElementById("myForm").reset();
-          reset({ form });
-          return res;
-        })
-        .catch((err) => {
-          console.log(err);
-          return err;
-        });
+      mutate(form);
     }
   };
-
+  // Get response from backend
+  useEffect(() => {
+    if (isError) {
+      console.log(error);
+    }
+    if (!isLoading) {
+      if (isSuccess) {
+        toast({
+          title: "Account Successfully created.",
+          position: "top-right",
+          description: "Your account has been successfully created",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          onCloseComplete: () => {
+            setData(getValues("email"));
+            history.push("/verifyaccount");
+          },
+        });
+        document.getElementById("myForm").reset();
+      }
+    }
+  }, [isLoading, isSuccess, isError]);
+  // Get response from backend
   return {
     register,
     handleSubmit,
@@ -135,6 +146,9 @@ const useValidateForm = () => {
     isUserNameTypedIn,
     isValid,
     isPasswordTypedIn,
+    isLoading,
+    isSuccess,
+    isError,
   };
 };
 

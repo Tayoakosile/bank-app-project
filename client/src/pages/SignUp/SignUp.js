@@ -29,9 +29,7 @@ export default function SplitScreen() {
     handleSubmit,
     onSubmit,
     showPassword,
-    isValid,
     errors,
-    isSubmitting,
     isFirstNameTypedIn,
     isLastNameTypedIn,
     isUserNameTypedIn,
@@ -44,6 +42,9 @@ export default function SplitScreen() {
     handlePasswordChange,
     handleEmailChange,
     handleShowPassword,
+    isLoading,
+    isSuccess,
+    isError,
   } = useValidateForm();
 
   return (
@@ -381,10 +382,9 @@ export default function SplitScreen() {
           <VStack mt={6} spacing={8}>
             <Button
               bg="rgb(17, 79, 166)"
-              loadingText ="Creating your account"
-              isLoading={isSubmitting}
+              loadingText="Creating your account"
+              isLoading={isLoading}
               type="submit"
-              isDisabled={!isValid}
               textTransform="capitalize"
               fontSize="sm"
               size="lg"
@@ -392,7 +392,7 @@ export default function SplitScreen() {
               h="14"
               variant={"solid"}
             >
-              Continue
+              Create Account
             </Button>
 
             <Text fontSize="sm" color="gray.500" fontWeight="normal">

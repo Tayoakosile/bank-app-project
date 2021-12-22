@@ -1,7 +1,7 @@
 import { IconButton } from "@chakra-ui/button";
 import React from "react";
 import { useHistory } from "react-router";
-const Back = ({ noBackground }) => {
+const Back = ({ noBackground, ...rest }) => {
   const history = useHistory();
   const BackArrow = () => {
     return (
@@ -30,6 +30,7 @@ const Back = ({ noBackground }) => {
         icon={<BackArrow />}
         color={noBackground ? "white" : "brand.500"}
         size="md"
+        {...rest}
         onClick={() => history.goBack()}
       />
     </>

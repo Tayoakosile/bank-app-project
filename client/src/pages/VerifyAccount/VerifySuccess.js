@@ -5,7 +5,7 @@ const VerifySuccess = () => {
   return (
     <div>
       <FulLogo />
-      Verified
+    Verified
     </div>
   );
 };

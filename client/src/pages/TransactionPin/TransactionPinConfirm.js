@@ -1,44 +1,123 @@
-import React from 'react'
 import {
- HStack,
- PinInput,
- PinInputField,
- Heading,
- Center,
- VStack,
- Button,
- Text,
-} from '@chakra-ui/react'
-import ProtectedComponent from '../../components/ProtectedComponent'
-import useTransactionPin from '../../hooks/useTransactionPin'
+  Box,
+  Button,
+  Center,
+  Heading,
+  HStack,
+  PinInput,
+  PinInputField,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import Back from "../../components/Back";
+import useTransactionPin from "../../hooks/useTransactionPin";
+import TransactionPinSuccess from "./TransactionPinSuccess";
+
 const TransactionPinConfirm = () => {
- const { NewPin, userDetail } = useTransactionPin()
- const { pin } = userDetail
- return (
-  <ProtectedComponent>
-   {pin === null ? (
-    <Center mt="32">
-     <VStack spacing="24">
-      <Heading>Confirm your Pin </Heading>
-      <HStack>
-       <PinInput onComplete={NewPin} type="numeric" size="lg">
-        <PinInputField />
-        <PinInputField />
-        <PinInputField />
-        <PinInputField />
-       </PinInput>
+  const {
+    NewPin,
+    userDetail,
+    isSamePinCode,
+    UpdateUserPin,
+    isSuccess,
+    isLoading,
+    isError,
+    data,
+  } = useTransactionPin();
+
+  const { pin } = userDetail;
+  const [isPinCompletelyTypedIn, setIsPinCompletelyTypedIn] = useState(true);
+
+  if (isSuccess) {
+    return <TransactionPinSuccess />;
+  }
+
+  return (
+    <>
+      <HStack mx="6" mt="4">
+        <Back />
+        <Heading size="md">New Monsecure PIN</Heading>
       </HStack>
+      {pin === null ? (
+        <Center mt="20">
+          <VStack spacing="32">
+            <Box h="48">
+              <Heading
+                pb="8"
+                color="rgb(77 89 106)"
+                size="sm"
+                textAlign="center"
+                fontWeight="normal"
+              >
+                Confirm your PIN
+              </Heading>
+              <HStack w="full">
+                <PinInput
+                  isInvalid={!isSamePinCode}
+                  autoFocus={true}
+                  onChange={() => {
+                    setIsPinCompletelyTypedIn(true);
+                  }}
+                  onComplete={(pin) => {
+                    setIsPinCompletelyTypedIn(false);
+                    NewPin(pin);
+                  }}
+                  type="numeric"
+                  size="lg"
+                  mask
+                >
+                  <PinInputField w="16" h="16" />
+                  <PinInputField w="16" h="16" />
+                  <PinInputField w="16" h="16" />
+                  <PinInputField w="16" h="16" />
+                </PinInput>
+              </HStack>
 
-      <Button colorScheme="blue" size="lg">
-       Set Pin
-      </Button>
-     </VStack>
-    </Center>
-   ) : (
-    <Text>Your password is validated</Text>
-   )}
-  </ProtectedComponent>
- )
-}
+              {!isSamePinCode && (
+                <Text
+                  textAlign="center"
+                  mt="4"
+                  color="rgba(221, 44, 0, 0.87)"
+                  fontWeight="bold"
+                >
+                  Pin entered twice are inconsistent , <br /> please try it
+                  again
+                </Text>
+              )}
+              {isError && (
+                <Text
+                  textAlign="center"
+                  mt="4"
+                  color="rgba(221, 44, 0, 0.87)"
+                  fontWeight="bold"
+                >
+                  An error occured, please try again
+                </Text>
+              )}
+            </Box>
 
-export default TransactionPinConfirm
+            <Button
+              isDisabled={isPinCompletelyTypedIn || !isSamePinCode}
+              w="100%"
+              borderRadius="2px"
+              isLoading={isLoading}
+              loadingText="Setting PIN"
+              mx="auto"
+              onClick={UpdateUserPin}
+              h="16"
+              size="lg"
+            >
+              Set Transaction Pin
+            </Button>
+          </VStack>
+        </Center>
+      ) : (
+        <Redirect to="/dashboard"></Redirect>
+      )}
+    </>
+  );
+};
+
+export default TransactionPinConfirm;

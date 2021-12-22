@@ -12,7 +12,16 @@ export const TransactionPin = async (req, res) => {
     {
       transaction_pin: parseInt(pin),
     },
-    { new: true }
+    { new: true },
+    (err, doc) => {
+      if (doc) {
+        return res
+          .status(200)
+          .json({ success: true, message: "pin successfully update" });
+      }
+      err && res.status(400).json({ success: false ,message:"failed in setting pin"});
+      console.log(err, doc);
+    }
   );
 };
 

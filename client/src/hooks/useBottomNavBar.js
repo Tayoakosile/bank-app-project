@@ -12,12 +12,14 @@ const useBottomNavBar = () => {
   useEffect(() => {
     location === "/" ||
     location.includes("account/fund-success/") ||
+    location.includes("/verification/verify-account/") ||
     location === "/account/fund-account" ||
     location === "/signup" ||
     location === "/login" ||
     location === "/account/transfer/monsecure-success" ||
     location === "/account/transfer/monsecure-success" ||
     location === "/account/transfer/monsecure/confirm" ||
+    location === "/account/transfer/monsecure/confirm/pin" ||
     location === "/account/transfer/monsecure/confirm/pin" ||
     location === "/verifyaccount" ||
     location === "/account/transfer/monsecure"

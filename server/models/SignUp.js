@@ -35,6 +35,11 @@ const NewUser = new Schema({
     type: mongoose.Types.ObjectId,
     ref: "Account",
   },
+  notifications: {
+    type: mongoose.Types.ObjectId,
+    ref: "Notifications",
+  },
+
   transaction_pin: { type: Number, default: null },
   transactions: [transaction],
 });

@@ -25,6 +25,7 @@
     "randomatic": "^3.1.1",
     "react": "^17.0.2",
     "react-animated-css": "^1.2.1",
+    "react-checkmark": "^1.4.0",
     "react-countdown": "^2.3.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.11.1",

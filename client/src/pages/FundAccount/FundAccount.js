@@ -81,6 +81,7 @@ const FundAccount = () => {
             onChange={({ target }) => {
               handleAmountIn(target.value);
               setUserAmountToFund(Number(target.value));
+              isAmountAboutToTransferUpToFiftyNaira(target.value);
             }}
           />
 

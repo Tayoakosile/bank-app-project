@@ -35,7 +35,6 @@ const useFundAccount = () => {
   // Check if amount about to recharge is up to #50 naira
 
   //   Initialize paystack payment
-  console.log(userAmountToFund);
   const initializePayment = usePaystackPayment({
     email,
     amount: userAmountToFund * 100,
