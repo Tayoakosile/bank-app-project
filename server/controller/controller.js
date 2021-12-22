@@ -17,7 +17,6 @@ export const isUserLoginsUnique = async (req, res) => {
 };
 
 // Verify User Email Address
-
 export const VerifyUserEmail = async (req, res) => {
   const { _id, secretCode } = req.params;
   console.log(_id, secretCode);
@@ -36,7 +35,7 @@ export const VerifyUserEmail = async (req, res) => {
       });
       console.log("true user is a registered member", GetCode);
 
-      //  If verification code is still valid (not expired)
+      //  If verification code is still valid (not expired), update users status
       if (GetCode) {
         const updateUserStatus = await User.updateOne(
           { email },

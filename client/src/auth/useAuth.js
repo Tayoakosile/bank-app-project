@@ -66,11 +66,13 @@ const useAuth = () => {
     {
       refetchOnReconnect: true,
       refetchOnMount: true,
+      refetchOnWindowFocus: true,
+      retry: 2,
     }
   );
 
   useEffect(() => {
-      if (isSuccess) {
+    if (isSuccess) {
       if (data) {
         setUserId(data.authorizedData._id);
         setData(data.authorizedData.email);

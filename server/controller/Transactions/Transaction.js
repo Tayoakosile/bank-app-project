@@ -85,9 +85,6 @@ export const VerifyTransaction = (req, res) => {
         }
       )
         .then((transaction) => {
-          // Get the reference used to recognize transaction
-          // const { ref } = transaction.transactions.slice(-1)[0];
-          // if paystack callback Freturn success
           if (status === "success") {
             Account.findByIdAndUpdate(
               mongoose.Types.ObjectId(accountId),
@@ -99,15 +96,29 @@ export const VerifyTransaction = (req, res) => {
                 // console.log(doc, err)
                 /* if successful  */
 
-                // const notification = {
-                //   message,
-                //   user_id:userId,
-                //   Status:
-                // };
-
                 if (doc) {
-                  console.log(doc);
-                  res.status(200).json({ success: true, ref });
+                  const notification = {
+                    message: "Success",
+                    user_id: userId,
+                    receiver: "",
+                    transaction_type: "Fund",
+                    ref,
+                    payment_method: "Monsecure App",
+                  };
+                  const { notifications } = transaction;
+                  // Update Notifications
+                  Notifications.findOneAndUpdate(
+                    {
+                      _id: mongoose.Types.ObjectId(`${notifications}`),
+                    },
+                    {
+                      $push: { notifications: notification },
+                    },
+                    (err, doc) => {
+                      console.log(err, doc, "Notification update");
+                      doc && res.status(200).json({ success: true, ref });
+                    }
+                  );
                 }
               }
             );

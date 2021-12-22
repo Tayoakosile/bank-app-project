@@ -45,7 +45,7 @@ const useFundAccount = () => {
     metadata: {
       transactionType: "Wallet Fund",
       userId,
-      narration: `Funded Wallet with an amount of ${userAmountToFund}`,
+      narration: `Funded Wallet ${userAmountToFund}`,
       accountId,
     },
     publicKey: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,

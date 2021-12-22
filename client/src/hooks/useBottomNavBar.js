@@ -15,6 +15,8 @@ const useBottomNavBar = () => {
     location.includes("/verification/verify-account/") ||
     location === "/account/fund-account" ||
     location === "/signup" ||
+    location.includes("/reset-password") ||
+    location === "/reset-confirm" ||
     location === "/login" ||
     location === "/account/transfer/monsecure-success" ||
     location === "/account/transfer/monsecure-success" ||

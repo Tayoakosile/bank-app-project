@@ -17,7 +17,6 @@ const FundSuccess = () => {
     transactionDetails,
     transactionUserDetails,
   } = useFundAccountSuccess();
-  console.log(transactionDetails, transactionUserDetails);
 
   if (isLoading) {
     return <div>Loading</div>;
