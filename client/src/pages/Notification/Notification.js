@@ -1,30 +1,36 @@
 import { Box, Heading, HStack, VStack } from "@chakra-ui/layout";
-import React from "react";
+import Headroom from "react-headroom";
 import Back from "../../components/Back";
 import Transactions from "./Transactions";
 import ProtectedComponent from "../../components/ProtectedComponent";
+import useNotification from "../../hooks/useNotification";
 
 const Notification = () => {
+  const { isLoading, isError, isFetching, isSuccess, data, allNotification } =
+    useNotification();
+  console.log(allNotification);
   return (
-    <ProtectedComponent>
-      <Box bg="brand.50" h="full">
-        {/* Notification Heading */}
+    <Box  h="100%">
+      {/* Notification Heading */}
+      <Headroom>
         <HStack bg="white" py="6" mb="4" pl={2} spacing="4">
           <Back />
           <Heading size="lg">Notifications</Heading>
         </HStack>
-        {/* Notification Heading */}
+      </Headroom>
+      {/* Notification Heading */}
 
-        {/* Notification Body */}
-        <VStack spacing="10" alignItems="flex-start" px="4" h="full">
-          <Transactions />
-          <Transactions />
-          <Transactions />
-        </VStack>
-
-        {/* Notification Body */}
-      </Box>
-    </ProtectedComponent>
+      {/* Notification Body */}
+      <VStack spacing="4" mt="8" alignItems="flex-start" px="4">
+        {allNotification.length >= 1
+          ? allNotification.map((notification) => (
+              <Transactions notification={notification} />
+            ))
+          : "Nothing to show here"}
+      </VStack>
+      {/* Notification Body */}
+      <Box h="12" w="12" mt="20"></Box>
+    </Box>
   );
 };
 

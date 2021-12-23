@@ -28,6 +28,7 @@
     "react-checkmark": "^1.4.0",
     "react-countdown": "^2.3.2",
     "react-dom": "^17.0.2",
+    "react-headroom": "^3.2.0",
     "react-hook-form": "^7.11.1",
     "react-icons": "^4.2.0",
     "react-meta-tags": "^1.0.1",

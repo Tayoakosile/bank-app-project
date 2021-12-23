@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import GridFsStorage from "multer-gridfs-storage";
 import mailJet from "node-mailjet";
 import randomize from "randomatic";
-
+import MonsecureNotifications from "../models/Notifications.js";
+import User from "../models/SignUp.js";
 
 export const sendMailToUser = (firstname, lastname, email, verification) => {
   const sendEmail = mailJet.connect(
@@ -48,8 +49,18 @@ export const NewSecretCode = (model, email) => {
   return newSecretCode.save();
 };
 
-export const NewTransaction = async (Schema, userId, transaction) => {
-  const transactionMadeByUser = await Schema.findOneAndUpdate(
+export const MSAppNotificationToServer = async (userId, notification) => {
+  const newNotification = await MonsecureNotifications.findOneAndUpdate(
+    { _id: mongoose.Types.ObjectId(userId) },
+
+    {
+      $push: { notifications: notification },
+    }
+  );
+};
+
+export const NewTransaction = async (userId, transaction) => {
+  const transactionMadeByUser = await User.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(userId) },
     {
       $push: { transactions: transaction },

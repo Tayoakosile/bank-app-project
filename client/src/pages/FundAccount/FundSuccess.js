@@ -1,12 +1,11 @@
 import { Button } from "@chakra-ui/button";
-import Icon from "@chakra-ui/icon";
 import { Box, Center, Heading, HStack, Text, VStack } from "@chakra-ui/layout";
 import moment from "moment";
-import React from "react";
 import NumberToWords from "number-to-words";
+import React from "react";
+import { Checkmark } from "react-checkmark";
 import { Link } from "react-router-dom";
 import FulLogo from "../../assets/img/logo/FulLogo";
-import { ReactComponent as SuccessTransaction } from "../../assets/img/SuccessfullTransaction.svg";
 import useFundAccountSuccess from "../../hooks/useFundAccountSuccess";
 
 const FundSuccess = () => {
@@ -42,14 +41,7 @@ const FundSuccess = () => {
           />
           <Box mt>
             <VStack mb="6">
-              <Icon
-                bg="brand.50"
-                px="2"
-                borderRadius="50%"
-                as={SuccessTransaction}
-                w="28"
-                h="28"
-              />
+              <Checkmark size="xLarge" color="#114ea5" />
             </VStack>
             <Heading size="lg" align="center" textTransform="uppercase">
               Successful

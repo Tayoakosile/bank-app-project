@@ -1,6 +1,5 @@
 import Account from "../../models/Account.js";
 import User from "../../models/SignUp.js";
-import mongoose from "mongoose";
 
 export const SearchUsers = (req, res) => {
   const { acctNumber, loggedInUserID } = req.body;
@@ -23,9 +22,15 @@ export const SearchUsers = (req, res) => {
           { account: { $in: getAllUserInSearchId } },
           (err, result) => {
             if (result) {
-              /* This ensures current logged in user account number  is not also sent when user searches */
               const updatedResult = result;
-              console.log("updatedResult", updatedResult, "updated");
+
+              
+
+              if (updatedResult._id == loggedInUserID) {
+                return res
+                  .status(400)
+                  .json({ success: false, message: "No user found" });
+              }
               return res
                 .status(200)
                 .json({ success: true, message: updatedResult });
@@ -35,19 +40,4 @@ export const SearchUsers = (req, res) => {
       }
     }
   );
-};
-
-export const fetchSingleUser = async (req, res) => {
-  const { _id } = req.query;
-  const findUsers = await User.findById(mongoose.Types.ObjectId(_id)).populate(
-    "account"
-  );
-  console.log(findUsers);
-
-  if (!findUsers) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Error:User not found" });
-  }
-  res.status(200).json({ success: true, user: findUsers });
 };

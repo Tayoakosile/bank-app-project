@@ -4,13 +4,15 @@ const { Schema } = mongoose;
 // FOr each notification users make
 const notification = new Schema({
   message: String,
+  amount: Number,
   created_at: { type: Date, default: Date.now() },
   deleted_on: { type: Date, default: null },
   status: { type: String, default: "pending" },
   ref: String,
   transaction_type: String,
   payment_method: String,
-  receiver: { type: String, default: null },
+  receiver: String,
+  sender: String,
   user_id: {
     type: mongoose.Types.ObjectId,
     ref: "Account",

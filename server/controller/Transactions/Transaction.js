@@ -98,6 +98,7 @@ export const VerifyTransaction = (req, res) => {
 
                 if (doc) {
                   const notification = {
+                    amount: amountConvertedToNaira,
                     message: "Success",
                     user_id: userId,
                     receiver: "",
@@ -105,11 +106,11 @@ export const VerifyTransaction = (req, res) => {
                     ref,
                     payment_method: "Monsecure App",
                   };
-                  const { notifications } = transaction;
+                  const { notifications: notificationId } = transaction;
                   // Update Notifications
                   Notifications.findOneAndUpdate(
                     {
-                      _id: mongoose.Types.ObjectId(`${notifications}`),
+                      _id: mongoose.Types.ObjectId(`${notificationId}`),
                     },
                     {
                       $push: { notifications: notification },

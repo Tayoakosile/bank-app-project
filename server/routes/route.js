@@ -9,15 +9,14 @@ import { StoreUserID } from "../controller/Profile/Profile.js";
 import isPasswordLinkStillValid from "../controller/resetPassword/isPasswordLinkStillValid.js";
 import RequestPasswordReset from "../controller/resetPassword/RequestPasswordReset.js";
 import RequestPasswordResetLink from "../controller/resetPassword/RequestPasswordResetLink.js";
-import {
-  fetchSingleUser,
-  SearchUsers,
-} from "../controller/SearchUsers/SearchUsers.js";
+import { SearchUsers } from "../controller/SearchUsers/SearchUsers.js";
 import NewUser from "../controller/signUp/NewUser.js";
+import { AllNotifications } from "../controller/Notifications/Notification.js";
 import {
   TransactionPin,
   ValidatePin,
 } from "../controller/Transactions/TransactionPin.js";
+
 import ValidateBalance from "../controller/Transactions/ValidateBalance.js";
 
 const route = express.Router();
@@ -54,7 +53,7 @@ route.post("/search", SearchUsers);
 /* Search for user in the database */
 
 /* Search for user in the database */
-route.get("/fetch", fetchSingleUser);
+route.post("/notification", AllNotifications);
 /* Search for user in the database */
 
 /* Validate user account balance (Check if amount in database is greater than amount user selected) */
