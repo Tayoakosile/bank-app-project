@@ -28,6 +28,7 @@ import {
   ConfirmUserTransfer,
   TransferInfo,
   TransactionSuccessful,
+  AllTransactions,
 } from "./pages";
 
 const App = () => {
@@ -42,7 +43,7 @@ const App = () => {
         <Route exact path="/login">
           <Login />
         </Route>
-        <Route exact path="/notifications">
+        <Route exact path="/notifications/:userId">
           <Notification />
         </Route>
         <Route path="/verifyaccount">
@@ -89,9 +90,14 @@ const App = () => {
         </Route> */}
         {/* Fund account */}
         {/* Transaction pin */}
+        <Route exact path="/transactionhistory/:userId">
+          <AllTransactions />
+        </Route>
+
         <Route exact path="/account/transaction-pin/set">
           <TransactionPin />
         </Route>
+
         <Route exact path="/account/transaction-pin/confirm">
           <TransactionPinConfirm />
         </Route>

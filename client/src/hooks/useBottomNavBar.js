@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoHomeSharp } from "react-icons/io5";
 import { FiBarChart } from "react-icons/fi";
+import useStore  from "../zustand/index";
 import { useHistory, useLocation } from "react-router-dom";
 const useBottomNavBar = () => {
   // Manages nav visibility based on page url
@@ -8,6 +9,7 @@ const useBottomNavBar = () => {
   // Manages nav visibility based on page url
   const history = useHistory();
   const location = useLocation().pathname;
+  const { userId } = useStore((state) => state);
 
   useEffect(() => {
     location === "/" ||
@@ -49,7 +51,7 @@ const useBottomNavBar = () => {
       icon: <FiBarChart style={{ fontSize: "18px" }} />,
 
       activeIcon: <FiBarChart style={{ fontSize: "18px", color: "red" }} />,
-      onClick: () => history.push("/transactionhistory"),
+      onClick: () => history.push(`/transactionhistory/${userId}`),
     },
 
     {
@@ -57,7 +59,7 @@ const useBottomNavBar = () => {
       icon: <FiBarChart style={{ fontSize: "18px" }} />,
       activeIcon: <FiBarChart style={{ fontSize: "18px", color: "red" }} />,
       activeBgColor: "red",
-      onClick: () => history.push("/setting"),
+      onClick: () => history.push("/account/profile"),
       //   onClick: () => alert(" clicked"),
     },
   ];

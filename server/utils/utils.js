@@ -49,6 +49,7 @@ export const NewSecretCode = (model, email) => {
   return newSecretCode.save();
 };
 
+// Sends new notification to database
 export const MSAppNotificationToServer = async (userId, notification) => {
   const newNotification = await MonsecureNotifications.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(userId) },

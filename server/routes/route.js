@@ -12,6 +12,7 @@ import RequestPasswordResetLink from "../controller/resetPassword/RequestPasswor
 import { SearchUsers } from "../controller/SearchUsers/SearchUsers.js";
 import NewUser from "../controller/signUp/NewUser.js";
 import { AllNotifications } from "../controller/Notifications/Notification.js";
+import { AllTransaction } from "../controller/TransactionHistory/TransactionHistory.js";
 import {
   TransactionPin,
   ValidatePin,
@@ -51,6 +52,10 @@ route.post("/transaction/validatepin", ValidatePin);
 /* Search for user in the database */
 route.post("/search", SearchUsers);
 /* Search for user in the database */
+
+/* Get all Transaction */
+route.post("/transaction-history", AllTransaction);
+/* Get all Transaction */
 
 /* Search for user in the database */
 route.post("/notification", AllNotifications);

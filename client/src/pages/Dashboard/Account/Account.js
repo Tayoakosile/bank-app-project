@@ -16,8 +16,10 @@ import useDashboard from "../../../hooks/useDashboard";
 import Loader from "../../Loading/IsLoading";
 import Icon from "@chakra-ui/icon";
 import { Link } from "react-router-dom";
+import useStore from "../../../zustand";
 
 const Account = () => {
+  const { userId } = useStore((state) => state);
   const AccountUserName = (text) => {
     return (
       <Text color="white" fontSize="sm" fontWeight="normal">
@@ -71,7 +73,7 @@ const Account = () => {
           </VStack>
           <Spacer />
           {/* Notification bell */}
-          <Box as={Link} to="/notifications">
+          <Box as={Link} to={`/notifications/${userId}`}>
             <Icon as={VscBell} color="brand.100" w="7" h="7" />
           </Box>
           {/* Notification bell */}

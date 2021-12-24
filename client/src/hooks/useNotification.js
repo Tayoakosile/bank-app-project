@@ -1,30 +1,26 @@
 import { useEffect, useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import { axios, postRequestToServer } from "../api/api";
 import useStore from "../zustand";
 
 const useNotification = () => {
-  const { userId } = useStore((state) => state);
+  const { userId } = useParams();
   const [allNotification, setAllNotification] = useState([]);
 
-  const { mutate, isLoading, isError, isSuccess, data } = useMutation(
-    (notification) => {
-      return postRequestToServer("/notification", notification);
+  const { isLoading, isError, isSuccess, data } = useQuery(
+    "notifications",
+    () => {
+      return postRequestToServer("/notification", { _id: userId });
     }
   );
 
   //   Get all notification on load
-  useEffect(() => {
-    if (userId) {
-      mutate({ _id: userId });
-    }
-  }, [userId]);
 
   useEffect(() => {
     if (!isLoading) {
       isSuccess && setAllNotification(data.data.message.notifications);
     }
-    console.log(isLoading, isError, isSuccess, data, userId);
   }, [isLoading, isError, isSuccess, data]);
 
   return { isLoading, isError, isSuccess, allNotification };

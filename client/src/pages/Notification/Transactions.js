@@ -1,10 +1,21 @@
 import { IconButton } from "@chakra-ui/button";
-import Icon from "@chakra-ui/icon";
-import { Box, Heading, HStack, VStack } from "@chakra-ui/layout";
+import { Link as Navigate } from "react-router-dom";
+import { HiOutlineChevronRight } from "react-icons/hi";
+import {
+  Box,
+  Divider,
+  Heading,
+  HStack,
+  Link,
+  Text,
+  VStack,
+} from "@chakra-ui/layout";
+import moment from "moment";
 import React from "react";
 import { HiOutlineDownload, HiOutlineUpload } from "react-icons/hi";
 import { IoCashOutline } from "react-icons/io5";
 import ProtectedComponent from "../../components/ProtectedComponent";
+import Icon from "@chakra-ui/icon";
 
 const Transactions = ({ notification }) => {
   const {
@@ -22,7 +33,7 @@ const Transactions = ({ notification }) => {
 
   return (
     <ProtectedComponent>
-      <Box shadow="md" p="6" w="full" h="48">
+      <Box shadow="lg" py="6" px="4" w="full" h="64">
         {/* Payment type */}
         <HStack spacing="4">
           {transaction_type === "debit" && (
@@ -50,46 +61,67 @@ const Transactions = ({ notification }) => {
             />
           )}
 
-          {transaction_type === "debit" && (
-            <Heading size="sm">Send Money</Heading>
-          )}
-          {transaction_type === "Fund" && (
-            <Heading size="sm">Fund Wallet</Heading>
-          )}
-          {transaction_type === "credit" && (
-            <Heading size="sm">Credit Alert</Heading>
-          )}
+          <Heading size="xs" fontWeight="bold">
+            {transaction_type === "debit" && "Send Money"}
+            {transaction_type === "Fund" && "Fund Wallet"}
+            {transaction_type === "credit" && "Credit Alert"}
+          </Heading>
         </HStack>
         {/* Payment type */}
 
-        <VStack mt="4">
+        <VStack spacing="-1" my="6">
           <Heading
             fontWeight="normal"
             size="sm"
-            color="brand.400"
+            color="brand.200"
             textTransform="capitalize"
           >
             {message}
           </Heading>
-          <Heading>N {amount}</Heading>
+          <Heading fontWeight="bold" color="brand.600" fontSize="5xl">
+            <Text pr="1" as="span" fontSize="0.4em">
+              ₦
+            </Text>
+            {amount}
+          </Heading>
         </VStack>
 
-        <HStack mt="4">
+        <HStack mt="2" mb="2" pr="4">
           <Heading
             fontWeight="normal"
             size="sm"
-            color="brand.400"
+            color="gray.400"
             textTransform="capitalize"
           >
             {transaction_type === "credit" && "Sender"}
             {transaction_type === "debit" && "Receiver"}
             {transaction_type === "Fund" && "Payment Method"} :
           </Heading>
-          <Heading fontWeight="normal" size="sm">
+          <Heading size="sm">
             {sender && sender}
             {receiver && receiver}
             {transaction_type === "Fund" && payment_method}
           </Heading>
+        </HStack>
+        <Divider />
+        {/* Date and view details */}
+        <HStack mt="4" fontSize="md" justifyContent="space-between">
+          <Text fontSize="sm">
+            {moment(created_at).format(" MMM Do, YYYY h:mm:a")}
+          </Text>
+
+          <Link as={Navigate} to={`/account/fund-success/${ref}`}>
+            <HStack>
+              <Text as="span">View</Text>
+              <Icon
+                as={HiOutlineChevronRight}
+                w="4"
+                strokeWidth="1px"
+                h="4"
+                color="brand.300"
+              />
+            </HStack>
+          </Link>
         </HStack>
       </Box>
     </ProtectedComponent>

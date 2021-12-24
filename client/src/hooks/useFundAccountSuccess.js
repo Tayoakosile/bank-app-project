@@ -1,9 +1,7 @@
-import moment from "moment";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { postRequestToServer } from "../api/api";
-import useStore from "../zustand/index";
 
 const useFundAccountSuccess = () => {
   const { ref } = useParams();

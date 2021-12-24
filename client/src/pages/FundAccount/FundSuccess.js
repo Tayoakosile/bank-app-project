@@ -6,6 +6,7 @@ import React from "react";
 import { Checkmark } from "react-checkmark";
 import { Link } from "react-router-dom";
 import FulLogo from "../../assets/img/logo/FulLogo";
+import Back from "../../components/Back";
 import useFundAccountSuccess from "../../hooks/useFundAccountSuccess";
 
 const FundSuccess = () => {
@@ -29,17 +30,20 @@ const FundSuccess = () => {
     <>
       {isSuccess && (
         <Box>
-          <FulLogo
-            w="12"
-            h="12"
-            fs="3xl"
-            color="brand.500"
-            fill="brand.500"
-            p="6"
-            as={Link}
-            to="/"
-          />
-          <Box mt>
+          <HStack mt="6" mb="10">
+            <Back ml="2" w="6" h="6" />
+            <FulLogo
+              w="8"
+              h="8"
+              fs="xl"
+              color="brand.500"
+              fill="brand.500"
+              as={Link}
+              to="/"
+            />
+          </HStack>
+
+          <Box>
             <VStack mb="6">
               <Checkmark size="xLarge" color="#114ea5" />
             </VStack>

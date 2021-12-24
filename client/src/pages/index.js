@@ -2,6 +2,7 @@ import SignUp from "./SignUp/SignUp";
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
 import ResetPassword from "./ResetPassword/ResetPassword";
+import AllTransactions from "./Dashboard/TransactionHistory/AllTransactions";
 import ResetPasswordCodeSent from "./ResetPassword/ResetPasswordCodeSent";
 import VerifyTransaction from "./Transaction/VerifyTransaction";
 import TransactionPin from "./TransactionPin/TransactionPin";
@@ -54,4 +55,5 @@ export {
   TransactionSuccessful,
   FundSuccess,
   Notification,
+  AllTransactions,
 };
