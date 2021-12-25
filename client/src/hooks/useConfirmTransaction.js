@@ -7,7 +7,7 @@ import { postRequestToServer } from "../api/api";
 const useConfirmTransaction = () => {
   const history = useHistory();
   // TO send transaction details to user
-  const { isLoading, isSuccess, error, data, isError, mutate } = useMutation(
+  const { isSuccess, error, data, isError, mutate } = useMutation(
     (transactionDetails) => {
       return postRequestToServer(
         "/transaction/validatepin",
@@ -25,13 +25,11 @@ const useConfirmTransaction = () => {
 
   useEffect(() => {
     setUserTransaction(reactLocalStorage.getObject("transactionDetails"));
-  }, [reactLocalStorage]);
+  }, []);
 
-  console.log(userTransactions);
 
   const finishTransaction = () => {
     setShowTransactionPassword(true);
-    console.log("clicked", showTransactionPassword);
   };
   //   Verifies users ,if pin is valid,it then continues with the transfer
   const handleVerifyPin = (userPin) => {

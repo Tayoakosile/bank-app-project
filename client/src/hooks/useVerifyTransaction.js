@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
 import queryString from 'query-string'
+import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { getDataFromServer, axios } from '../api/api'
+import { axios } from '../api/api'
 
 const useVerifyTransaction = () => {
  const location = queryString.parse(useLocation().search)

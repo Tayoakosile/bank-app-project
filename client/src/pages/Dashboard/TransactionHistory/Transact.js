@@ -31,7 +31,7 @@ const Transact = ({ transaction }) => {
         <HStack spacing="4">
           {transaction_type === "debit" && (
             <IconButton
-              aria-transaction="transaction-icon"
+              aria-search="transaction-icon"
               icon={<BsUpload />}
               size="sm"
               border="0px"
@@ -43,7 +43,7 @@ const Transact = ({ transaction }) => {
           )}
           {transaction_type === "credit" && (
             <IconButton
-              aria-transaction="transaction-icon"
+              aria-search="transaction-icon"
               icon={<BsDownload />}
               border="0px"
               bg="gray.100"
@@ -55,7 +55,7 @@ const Transact = ({ transaction }) => {
 
           {transaction_type === "Fund" && (
             <IconButton
-              aria-transaction="transaction-icon"
+              aria-search="transaction-icon"
               icon={<BsWallet2 />}
               border="0px"
               bg="gray.100"

@@ -8,7 +8,7 @@ import { postRequestToServer } from "../api/api";
 
 const useLogin = () => {
   const history = useHistory();
-  const toast = useToast();
+  // const toast = useToast();
   const {
     register,
     handleSubmit,

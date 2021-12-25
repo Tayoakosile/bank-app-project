@@ -1,9 +1,9 @@
-import { Box, Center, Heading, Text, VStack, HStack } from "@chakra-ui/layout";
+import { Box, Center, Heading, HStack, Text } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-
 import React from "react";
+import { Link } from "react-router-dom";
 import FulLogo from "../../assets/img/logo/FulLogo";
+
 
 const Next = () => {
   return (

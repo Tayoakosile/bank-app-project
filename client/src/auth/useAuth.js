@@ -1,22 +1,20 @@
-import { useToast } from "@chakra-ui/toast";
-import createActivityDetector from "activity-detector";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useHistory, useLocation } from "react-router-dom";
 import { reactLocalStorage } from "reactjs-localstorage";
 import { axios } from "../api/api";
 import useStore from "../zustand/index";
 
 const useAuth = () => {
-  const toast = useToast();
-  const history = useHistory();
-  const location = useLocation().pathname;
+  // const toast = useToast();
+  // const history = useHistory();
+  // const location = useLocation().pathname;
   const [isUserInActive, setisUserInActive] = useState(false);
 
   /* Detect if the user has been inactive for the past 3 minutes */
-  const activityDetector = createActivityDetector({
-    timeToIdle: 10000,
-  });
+  // const activityDetector = createActivityDetector({
+  //   timeToIdle: 10000,
+  // });
+
   /* 
  useEffect(() => {
   activityDetector.on('idle', () => {
@@ -78,7 +76,7 @@ const useAuth = () => {
         setUser(data.authorizedData);
       }
     }
-  }, [isSuccess, data]);
+  }, [isSuccess, data, setUserId, setData, setUser]);
 
   return {
     error,

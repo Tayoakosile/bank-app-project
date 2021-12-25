@@ -44,7 +44,7 @@ export const NewSecretCode = (model, email) => {
     email,
     secretCode: SecretCodeToUser("0as", 13),
   });
-  console.log("new secert code", newSecretCode);
+  console.log("new secret code", newSecretCode);
 
   return newSecretCode.save();
 };

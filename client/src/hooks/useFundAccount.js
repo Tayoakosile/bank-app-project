@@ -14,8 +14,7 @@ const useFundAccount = () => {
   const {
     register,
     handleSubmit,
-    getValues,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm();
 
   const { isLoading, isError, isSuccess, data, error, mutate } = useMutation(

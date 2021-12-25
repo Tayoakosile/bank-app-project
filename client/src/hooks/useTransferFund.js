@@ -1,5 +1,4 @@
 import { useDisclosure } from "@chakra-ui/hooks";
-import { requiredChakraThemeKeys } from "@chakra-ui/theme";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
@@ -21,7 +20,7 @@ const useTransferFund = () => {
   });
   const [isUserAccountBalanceLow, setIsUserAccountBalanceLow] = useState(true);
   // open modal
-  const [isShowModal, setIsShowModal] = useState(false);
+  // const [isShowModal, setIsShowModal] = useState(false);
   // open modal
   // Keeps the label floating
   const [isAccountNumber, setisAccountNumber] = useState(false);
@@ -58,7 +57,7 @@ const useTransferFund = () => {
   const {
     mutate,
     data: ProfileOfUserSearchedByCurrentUser,
-    error,
+
     isLoading,
     isError,
     isSuccess,
@@ -93,7 +92,7 @@ const useTransferFund = () => {
     if (userInput.length >= 8) {
       mutate({ acctNumber: userInput, loggedInUserID: userId });
     }
-  }, [userInput]);
+  }, [userInput, userId]);
 
   //set user transaction  details to local storage
   const submitTransfer = (data) => {
@@ -195,7 +194,6 @@ const useTransferFund = () => {
     isOpen,
     onOpen,
     onClose,
-    isShowModal,
     submitTransfer,
   };
 };

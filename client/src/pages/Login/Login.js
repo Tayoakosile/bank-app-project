@@ -13,7 +13,7 @@ import {
   Link,
   Stack,
   Text,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
 import React from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";

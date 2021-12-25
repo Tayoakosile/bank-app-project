@@ -58,7 +58,6 @@ const FundAccount = () => {
             whiteSpace="nowrap"
             className={isAmountTypedIn && "Active"}
             transitionProperty="color, font-weight"
-            color={errors.FundAccountAmount ? "#a12000" : "brand.600"}
             opacity={errors.FundAccountAmount ? "1" : ".80"}
             fontWeight={errors.FundAccountAmount ? "bold" : "bold"}
             bg={errors.FundAccountAmount ? "transparent" : "white"}

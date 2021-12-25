@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const UpdateProfileForm = () => {
-    return (
-        <>
-           
-        </>
-    )
-}
+  return <></>;
+};
 
-export default UpdateProfileForm
+export default UpdateProfileForm;

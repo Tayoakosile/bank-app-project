@@ -1,8 +1,7 @@
-import React from "react";
 import Icon from "@chakra-ui/icon";
-import { Text, HStack } from "@chakra-ui/layout";
+import { HStack, Text } from "@chakra-ui/layout";
+import React from "react";
 import { ReactComponent as Logo } from "./logo.svg";
-import { Link } from "react-router-dom";
 
 const FulLogo = ({ w, h, fs, color, fill, spacing, showText, ...rest }) => {
   return (
