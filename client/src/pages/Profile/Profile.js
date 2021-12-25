@@ -27,7 +27,7 @@ const Profile = () => {
   return (
     <ProtectedComponent>
       <MetaTags
-        title={`${firstname}'s Profile Page - Monsecure App`}
+        title={`${firstname}'s Profile Page - Moneydais App`}
         id={randomatic("01", 12)}
       />
       {isSuccess && (

@@ -13,7 +13,7 @@ import {
   Link,
   Stack,
   Text,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -72,7 +72,7 @@ export default function LoginIntoUserAccount() {
           <Box>
             <Stack spacing={7} as="form" onSubmit={handleSubmit(onSubmit)}>
               <FormControl
-                className="monsecure-form"
+                className="moneydais-form"
                 id="email"
                 h={{ base: "16" }}
                 isInvalid={errors.email}
@@ -133,7 +133,7 @@ export default function LoginIntoUserAccount() {
                 </FormErrorMessage>
               </FormControl>
               <FormControl
-                className="monsecure-form"
+                className="moneydais-form"
                 id="password"
                 h={{ base: "16" }}
                 isInvalid={errors.password}
@@ -185,7 +185,7 @@ export default function LoginIntoUserAccount() {
                 </FormErrorMessage>
               </FormControl>
 
-              <Stack spacing={6} mb ="4" mt=".8rem !important">
+              <Stack spacing={6} mb="4" mt=".8rem !important">
                 <Stack
                   direction={{ base: "column", sm: "row" }}
                   align={"flex-end"}

@@ -13,8 +13,8 @@ const useFundAccountSuccess = () => {
   });
 
   const [transactionUserDetails, setTransactionUserDetails] = useState({
-    firstname: "monsecure",
-    lastname: "monsecure",
+    firstname: "moneydais",
+    lastname: "moneydais",
     account: { account_number: "92jsj" },
   });
 

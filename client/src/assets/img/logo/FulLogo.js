@@ -12,7 +12,7 @@ const FulLogo = ({ w, h, fs, color, fill, spacing, showText, ...rest }) => {
         color={color ? color : "white"}
         fontWeight="semibold"
       >
-        {showText ? "" : "monsecure"}
+        {showText ? "" : "moneydais"}
       </Text>
     </HStack>
   );

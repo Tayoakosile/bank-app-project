@@ -21,12 +21,12 @@ body {
 /* Sign up */
 
 /* Form signup*/
-.monsecure-form input {
+.moneydais-form input {
   font-weight: bold;
   font-size: 14px;
   color: #031021;
 }
-.monsecure-form label {
+.moneydais-form label {
   transform-origin: top left;
   transition: all 0.2s ease-out;
 
@@ -34,23 +34,23 @@ body {
   letter-spacing: 0.7px;
   transform: translate(0, 12px) scale(1);
 }
-.monsecure-transfer label {
+.moneydais-transfer label {
   transform: translate(55px, 7px) scale(1);
 }
 
-.monsecure-amount label {
+.moneydais-amount label {
   transform: translate(3px, 0px) scale(1);
 }
 
-.monsecure-amount:focus-within label {
+.moneydais-amount:focus-within label {
   transform: translate(0px, -18px) scale(1) !important;
 }
 
-.monsecure-disabled label {
+.moneydais-disabled label {
   transform: translate(55px, 13px) scale(1);
 }
 /* Remarks (What the money is for) */
-.monsecure-remarks {
+.moneydais-remarks {
   transform: translate(0px, 7px) scale(1);
 }
 
@@ -58,14 +58,14 @@ body {
 
 /* Bottom nav */
 
-.monsecure-form:focus-within label {
+.moneydais-form:focus-within label {
   transform: translate(0, -11px) scale(0.9);
 }
-.monsecure-transfer:focus-within label {
+.moneydais-transfer:focus-within label {
   transform: translate(0, -20px) scale(0.9) !important;
 }
 
-.monsecure-form .Active {
+.moneydais-form .Active {
   transform: translate(0, -11px) scale(0.9);
 }
 

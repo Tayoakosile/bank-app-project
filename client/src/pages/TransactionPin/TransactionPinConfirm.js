@@ -38,7 +38,7 @@ const TransactionPinConfirm = () => {
     <>
       <HStack mx="6" mt="4">
         <Back />
-        <Heading size="md">New Monsecure PIN</Heading>
+        <Heading size="md">New Moneydais PIN</Heading>
       </HStack>
       {pin === null ? (
         <Center mt="20">

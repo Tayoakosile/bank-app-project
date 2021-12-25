@@ -87,7 +87,7 @@ const TransferInfo = () => {
               w="80%"
               h={16}
               onClick={() => {
-                history.push("/account/transfer/monsecure/confirm/pin");
+                history.push("/account/transfer/moneydais/confirm/pin");
               }}
             >
               {`  Transfer ₦${amount} to ${firstname}

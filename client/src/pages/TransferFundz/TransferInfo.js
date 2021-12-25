@@ -23,7 +23,7 @@ const TransferInfo = () => {
           </Center>
           <VStack pt="6" spacing="6">
             <Text fontSize="md" w="80%" align="center" color="brand.300">
-              Input Monsecure pin to complete transfer
+              Input Moneydais pin to complete transfer
             </Text>
             <HStack justifyContent="center">
               <PinInput

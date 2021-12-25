@@ -29,13 +29,13 @@ const SearchUser = () => {
 
       {/* Send money to user account */}
       <HStack px="4" my="12" spacing="6">
-        {/* Send money to monsecure members */}
+        {/* Send money to moneydais members */}
         <LinkBox bg="thirdColor.500" h="36" w="50%">
           <Center h="full">
             <VStack spacing="2">
               <FulLogo  w={14} h={14} showText={true} />
-              <Box as={Link} to="monsecure" color="white" fontSize="md">
-                To Monsecure
+              <Box as={Link} to="moneydais" color="white" fontSize="md">
+                To Moneydais
               </Box>
             </VStack>
           </Center>

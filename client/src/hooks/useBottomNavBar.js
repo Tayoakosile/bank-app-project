@@ -41,13 +41,13 @@ const useBottomNavBar = () => {
     location.includes("/reset-password") ||
     location === "/reset-confirm" ||
     location === "/login" ||
-    location === "/account/transfer/monsecure-success" ||
-    location === "/account/transfer/monsecure-success" ||
-    location === "/account/transfer/monsecure/confirm" ||
-    location === "/account/transfer/monsecure/confirm/pin" ||
-    location === "/account/transfer/monsecure/confirm/pin" ||
+    location === "/account/transfer/moneydais-success" ||
+    location === "/account/transfer/moneydais-success" ||
+    location === "/account/transfer/moneydais/confirm" ||
+    location === "/account/transfer/moneydais/confirm/pin" ||
+    location === "/account/transfer/moneydais/confirm/pin" ||
     location === "/verifyaccount" ||
-    location === "/account/transfer/monsecure"
+    location === "/account/transfer/moneydais"
       ? setToggleNavVisibility(false)
       : setToggleNavVisibility(true);
   }, [location]);

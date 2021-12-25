@@ -53,7 +53,7 @@ const IntraTransfer = () => {
         <HStack spacing="4">
           <Back noBackground={false} />
           <Text fontSize="lg" fontWeight="bold" color="brand.800">
-            To Monsecure
+            To Moneydais
           </Text>
         </HStack>
 
@@ -68,7 +68,7 @@ const IntraTransfer = () => {
           <FormControl
             isInvalid={errors.accountNumber}
             w="full"
-            className="monsecure-form monsecure-transfer"
+            className="moneydais-form moneydais-transfer"
           >
             <FormLabel
               htmlFor="accountNumber"
@@ -125,7 +125,7 @@ const IntraTransfer = () => {
             </FormErrorMessage>
           </FormControl>
           {/* SHows owner of the account */}
-          <FormControl w="full" className="monsecure-form monsecure-disabled">
+          <FormControl w="full" className="moneydais-form moneydais-disabled">
             <FormLabel
               fontSize="md"
               htmlFor="accountNumber"
@@ -177,7 +177,7 @@ const IntraTransfer = () => {
 
           <FormControl
             w="full"
-            className="monsecure-form monsecure-amount"
+            className="moneydais-form moneydais-amount"
             isInvalid={errors.amount}
           >
             <FormLabel
@@ -224,7 +224,7 @@ const IntraTransfer = () => {
             </FormErrorMessage>
           </FormControl>
 
-          <FormControl w="full" className="monsecure-form monsecure-remarks">
+          <FormControl w="full" className="moneydais-form moneydais-remarks">
             <FormLabel
               htmlFor="accountNumber"
               transitionDuration="0.3s"

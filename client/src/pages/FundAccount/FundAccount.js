@@ -45,7 +45,7 @@ const FundAccount = () => {
         w="90%"
       >
         <FormControl
-          className="monsecure-form"
+          className="moneydais-form"
           id="password"
           h={{ base: "16" }}
           isInvalid={errors.FundAccountAmount}

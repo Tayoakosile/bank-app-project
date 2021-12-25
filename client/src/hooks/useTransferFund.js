@@ -105,7 +105,7 @@ const useTransferFund = () => {
         firstname,
         lastname,
         _id,
-        destination_bank: "Monsecure",
+        destination_bank: "Moneydais",
       });
 
       const isTransactionDetailsInLocalStorage = Object.keys(

@@ -104,18 +104,18 @@ const App = () => {
         <Route exact path="/account/transfer/user">
           <SearchRegisteredUser />
         </Route>
-        <Route exact path="/account/transfer/monsecure">
+        <Route exact path="/account/transfer/moneydais">
           <IntraTransferTransfer />
         </Route>
-        <Route exact path="/account/transfer/monsecure/confirm">
+        <Route exact path="/account/transfer/moneydais/confirm">
           <ConfirmUserTransfer />
         </Route>
 
-        <Route exact path="/account/transfer/monsecure/confirm/pin">
+        <Route exact path="/account/transfer/moneydais/confirm/pin">
           <TransferInfo />
         </Route>
 
-        <Route exact path="/account/transfer/monsecure-success">
+        <Route exact path="/account/transfer/moneydais-success">
           <TransactionSuccessful />
         </Route>
 

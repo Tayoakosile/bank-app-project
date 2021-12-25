@@ -11,7 +11,7 @@ const TransactionPinSuccess = () => {
         <Checkmark color="#1250a9" size="xLarge" />
         <Heading fontSize="4xl">Success</Heading>
         <Text color="black" fontSize="xl" textAlign="center">
-          Monsecure Pin has been set successfully
+          Moneydais Pin has been set successfully
         </Text>
       </VStack>
 

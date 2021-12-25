@@ -49,7 +49,7 @@ export default function SplitScreen() {
             Lets help reset your password
           </Heading>
           <FormControl
-            className="monsecure-form"
+            className="moneydais-form"
             id="email"
             h="20"
             isInvalid={errors.email}

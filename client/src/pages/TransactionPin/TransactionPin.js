@@ -23,7 +23,7 @@ const TransactionPin = () => {
       {pin === null ? (
         <>
           <Heading size="md" p="6" textTransform="capitalize">
-            New Monsecure PIN
+            New Moneydais PIN
           </Heading>
 
           <Center p="6">
@@ -33,7 +33,7 @@ const TransactionPin = () => {
                 <Icon as={TransactionPinSvg} w="40" h="40" />
                 <Text>
                   {" "}
-                  Enter a 4-digits PIN to your secure your Monsecure account
+                  Enter a 4-digits PIN to your secure your Moneydais account
                 </Text>
               </VStack>
               {/* Icon with text */}

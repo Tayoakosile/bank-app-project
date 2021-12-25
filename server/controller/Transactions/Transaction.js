@@ -104,7 +104,7 @@ export const VerifyTransaction = (req, res) => {
                     receiver: "",
                     transaction_type: "Fund",
                     ref,
-                    payment_method: "Monsecure App",
+                    payment_method: "Moneydais App",
                   };
                   const { notifications: notificationId } = transaction;
                   // Update Notifications

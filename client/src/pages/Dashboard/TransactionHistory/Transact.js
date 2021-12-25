@@ -72,7 +72,7 @@ const Transact = ({ transaction }) => {
               {transaction_type === "debit" && "Debit"}
             </Heading>
             <Text fontSize="sm" color="gray.400">
-              {transaction_type === "Fund" && "Monsecure"}
+              {transaction_type === "Fund" && "Moneydais"}
               {transaction_type === "credit" && `From ${sender_name}`}
               {transaction_type === "debit" && `To: ${receiver_name}`}
             </Text>

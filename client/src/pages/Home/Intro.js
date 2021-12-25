@@ -11,7 +11,7 @@ const Intro = () => {
    </Center>
    <VStack position="absolute" bottom="6" spacing="1" color="white">
     <Heading fontWeight="600" letterSpacing=".9px" fontSize="xl">
-     monsecure
+     moneydais
     </Heading>
     <Text fontWeight="300" fontSize="12px">
      Safe Transfer you can trust 

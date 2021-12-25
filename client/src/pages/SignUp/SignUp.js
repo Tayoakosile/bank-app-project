@@ -87,7 +87,7 @@ export default function SplitScreen() {
           >
             {/* Users Firstname here  */}
             <FormControl
-              className="monsecure-form"
+              className="moneydais-form"
               id="firstname"
               isInvalid={errors.firstname}
               position="relative"
@@ -145,7 +145,7 @@ export default function SplitScreen() {
 
             {/* Users surname here  */}
             <FormControl
-              className="monsecure-form"
+              className="moneydais-form"
               id="lastname"
               isInvalid={errors.lastname}
             >
@@ -204,7 +204,7 @@ export default function SplitScreen() {
           {/* User Name */}
           <FormControl
             id="username"
-            className="monsecure-form"
+            className="moneydais-form"
             isInvalid={errors.username}
           >
             <FormLabel
@@ -261,7 +261,7 @@ export default function SplitScreen() {
 
           {/* Email Address */}
           <FormControl
-            className="monsecure-form"
+            className="moneydais-form"
             id="email"
             isInvalid={errors.email}
           >
@@ -322,7 +322,7 @@ export default function SplitScreen() {
 
           {/* Password */}
           <FormControl
-            className="monsecure-form"
+            className="moneydais-form"
             id="password"
             isInvalid={errors.password}
           >

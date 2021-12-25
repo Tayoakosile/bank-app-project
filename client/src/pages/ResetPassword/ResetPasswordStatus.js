@@ -78,7 +78,7 @@ export default function SimpleCard() {
      <Stack spacing={4} as="form" onSubmit={handleSubmit(resetPassword)}>
       <FormControl
        id="password"
-       className="monsecure-form"
+       className="moneydais-form"
        h="20"
        isInvalid={errors.password}
        color={errors.confirmPassword ? '#a12000' : 'brand.600'}
@@ -139,7 +139,7 @@ export default function SimpleCard() {
        h="20"
        isInvalid={errors.confirmPassword}
        color={errors.confirmPassword ? '#a12000' : 'brand.600'}
-       className="monsecure-form"
+       className="moneydais-form"
       >
        <FormLabel
         className={isEmailActive ? 'Active' : ''}

@@ -30,7 +30,7 @@ const Next = () => {
           color="brand.100"
           fontSize="sm"
         >
-          Fund and make transactions to your loved ones with Monsecure, the
+          Fund and make transactions to your loved ones with Moneydais, the
           online bank app you definitely need.
         </Text>
       </Center>

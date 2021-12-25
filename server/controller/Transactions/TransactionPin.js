@@ -79,7 +79,7 @@ export const ValidatePin = async (req, res) => {
                     ref: `MS11${ref}`,
                     transaction_type: "debit",
                     receiver: `${receiverInfo.firstname} ${receiverInfo.lastname}`,
-                    payment_method: "Monsecure Balance ",
+                    payment_method: "Moneydais Balance ",
                     user_id: _id,
                   });
 
@@ -128,7 +128,7 @@ export const ValidatePin = async (req, res) => {
                       sender: `${doc.firstname} ${doc.lastname}`,
                       ref: `MS11${ref}`,
                       transaction_type: "credit",
-                      payment_method: "Monsecure Balance ",
+                      payment_method: "Moneydais Balance ",
                       user_id: receiverInfo._id,
                     });
                     // Send notification
