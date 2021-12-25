@@ -37,7 +37,7 @@ const useResendValidationCode = () => {
         description: `${
           error.response
             ? "This email address is not registered, please sign up to continue"
-            : "A network error occurred, could be you aren`t online "
+            : "A network error occurred, please reload the browser "
         }`,
         position: "bottom",
         status: "error",

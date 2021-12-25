@@ -8,8 +8,8 @@ import SecretCodeThatLastForTenMinutes from "../../models/SecretCode.js";
 import User from "../../models/SignUp.js";
 import {
   NewSecretCode,
-  SecretCodeToUser,
   sendMailToUser,
+  verificationEmailAddress,
 } from "../../utils/utils.js";
 // Config
 
@@ -71,21 +71,16 @@ const createNewUser = async (req, res) => {
             if (createVerificationCode) {
               const { secretCode } = createVerificationCode;
               /* Send the verification code to users email account */
-              const verification = `
-     <h2>Hi, ${firstname.toUpperCase()}</h2>,
-<p>Welcome to Kweeqfundz Bank app</p>
-     <p>
-     Please 
-     <a href ='http://localhost:3000/verification/verify-account/${_id}/${secretCode}'>Verify</a>
-     your email address
-     </p>`;
 
               /* Send verification code to user */
               const sendVerificationCodeToUsers = await sendMailToUser(
                 firstname,
                 lastname,
                 email,
-                verification
+                verificationEmailAddress(
+                  lastname,
+                  `${process.env.EMAIL_LINK}/verification/verify-account/${_id}/${secretCode}`
+                )
               );
 
               if (sendVerificationCodeToUsers) {
