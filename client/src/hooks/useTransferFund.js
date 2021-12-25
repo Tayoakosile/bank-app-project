@@ -114,7 +114,7 @@ const useTransferFund = () => {
 
       console.log(isTransactionDetailsInLocalStorage);
       isTransactionDetailsInLocalStorage > 0 &&
-        history.push("/account/transfer/monsecure/confirm");
+        history.push("/account/transfer/moneydais/confirm");
     }
   };
 

@@ -6,7 +6,7 @@ import {
   NewTransaction,
   MSAppNotificationToServer,
 } from "../../utils/utils.js";
-import MonsecureNotifications from "../../models/Notifications.js";
+import MoneydaisNotifications from "../../models/Notifications.js";
 
 export const TransactionPin = async (req, res) => {
   const { _id, pin } = req.body;

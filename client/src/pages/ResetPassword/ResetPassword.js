@@ -74,7 +74,7 @@ export default function SplitScreen() {
             />
             <FormErrorMessage
               transition="all 0.3s ease-in"
-              className="monsecure_error"
+              className="moneydais_error"
               fontWeight="normal"
               p="3"
               bg="rgba(221, 44, 0, 0.87)"

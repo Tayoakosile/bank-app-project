@@ -129,7 +129,7 @@ export default function SimpleCard() {
         />
        </InputGroup>
 
-       <FormErrorMessage className="monsecure_error">
+       <FormErrorMessage className="moneydais_error">
         {errors.password && errors.password.message}
        </FormErrorMessage>
       </FormControl>
@@ -176,12 +176,12 @@ export default function SimpleCard() {
         />
         {/* input */}
        </InputGroup>
-       <FormErrorMessage className="monsecure_error">
+       <FormErrorMessage className="moneydais_error">
         {errors.confirmPassword && errors.confirmPassword.message}
        </FormErrorMessage>
        {errors.confirmPassword &&
         errors.confirmPassword.type === 'validate' && (
-         <FormErrorMessage className="monsecure_error">
+         <FormErrorMessage className="moneydais_error">
           Password doesnt match
          </FormErrorMessage>
         )}

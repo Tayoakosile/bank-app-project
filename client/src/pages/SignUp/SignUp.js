@@ -135,7 +135,7 @@ export default function SplitScreen() {
               </InputGroup>
 
               <FormErrorMessage
-                className="monsecure_error"
+                className="moneydais_error"
                 fontWeight="bold"
                 color="rgba(221, 44, 0, 0.87)"
               >
@@ -188,7 +188,7 @@ export default function SplitScreen() {
               </InputGroup>
 
               {/* Error message here */}
-              <FormErrorMessage className="monsecure_error">
+              <FormErrorMessage className="moneydais_error">
                 <Animated
                   animationIn="fadeInDown"
                   animationOut="bounceOutUp"
@@ -254,7 +254,7 @@ export default function SplitScreen() {
               />
             </InputGroup>
             {/* User error message */}
-            <FormErrorMessage className="monsecure_error">
+            <FormErrorMessage className="moneydais_error">
               {errors.username && errors.username.message}
             </FormErrorMessage>
           </FormControl>
@@ -308,13 +308,13 @@ export default function SplitScreen() {
             </InputGroup>
 
             <FormErrorMessage
-              className="monsecure_error"
-              className="monsecure_error"
+              className="moneydais_error"
+              className="moneydais_error"
             >
               {errors.email && errors.email.message}
             </FormErrorMessage>
             {errors.email && errors.email.type === "validate" && (
-              <FormErrorMessage className="monsecure_error">
+              <FormErrorMessage className="moneydais_error">
                 This Email Already Exist
               </FormErrorMessage>
             )}
@@ -374,7 +374,7 @@ export default function SplitScreen() {
               />
             </InputGroup>
 
-            <FormErrorMessage className="monsecure_error">
+            <FormErrorMessage className="moneydais_error">
               {errors.password && errors.password.message}
             </FormErrorMessage>
           </FormControl>

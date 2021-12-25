@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import GridFsStorage from "multer-gridfs-storage";
 import mailJet from "node-mailjet";
 import randomize from "randomatic";
-import MonsecureNotifications from "../models/Notifications.js";
+import MoneydaisNotifications from "../models/Notifications.js";
 import User from "../models/SignUp.js";
 
 export const sendMailToUser = (firstname, lastname, email, verification) => {
@@ -51,7 +51,7 @@ export const NewSecretCode = (model, email) => {
 
 // Sends new notification to database
 export const MSAppNotificationToServer = async (userId, notification) => {
-  const newNotification = await MonsecureNotifications.findOneAndUpdate(
+  const newNotification = await MoneydaisNotifications.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(userId) },
 
     {

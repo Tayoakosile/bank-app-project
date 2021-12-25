@@ -84,7 +84,7 @@ const FundAccount = () => {
             }}
           />
 
-          <FormErrorMessage className="monsecure_error" fontWeight="bold">
+          <FormErrorMessage className="moneydais_error" fontWeight="bold">
             {errors.FundAccountAmount && errors.FundAccountAmount.message}
           </FormErrorMessage>
         </FormControl>

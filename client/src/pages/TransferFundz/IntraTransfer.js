@@ -117,7 +117,7 @@ const IntraTransfer = () => {
               />
             </InputGroup>
             <FormErrorMessage
-              className="monsecure_error"
+              className="moneydais_error"
               fontWeight="bold"
               color="#dd2c00de"
             >
@@ -216,7 +216,7 @@ const IntraTransfer = () => {
               />
             </InputGroup>
             <FormErrorMessage
-              className="monsecure_error"
+              className="moneydais_error"
               fontWeight="bold"
               color="#dd2c00de"
             >

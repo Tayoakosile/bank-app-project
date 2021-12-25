@@ -125,7 +125,7 @@ export default function LoginIntoUserAccount() {
                 </InputGroup>
 
                 <FormErrorMessage
-                  className="monsecure_error"
+                  className="moneydais_error"
                   fontWeight="bold"
                   color="rgba(221, 44, 0, 0.87)"
                 >
@@ -177,7 +177,7 @@ export default function LoginIntoUserAccount() {
                 </InputGroup>
 
                 <FormErrorMessage
-                  className="monsecure_error"
+                  className="moneydais_error"
                   fontWeight="bold"
                   color="rgba(221, 44, 0, 0.87)"
                 >

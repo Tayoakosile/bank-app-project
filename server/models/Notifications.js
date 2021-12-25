@@ -23,8 +23,8 @@ const AppNotifications = new Schema({
   notifications: [notification],
 });
 
-const MonsecureNotifications = mongoose.model(
+const MoneydaisNotifications = mongoose.model(
   "Notifications",
   AppNotifications
 );
-export default MonsecureNotifications;
+export default MoneydaisNotifications;
