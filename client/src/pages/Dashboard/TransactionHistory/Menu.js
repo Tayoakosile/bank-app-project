@@ -1,6 +1,20 @@
 import React from "react";
-
-const Menu = () => {
+import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
+import useTransactionHistory from "../../../hooks/useTransactionHistory";
+import {
+  Menu,
+  Button,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from "@chakra-ui/react";
+const MenuOption = () => {
+  const { setStoreUseSelection, storeUserSelection, daysSelection } =
+    useTransactionHistory();
   return (
     <div>
       <Menu>
@@ -39,4 +53,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default MenuOption;

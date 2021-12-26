@@ -21,9 +21,10 @@ const VerifyAccount = () => {
           provided, Click on it to verify your account and enjoy 0% fees charge
           on all transactions.
         </Text>
+        {/*         
         <Button variant="link" mt="6" size="sm" p="4">
           Didnt get the mail?, Resend
-        </Button>
+        </Button> */}
       </Box>
     </>
   );

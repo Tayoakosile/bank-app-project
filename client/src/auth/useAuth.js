@@ -64,7 +64,6 @@ const useAuth = () => {
     {
       refetchOnReconnect: true,
       refetchOnMount: true,
-      refetchOnWindowFocus: true,
     }
   );
 
@@ -76,7 +75,7 @@ const useAuth = () => {
         setUser(data.authorizedData);
       }
     }
-  }, [isSuccess, data, setUserId, setData, setUser]);
+  }, [isSuccess, data]);
 
   return {
     error,

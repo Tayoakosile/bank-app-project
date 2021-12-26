@@ -1,7 +1,6 @@
 import { Box, Divider, Heading, HStack, VStack } from "@chakra-ui/layout";
 import React from "react";
 import Headroom from "react-headroom";
-import FulLogo from "../../../assets/img/logo/FulLogo";
 import Back from "../../../components/Back";
 import ProtectedComponent from "../../../components/ProtectedComponent";
 import useAllTransactions from "../../../hooks/useAllTransactions";
@@ -19,6 +18,13 @@ const AllTransactions = () => {
             Transaction History
           </Heading>
         </HStack>
+        {/* component for menu */}
+        {/* <HStack  pt="6" px="4" alignItems="flex-end">
+          <Input />
+          <Menu />
+        </HStack> */}
+        {/* component for menu */}
+
         <Box mt="3" h="6"></Box>
       </Box>
       {isError && <div>Error</div>}

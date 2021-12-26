@@ -6,8 +6,10 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
+import randomatic from "randomatic";
 import React from "react";
 import Back from "../../components/Back";
+import MetaTags from "../../components/MetaTags";
 import ProtectedComponent from "../../components/ProtectedComponent";
 import useFundAccount from "../../hooks/useFundAccount";
 import useStore from "../../zustand";
@@ -32,6 +34,7 @@ const FundAccount = () => {
   }
   return (
     <ProtectedComponent>
+      <MetaTags title="Fund your Moneydais account" id ={randomatic('01',12)} />
       <HStack pl="2" spacing="6" pt="6">
         <Back />
         <Heading size="md">Fund account</Heading>

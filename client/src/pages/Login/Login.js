@@ -213,7 +213,7 @@ export default function LoginIntoUserAccount() {
                   fontSize="sm"
                   w="92%"
                   mx="auto"
-                  h="12"
+                  h="16"
                   variant={"solid"}
                 >
                   Sign in

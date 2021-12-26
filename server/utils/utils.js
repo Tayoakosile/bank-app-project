@@ -17,7 +17,7 @@ export const sendMailToUser = (firstname, lastname, email, verification) => {
       {
         From: {
           Email: "oluwatayocodes@gmail.com",
-          Name: "Akosile from KweeqFundz",
+          Name: "MoneyDais Finance App",
         },
         To: [
           {
@@ -25,8 +25,8 @@ export const sendMailToUser = (firstname, lastname, email, verification) => {
             Name: firstname + "" + lastname,
           },
         ],
-        Subject: `Hi ${firstname} ${lastname}`,
-        TextPart: "My first Mailjet email",
+        Subject: `Hi ${firstname} `,
+        TextPart: "MonDais App",
         HTMLPart: verification,
         CustomID: "AppGettingStartedTest",
       },
@@ -230,10 +230,6 @@ export const verificationEmailAddress = (lastname, url) => {
                           <tr>
                             <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Cabin',sans-serif;" align="left">
 
-                              <div style="color: #afb0c7; line-height: 170%; text-align: center; word-wrap: break-word;">
-                                <p style="font-size: 14px; line-height: 170%;"><span style="font-size: 14px; line-height: 23.8px;">View Email in Browser</span></p>
-                              </div>
-
                             </td>
                           </tr>
                         </tbody>
@@ -397,11 +393,13 @@ export const verificationEmailAddress = (lastname, url) => {
                                 <strong>
                                 <span style="font-size: 30px; line-height: 48px;">Hi, ${lastname}</span>
                                 </strong>
-                                  <span style="font-size: 30px; line-height: 48px;"><strong>,</strong></span></span>
                                 </p>
                                 <p style="font-size: 14px; line-height: 160%;">&nbsp;</p>
-                                <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;"><span style="font-size: 24px; line-height: 38.4px;">You're almost ready to start making trasactions. </span>Please click on the button below to verify your email address
-                                  and enjoy exclusive cleaning services with us! </span>
+                                <p style="font-size: 14px; line-height: 160%;">
+                                <span style="font-size: 18px; line-height: 28.8px;">
+                                You're almost ready to start making transactions.
+                                 Please click on the button below to verify your email address
+                                  and start making transactions with us at 0% fees! </span>
                                 </p>
                               </div>
 
@@ -763,9 +761,7 @@ export const resetUserPasswordTemplate = (firstname, lastname, url) => {
                           <tr>
                             <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Cabin',sans-serif;" align="left">
 
-                              <div style="color: #afb0c7; line-height: 170%; text-align: center; word-wrap: break-word;">
-                                <p style="font-size: 14px; line-height: 170%;"><span style="font-size: 14px; line-height: 23.8px;">View Email in Browser</span></p>
-                              </div>
+                              <div style="color: #afb0c7; line-height: 
 
                             </td>
                           </tr>

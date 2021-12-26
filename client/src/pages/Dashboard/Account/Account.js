@@ -1,21 +1,11 @@
-import { Button } from "@chakra-ui/button";
+import Icon from "@chakra-ui/icon";
+import { Box, Heading, HStack, Spacer, Text, VStack } from "@chakra-ui/layout";
+import React, { useState } from "react";
 import { VscBell } from "react-icons/vsc";
-import {
-  Box,
-  Divider,
-  Heading,
-  HStack,
-  Spacer,
-  Text,
-  VStack,
-} from "@chakra-ui/layout";
-import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useAuth from "../../../auth/useAuth";
 import ProtectedComponent from "../../../components/ProtectedComponent";
 import useDashboard from "../../../hooks/useDashboard";
-import Loader from "../../Loading/IsLoading";
-import Icon from "@chakra-ui/icon";
-import { Link } from "react-router-dom";
 import useStore from "../../../zustand";
 
 const Account = () => {
@@ -39,16 +29,9 @@ const Account = () => {
 
   const { balance } = useDashboard();
   const { data, isSuccess, isLoading } = useAuth();
+  console.log(data, isSuccess, isLoading, balance);
 
   // if user successfully logs in and if data is ready, set state
-  useEffect(() => {
-    if (isLoading) {
-      return <Loader />;
-    }
-    data && setLoggedInUserDetails(data.authorizedData);
-  }, [isSuccess, data, isLoading]);
-
-  console.log(data, loggedInUserDetails, isLoading);
 
   return (
     <ProtectedComponent>
@@ -94,7 +77,7 @@ const Account = () => {
               fontSize={balance == 0 ? "6xl" : "5xl"}
               as="span"
             >
-              {balance}
+              {balance ? balance : "0"}
             </Text>{" "}
             <Text as="span" mt="4" fontSize="2xl">
               .00

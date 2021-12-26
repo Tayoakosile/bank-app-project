@@ -4,11 +4,9 @@ import EmptyTransactionBoard from "./EmptyTransactionBoard";
 import LastTransaction from "./LastTransaction";
 const TransactionHistory = () => {
   const { transactions, isLoading } = useTransactionHistory();
-  useEffect(() => {
-    if (isLoading) {
-      return <div>running F</div>;
-    }
-  });
+  if (isLoading) {
+    return <div>running </div>;
+  }
   return (
     <React.Fragment>
       {transactions === [] || transactions <= 0 ? (

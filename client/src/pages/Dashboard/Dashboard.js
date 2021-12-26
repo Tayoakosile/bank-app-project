@@ -1,5 +1,7 @@
 import { Box } from "@chakra-ui/layout";
+import randomatic from "randomatic";
 import React from "react";
+import MetaTags from "../../components/MetaTags";
 import ProtectedComponent from "../../components/ProtectedComponent";
 import useStore from "../../zustand";
 import Account from "./Account/Account";
@@ -11,6 +13,10 @@ const Dashboard = () => {
 
   return (
     <ProtectedComponent>
+      <MetaTags
+        title={`${user.firstname} ${user.lastname}'s user Dashboard`}
+        id={randomatic("01", 12)}
+      />
       <Box h="full" mb="64" as="section">
         <Account />
         <Box py="6">
@@ -18,8 +24,7 @@ const Dashboard = () => {
         </Box>
         <Box mb="12">
           <TransactionHistory />
-          <TransactionHistory />
-          <Box h="12" mt ="12"></Box>
+          <Box h="12" mt="12"></Box>
         </Box>
       </Box>
     </ProtectedComponent>

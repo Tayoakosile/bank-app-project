@@ -1,5 +1,5 @@
 import { useToast } from "@chakra-ui/toast";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router-dom";
