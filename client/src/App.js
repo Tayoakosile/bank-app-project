@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import {
   AllTransactions,
+  Setting,
   ConfirmUserTransfer,
   Dashboard,
   FundAccount,
@@ -131,6 +132,13 @@ const App = () => {
           <Profile />
         </Route>
         {/* Users Profile */}
+
+        {/* Users Settings */}
+        <Route exact path="/account/setting">
+          <Setting />
+        </Route>
+        {/* Users Settings*/}
+
         <Route exact path="/">
           <Home />
         </Route>

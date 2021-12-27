@@ -1,6 +1,13 @@
 import { Avatar } from "@chakra-ui/avatar";
 import { toast, ToastContainer } from "react-toastify";
-import { Box, Center, Heading, HStack, VStack } from "@chakra-ui/layout";
+import {
+  Box,
+  Center,
+  Heading,
+  HStack,
+  VStack,
+  Spacer,
+} from "@chakra-ui/layout";
 import {
   FormControl,
   FormLabel,
@@ -11,13 +18,16 @@ import {
 import randomatic from "randomatic";
 import React from "react";
 import { BsClipboard } from "react-icons/bs";
-import { IoCheckmarkDoneOutline } from "react-icons/io5";
+import { IoCheckmarkDoneOutline, IoSettingsOutline } from "react-icons/io5";
 import Back from "../../components/Back";
 import MetaTags from "../../components/MetaTags";
 import ProtectedComponent from "../../components/ProtectedComponent";
 import useUpdateProfile from "../../hooks/useUpdateProfile";
+import { useHistory } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+
 const Profile = () => {
+  const history = useHistory();
   const {
     handleImageUpload,
     updateUserProfile,
@@ -43,12 +53,24 @@ const Profile = () => {
       {isSuccess && (
         <Box>
           <Box as="section" h="52" className="profile_header">
-            <HStack px="2" py="6">
-              <Back noBackground={true} />
-              <Heading size="md" color="white">
-                {" "}
-                Profile
-              </Heading>
+            <HStack px="2" pr="4" py="6">
+              <HStack as="span">
+                <Back noBackground={true} />
+                <Heading size="md" color="white">
+                  {" "}
+                  Profile
+                </Heading>
+              </HStack>
+              <Spacer />
+              <Icon
+                as={IoSettingsOutline}
+                w="7"
+                h="7"
+                color="white"
+                onClick={() => {
+                  history.push(`/account/setting`);
+                }}
+              />
             </HStack>
 
             <VStack my="10" spacing="2" w="80%" mx="auto">
@@ -125,8 +147,30 @@ const Profile = () => {
       <Box mx="5">
         <Box as={ToastContainer} w="90%" mx="auto" mt="3" />
       </Box>
-      <Box pl="4" pt ='6'>
+      <Box pl="4" pt="6">
         <Heading size="sm">Contact Details</Heading>
+        <VStack alignItems="flex-start" mt="4" spacing="3">
+          <HStack>
+            <Heading size="sm" fontWeight="normal">
+              Name
+            </Heading>
+            <Heading size="sm">
+              {firstname} {lastname}
+            </Heading>
+          </HStack>
+          <HStack>
+            <Heading size="sm" fontWeight="normal">
+              Username
+            </Heading>
+            <Heading size="sm">{username}</Heading>
+          </HStack>
+          <HStack>
+            <Heading size="sm" w="80%" fontWeight="normal">
+              Email
+            </Heading>
+            <Heading size="sm">{email}</Heading>
+          </HStack>
+        </VStack>
       </Box>
     </ProtectedComponent>
   );
