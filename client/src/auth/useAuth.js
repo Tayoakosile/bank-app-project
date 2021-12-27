@@ -65,7 +65,6 @@ const useAuth = () => {
       refetchOnReconnect: true,
       refetchOnMount: true,
       refetchOnWindowFocus: true,
-      retry: 2,
     }
   );
 

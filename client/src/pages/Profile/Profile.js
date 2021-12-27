@@ -1,6 +1,13 @@
 import { Avatar } from "@chakra-ui/avatar";
+import { toast, ToastContainer } from "react-toastify";
 import { Box, Center, Heading, HStack, VStack } from "@chakra-ui/layout";
-import { FormControl, FormLabel, Icon, Input } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  Icon,
+  Input,
+  useClipboard,
+} from "@chakra-ui/react";
 import randomatic from "randomatic";
 import React from "react";
 import { BsClipboard } from "react-icons/bs";
@@ -9,7 +16,7 @@ import Back from "../../components/Back";
 import MetaTags from "../../components/MetaTags";
 import ProtectedComponent from "../../components/ProtectedComponent";
 import useUpdateProfile from "../../hooks/useUpdateProfile";
-
+import "react-toastify/dist/ReactToastify.css";
 const Profile = () => {
   const {
     handleImageUpload,
@@ -23,10 +30,10 @@ const Profile = () => {
     profileImg,
     email,
     username,
-    CopyAccountToClipboard,
     userAccountNumber,
-    hasCopied,
-k  } = useUpdateProfile();
+  } = useUpdateProfile();
+  console.log(imageDisplayLink);
+  const { hasCopied, onCopy } = useClipboard(userAccountNumber);
   return (
     <ProtectedComponent>
       <MetaTags
@@ -48,11 +55,9 @@ k  } = useUpdateProfile();
               <Avatar
                 size="2xl"
                 shadow="lg"
-                borderRadius="50%"
                 bg="gray.50"
                 color="brand.800"
                 loading="lazy"
-                accept="image/*"
                 name={`${firstname} ${lastname}`}
                 src={
                   updateUserProfile.image
@@ -69,10 +74,11 @@ k  } = useUpdateProfile();
                     htmlFor="file"
                     fontWeight="normal"
                   >
-                    Change Image {isLoading && `loading ooo `}
+                    Change Image
                   </FormLabel>
                   <Input
                     type="file"
+                    accept="image/*"
                     id="file"
                     d="none"
                     onChange={handleImageUpload}
@@ -81,53 +87,33 @@ k  } = useUpdateProfile();
               </Center>
             </VStack>
           </Box>
+          {/* User account number */}
+          <Box w="90%" bg="gray.50" h="24" mt="32" mx="auto">
+            <VStack p="4" spacing="0">
+              <Heading size="sm" fontWeight="normal">
+                Account Number
+              </Heading>
 
-          <Box mt="32" mx="6">
-            <Heading size="sm" color="gray.500" fontWeight="normal">
-              Personal Info
-            </Heading>
-            {/* User Information */}
-            <VStack spacing="4" alignItems="flex-start" mt="4">
-              <HStack spacing="4">
-                <Heading size="sm" fontWeight="normal">
-                  Name
-                </Heading>
-                <Heading size="sm">
-                  {firstname} {lastname}
-                </Heading>
-              </HStack>
-
-              <HStack spacing="4">
-                <Heading size="sm" fontWeight="normal">
-                  Email
-                </Heading>
-                <Heading size="sm">{email}</Heading>
-              </HStack>
-
-              <HStack spacing="4">
-                <Heading size="sm" fontWeight="normal">
-                  Acct Number :
-                </Heading>
-
-                {/* Account number */}
-                {/* Copies account number to clipboard */}
-                <HStack
-                  as="span"
-                  onClick={CopyAccountToClipboard}
-                  alignItems="center"
-                >
-                  <Heading size="sm">
-                    {account && account.account_number}
-                  </Heading>
-                  <Box as="span">
-                    <Icon
-                      as={!hasCopied ? BsClipboard : IoCheckmarkDoneOutline}
-                      w="5"
-                      color="brand.500"
-                      h="5"
-                    />
-                  </Box>
-                </HStack>
+              <HStack
+                onClick={() => {
+                  onCopy();
+                  toast.success("Copied Account Number to Clipboard", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                }}
+              >
+                <Heading size="lg">{account && account.account_number}</Heading>
+                <Icon
+                  as={!hasCopied ? BsClipboard : IoCheckmarkDoneOutline}
+                  w="5"
+                  h="5"
+                />
               </HStack>
             </VStack>
           </Box>
@@ -136,6 +122,12 @@ k  } = useUpdateProfile();
       {/* Acccount number and date joined */}
       {/* <Box w="90%" bg="gray.100" h="24" mx="auto" mt="6"></Box> */}
       {/* Acccount number and date joined */}
+      <Box mx="5">
+        <Box as={ToastContainer} w="90%" mx="auto" mt="3" />
+      </Box>
+      <Box pl="4" pt ='6'>
+        <Heading size="sm">Contact Details</Heading>
+      </Box>
     </ProtectedComponent>
   );
 };

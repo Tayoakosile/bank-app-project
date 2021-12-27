@@ -51,7 +51,7 @@ const useTransferFund = () => {
   const [userId, setUserId] = React.useState("");
   useEffect(() => {
     !fetchProfile && setUserId(data.authorizedData._id);
-  }, [data]);
+  }, [data, fetchProfile]);
 
   // Gets user's id from profile
   const {
@@ -70,7 +70,7 @@ const useTransferFund = () => {
     register,
     getValues,
     handleSubmit,
-    setError,
+
     trigger,
     clearErrors,
     formState: { errors, isValid },
@@ -92,7 +92,7 @@ const useTransferFund = () => {
     if (userInput.length >= 8) {
       mutate({ acctNumber: userInput, loggedInUserID: userId });
     }
-  }, [userInput, userId]);
+  }, [userInput, userId, mutate]);
 
   //set user transaction  details to local storage
   const submitTransfer = (data) => {
@@ -194,7 +194,6 @@ const useTransferFund = () => {
     isOpen,
     onOpen,
     onClose,
-    submitTransfer,
   };
 };
 
