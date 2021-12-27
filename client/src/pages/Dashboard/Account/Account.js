@@ -1,6 +1,6 @@
 import Icon from "@chakra-ui/icon";
 import { Box, Heading, HStack, Spacer, Text, VStack } from "@chakra-ui/layout";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { VscBell } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import useAuth from "../../../auth/useAuth";
@@ -29,10 +29,15 @@ const Account = () => {
 
   const { balance } = useDashboard();
   const { data, isSuccess, isLoading } = useAuth();
-  console.log(data, isSuccess, isLoading, balance);
 
   // if user successfully logs in and if data is ready, set state
-
+  useEffect(() => {
+    if (!isLoading) {
+      if (isSuccess) {
+        setLoggedInUserDetails(data.authorizedData);
+      }
+    }
+  }, [isSuccess, isLoading, data]);
   return (
     <ProtectedComponent>
       <VStack

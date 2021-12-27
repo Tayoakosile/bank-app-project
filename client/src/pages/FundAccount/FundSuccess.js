@@ -19,7 +19,6 @@ const FundSuccess = () => {
   } = useFundAccountSuccess();
 
   if (isLoading) {
-    return <div>Loading</div>;
   }
 
   if (isError) {
@@ -35,9 +34,10 @@ const FundSuccess = () => {
             <FulLogo
               w="8"
               h="8"
+              textTransform="capitalize"
               fs="xl"
-              color="brand.500"
-              fill="brand.500"
+              color="brand.300"
+              fill="brand.300"
               as={Link}
               to="/"
             />

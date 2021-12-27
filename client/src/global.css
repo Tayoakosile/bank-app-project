@@ -81,3 +81,9 @@ body {
   background: yellow !important;
 }
 /* Paystack button */
+
+/* Profile
+ */
+.profile_header {
+  background: url("../src/assets/img/PatternPad.svg");
+}

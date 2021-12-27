@@ -16,17 +16,9 @@ const BottomMobileNav = () => {
             zIndex="12"
             bottom="0"
             h="12"
-            overflow=" hidden"
+            bg="brand.500"
+            overflow="hidden"
             as="nav"
-            _before={{
-              content:"''",
-              position: "absolute",
-              top: "0px",
-              left: "0px",
-              bottom: "0px",
-              right: "0px",
-              border: "1px solid orange",
-            }}
           >
             <BottomNavigation
               items={bottomNavItems}

@@ -56,11 +56,16 @@ const useBottomNavBar = () => {
     {
       title: "Home",
 
-      icon: <homeIcon style={{ fontSize: "18px", color: "yellow" }} />,
+      icon: <IoHomeSharp style={{ fontSize: "18px", color: "#e2e8f0" }} />,
 
       activeIcon: (
         <IoHomeSharp
-          style={{ fontSize: "18px", fill: "#a0b8db", strokeWidth: "1" }}
+          style={{
+            fontSize: "18px",
+            fill: "#0e3e84",
+            color: "#0e3e84",
+            strokeWidth: "1",
+          }}
         />
       ),
       onClick: () => history.push("/dashboard"),
@@ -69,16 +74,24 @@ const useBottomNavBar = () => {
     {
       title: "Transaction History",
 
-      icon: <FiBarChart style={{ fontSize: "18px" }} />,
+      icon: <FiBarChart style={{ fontSize: "18px", color: "#e2e8f0" }} />,
 
-      activeIcon: <FiBarChart style={{ fontSize: "18px", color: "red" }} />,
+      activeIcon: (
+        <FiBarChart
+          style={{ fontSize: "18px", fill: "#0e3e84", color: "#0e3e84" }}
+        />
+      ),
       onClick: () => history.push(`/transactionhistory/${userId}`),
     },
 
     {
       title: "Profile",
-      icon: <FiBarChart style={{ fontSize: "18px" }} />,
-      activeIcon: <FiBarChart style={{ fontSize: "18px", color: "red" }} />,
+      icon: <FiBarChart style={{ fontSize: "18px", color: "#e2e8f0" }} />,
+      activeIcon: (
+        <FiBarChart
+          style={{ fontSize: "18px", fill: "#0e3e84", color: "#0e3e84" }}
+        />
+      ),
       activeBgColor: "red",
       onClick: () => history.push("/account/profile"),
       //   onClick: () => alert(" clicked"),

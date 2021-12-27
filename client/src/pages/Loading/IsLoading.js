@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
 
 const IsLoading = () => {
-    return (
-        <div>
-            isLoading 
-        </div>
-    )
-}
+  return <div>loading</div>;
+};
 
-export default IsLoading
+export default IsLoading;
+    

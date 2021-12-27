@@ -1,11 +1,12 @@
 import React from "react";
 import { Redirect } from "react-router";
 import useAuth from "../auth/useAuth";
+import IsLoading from "../pages/Loading/IsLoading";
 
 const ProtectedComponent = ({ children }) => {
   const { isSuccess, isLoading, data, isError } = useAuth();
   if (isLoading) {
-    return <div>Loading</div>;
+    return <IsLoading />;
   }
   if (isError) {
     return <Redirect to="/login"></Redirect>;
