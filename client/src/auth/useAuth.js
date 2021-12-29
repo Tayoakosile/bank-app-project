@@ -59,17 +59,18 @@ const useAuth = () => {
         },
       });
 
-      return await data;
+      return data;
     },
     {
       refetchOnReconnect: true,
       refetchOnMount: true,
       refetchOnWindowFocus: true,
+      retry: 2,
     }
   );
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isError) {
       if (isSuccess) {
         if (data) {
           setUserId(data.authorizedData._id);

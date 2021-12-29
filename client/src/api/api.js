@@ -1,7 +1,7 @@
 import axiosAsync from "axios";
 
 export const axios = axiosAsync.create({
-  baseURL: "http://localhost:4000/user",
+  baseURL: "https://moneydais-app.herokuapp.com/user",
 });
 
 export const isUserEmailUnique = (url, mode, verify) => {
