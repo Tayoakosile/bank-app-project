@@ -24,8 +24,6 @@ export const SearchUsers = (req, res) => {
             if (result) {
               const updatedResult = result;
 
-              
-
               if (updatedResult._id == loggedInUserID) {
                 return res
                   .status(400)

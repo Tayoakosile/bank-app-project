@@ -69,11 +69,13 @@ const useAuth = () => {
   );
 
   useEffect(() => {
-    if (isSuccess) {
-      if (data) {
-        setUserId(data.authorizedData._id);
-        setData(data.authorizedData.email);
-        setUser(data.authorizedData);
+    if (!isLoading) {
+      if (isSuccess) {
+        if (data) {
+          setUserId(data.authorizedData._id);
+          setData(data.authorizedData.email);
+          setUser(data.authorizedData);
+        }
       }
     }
   }, [isSuccess, data]);

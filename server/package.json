@@ -31,6 +31,6 @@
     "node": "v14.16.1"
   },
   "scripts": {
-    "dev": "nodemon server.js"
+    "start": "node server.js"
   }
 }

@@ -1,4 +1,5 @@
 import { Avatar } from "@chakra-ui/avatar";
+import { reactLocalStorage } from "reactjs-localstorage";
 import { toast, ToastContainer } from "react-toastify";
 import {
   Box,
@@ -6,10 +7,12 @@ import {
   Heading,
   HStack,
   VStack,
+  Divider,
   Spacer,
 } from "@chakra-ui/layout";
 import {
   FormControl,
+  Button,
   FormLabel,
   Icon,
   Input,
@@ -149,29 +152,50 @@ const Profile = () => {
       </Box>
       <Box pl="4" pt="6">
         <Heading size="sm">Contact Details</Heading>
-        <VStack alignItems="flex-start" mt="4" spacing="3">
-          <HStack>
+        <VStack alignItems="flex-start" w="full" mt="4" spacing="3">
+          <HStack h="12" w="90%">
             <Heading size="sm" fontWeight="normal">
               Name
             </Heading>
+            <Spacer />
             <Heading size="sm">
               {firstname} {lastname}
             </Heading>
           </HStack>
-          <HStack>
+          <Divider />
+          <HStack h="12" w="90%">
             <Heading size="sm" fontWeight="normal">
               Username
             </Heading>
+            <Spacer />
             <Heading size="sm">{username}</Heading>
           </HStack>
-          <HStack>
+          <Divider />
+          <HStack h="12" w="96%" mr="4">
             <Heading size="sm" w="80%" fontWeight="normal">
               Email
             </Heading>
+            <Spacer />
             <Heading size="sm">{email}</Heading>
           </HStack>
         </VStack>
       </Box>
+
+      <Box w="90%" mt="8">
+        <Button
+          variant="ghost"
+          onClick={() => {
+            reactLocalStorage.remove("userToken");
+            history.push("/login");
+          }}
+          textAlign="left"
+          h="16"
+          size="lg"
+        >
+          Sign Out
+        </Button>
+      </Box>
+      <Box w="12" h="12" mt="24"></Box>
     </ProtectedComponent>
   );
 };

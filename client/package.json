@@ -37,6 +37,7 @@
     "react-ripples": "^2.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-select": "^5.2.1",
     "react-share": "^4.4.0",
     "react-spinners": "^0.11.0",
     "react-toastify": "^8.1.0",

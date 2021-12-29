@@ -1,9 +1,8 @@
-import { Button } from "@chakra-ui/button";
-import { ReactComponent as MailSent } from "../../assets/img/MailSent.svg";
+import Icon from "@chakra-ui/icon";
 import { Box, Center, Heading, Text } from "@chakra-ui/layout";
 import React from "react";
 import FulLogo from "../../assets/img/logo/FulLogo";
-import Icon from "@chakra-ui/icon";
+import { ReactComponent as MailSent } from "../../assets/img/MailSent.svg";
 
 const VerifyAccount = () => {
   return (

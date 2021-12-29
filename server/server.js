@@ -11,6 +11,11 @@ import { GridFsStorage } from "multer-gridfs-storage";
 import Route from "./routes/route.js";
 import User from "./models/SignUp.js";
 import transactionRoute from "./routes/transactionRoute.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 dotenv.config();
 // App initialization
@@ -19,9 +24,14 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 //Default config
+app.use(express.static(path.resolve(__dirname, "./build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./build", "index.html"));
+});
+
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
@@ -36,14 +46,14 @@ app.use((req, res, next) => {
       "GET, PUT, POST, PATCH, DELETE, OPTIONS"
     );
     res.setHeader("Access-Control-Allow-Credentials", true);
-    return res.status(200).json({});
+    return res.status(200).json({ success: true });
   }
   next();
 });
+
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 // Routes
 
 // Mongoose Initialization
@@ -82,6 +92,11 @@ db.once("open", () => {
     bucketName: "UsersProfileImages",
   });
   // Routes
+  app.get("/", (req, res) => {
+    res.status(200).json({ success: true });
+    console.log(hello);
+  });
+
   app.use("/user", Route);
   app.use("/user", transactionRoute);
 
@@ -129,6 +144,7 @@ db.once("open", () => {
       }
     });
   });
+
   console.log("Database fully connected");
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`);

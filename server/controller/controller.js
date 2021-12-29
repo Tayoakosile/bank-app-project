@@ -4,7 +4,7 @@ import Code from "../models/SecretCode.js";
 import User from "../models/SignUp.js";
 import { SecretCodeToUser } from "../utils/utils.js";
 export const isUserLoginsUnique = async (req, res) => {
-  const query = req.query;
+  const query = req.body;
   console.log(query);
   const userExists = await User.exists(query);
 

@@ -44,10 +44,10 @@ const useUpdateProfile = () => {
       /* After sending then send */
 
       if (isFileSuccess) {
-          const usersProfileImage = userProfileImage[0];
-          const usersImage = new FormData()
-          usersImage.append("file", userProfileImage[0]);
-          mutateFile(usersImage);
+        const usersProfileImage = userProfileImage[0];
+        const usersImage = new FormData();
+        usersImage.append("file", userProfileImage[0]);
+        mutateFile(usersImage);
         console.log("file success", userProfileImage[0]);
         // image compression options
         // const options = {
@@ -75,7 +75,9 @@ const useUpdateProfile = () => {
       }
     }
   };
-  const imageDisplayLink = `http://localhost:4000/user/display/${profileImg}`;
+  //   const imageDisplayLink = `http://localhost:4000/user/display/${profileImg}`;
+
+  const imageDisplayLink = `https://moneydais-app.herokuapp.com/user/display/${profileImg}`;
   console.log(imageDisplayLink);
   return {
     handleImageUpload,

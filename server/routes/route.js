@@ -7,6 +7,7 @@ import {
 import Login from "../controller/Login.js";
 import { StoreUserID } from "../controller/Profile/Profile.js";
 import isPasswordLinkStillValid from "../controller/resetPassword/isPasswordLinkStillValid.js";
+import Setting from "../controller/Setting/Setting.js";
 import RequestPasswordReset from "../controller/resetPassword/RequestPasswordReset.js";
 import RequestPasswordResetLink from "../controller/resetPassword/RequestPasswordResetLink.js";
 import { SearchUsers } from "../controller/SearchUsers/SearchUsers.js";
@@ -49,6 +50,10 @@ route.post("/transaction/set-pin", TransactionPin);
 route.post("/transaction/validatepin", ValidatePin);
 /* Transaction pin */
 
+// Users setting
+route.post("/account/setting/:id", Setting);
+
+// Users setting
 /* Search for user in the database */
 route.post("/search", SearchUsers);
 /* Search for user in the database */

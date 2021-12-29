@@ -26,8 +26,15 @@ import useValidateForm from "../../hooks/useValidateForm";
 import useStore from "../../zustand";
 
 export default function LoginIntoUserAccount() {
-  const { handleSubmit, register, onSubmit, errors, isValid, isLoading } =
-    useLogin();
+  const {
+    handleSubmit,
+    register,
+    onSubmit,
+    errors,
+    isValid,
+    isLoading,
+    ToastContainer,
+  } = useLogin();
   const { setData } = useStore((state) => state);
   const {
     isPasswordTypedIn,
@@ -240,6 +247,7 @@ export default function LoginIntoUserAccount() {
 
           {/* Login form here */}
         </Stack>
+        <Box as={ToastContainer} w="90%" mx="auto" mt='6' />
       </VStack>
     </>
   );

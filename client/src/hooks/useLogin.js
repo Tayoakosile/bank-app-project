@@ -1,6 +1,6 @@
-import { useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast, ToastContainer } from "react-toastify";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
 import { reactLocalStorage } from "reactjs-localstorage";
@@ -36,7 +36,16 @@ const useLogin = () => {
     if (isSuccess) {
       const { data: usersDetails } = data;
       reactLocalStorage.set("userToken", usersDetails.token);
-      history.push("dashboard");
+      toast.success("Login Successfull", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        onClose: () => history.push("dashboard"),
+        progress: undefined,
+      });
     }
 
     if (isError) {
@@ -55,7 +64,15 @@ const useLogin = () => {
     }
   }, [isLoading, isError, isSuccess, data, error]);
 
-  return { register, isValid, handleSubmit, onSubmit, errors, isLoading };
+  return {
+    register,
+    isValid,
+    handleSubmit,
+    onSubmit,
+    errors,
+    isLoading,
+    ToastContainer,
+  };
 };
 
 export default useLogin;
