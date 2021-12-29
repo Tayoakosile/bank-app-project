@@ -17,7 +17,7 @@ const useVerifyAccount = () => {
   const email = useStore((state) => state.email);
 
   const { data, isError, isSuccess, error, isLoading } = useQuery(
-    "verifcationcode",
+    "verificationcode",
     () =>
       postRequestToServer(`/verification/verify-account/${_id}/${secretCode}`)
   );
@@ -26,7 +26,7 @@ const useVerifyAccount = () => {
     if (isSuccess) {
       data && setUserStatus(data.email);
     }
-    console.log("errors here", data, isError, isSuccess, error,isLoading);
+    console.log("errors here", data, isError, isSuccess, error, isLoading);
   }, [data, isError, isSuccess, error, isLoading]);
 
   return { email, userStatus, data, isError, isSuccess, error, isLoading };

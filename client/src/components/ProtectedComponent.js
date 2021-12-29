@@ -15,7 +15,7 @@ const ProtectedComponent = ({ children }) => {
   if (isSuccess) {
     const { authorizedData: result } = data;
     // User's verified status /
-    const { status: UserStatus, transaction_pin } = result;
+    const { status: UserStatus, transaction_pin } = !isLoading && result;
 
     return (
       <>

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import User from "../../models/SignUp.js";
 
 export const checkToken = (req, res, next) => {
-  const header = req.headers["authorization"];
+  const header = req.headers["Authorization"];
   if (typeof header !== "undefined") {
     const bearer = header.split(" ");
     const token = bearer[1];
@@ -32,7 +32,7 @@ export const AuthorizeUser = (req, res) => {
         _id: mongoose.Types.ObjectId(`${_id}`),
       }).populate("account");
       const authorizedData = getUserInfo;
-
+// DOnt know what is happening
       res.status(200).json({
         message: "Successful log in",
         authorizedData,
