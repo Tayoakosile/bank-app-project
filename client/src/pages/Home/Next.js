@@ -1,17 +1,44 @@
 import { Box, Center, Heading, HStack, Text } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
 import FulLogo from "../../assets/img/logo/FulLogo";
+import useMotionComponent from "../../hooks/useMotionComponent";
 
+const BoxMotion = motion(Box);
 
 const Next = () => {
+  const { CenterMotion, HeadingMotion, TextMotion, BoxMotion } =
+    useMotionComponent();
+
+  const CenterMotionVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: { delay: 0.4 },
+    },
+  };
   return (
-    <Box className="home-intro" as="section">
+    <BoxMotion
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      when="beforeChildren"
+      transition={{ delay: 0.1, duration: 1, type: "tween" }}
+      className="home-intro"
+      as="section"
+    >
       {/* Company logo */}
-      <Center pt="8">
+      <CenterMotion
+        variants={CenterMotionVariants}
+        initial="hidden"
+        animate="visible"
+        pt="8"
+      >
         <FulLogo w={"8"} h="8" />
-      </Center>
+      </CenterMotion>
       {/* Company logo */}
 
       <Center
@@ -23,7 +50,9 @@ const Next = () => {
         textAlign="center"
         color="#fff"
       >
-        <Heading fontSize="3xl">Make Transfer, the secure way.</Heading>
+        <HeadingMotion fontSize="3xl">
+          Make Transfer, the secure way.
+        </HeadingMotion>
         <Text
           textAlign="center"
           fontWeight="normal"
@@ -76,7 +105,7 @@ const Next = () => {
           Log in
         </Button>
       </HStack>
-    </Box>
+    </BoxMotion>
   );
 };
 
