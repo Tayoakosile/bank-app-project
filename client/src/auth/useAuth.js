@@ -65,21 +65,22 @@ const useAuth = () => {
       refetchOnReconnect: true,
       refetchOnMount: true,
       refetchOnWindowFocus: true,
-      retry: 2,
     }
   );
 
   useEffect(() => {
     if (!isError) {
       if (isSuccess) {
-        if (data) {
+        if (data !== undefined) {
           setUserId(data.authorizedData._id);
           setData(data.authorizedData.email);
           setUser(data.authorizedData);
+          console.log(data, "data here");
         }
       }
     }
-  }, [isSuccess, data]);
+    isError && console.log("error");
+  }, [isSuccess, data, isError]);
   console.log(data);
 
   return {

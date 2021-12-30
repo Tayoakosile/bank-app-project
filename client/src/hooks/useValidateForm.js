@@ -100,7 +100,7 @@ const useValidateForm = () => {
           return false;
         });
     },
-    [setError]
+    []
   );
 
   // Submit form

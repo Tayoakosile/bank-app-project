@@ -66,6 +66,13 @@ route.post("/transaction-history", AllTransaction);
 route.post("/notification", AllNotifications);
 /* Search for user in the database */
 
+/* Search for user in the database */
+route.get("/", (req, res) => {
+  res.status(500).json({ success: true,message:'yello' });
+  console.log("hello");
+});
+/* Search for user in the database */
+
 /* Validate user account balance (Check if amount in database is greater than amount user selected) */
 route.post("/validatebalance", ValidateBalance);
 /* Validate user account balance */

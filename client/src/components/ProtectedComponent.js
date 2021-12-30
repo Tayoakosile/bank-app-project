@@ -8,12 +8,13 @@ const ProtectedComponent = ({ children }) => {
   if (isLoading) {
     return <IsLoading />;
   }
-  if (isError) {
+
+  if (isError || data === undefined) {
     return <Redirect to="/login"></Redirect>;
   }
 
   if (isSuccess) {
-    const { authorizedData: result } = data;
+    const { authorizedData: result } = data !== undefined && data;
     // User's verified status /
     const { status: UserStatus, transaction_pin } = !isLoading && result;
 

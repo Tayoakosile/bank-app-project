@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import User from "../../models/SignUp.js";
 
 export const checkToken = (req, res, next) => {
-  const header = req.headers["Authorization"];
+  const header = req.headers["authorization"];
   if (typeof header !== "undefined") {
     const bearer = header.split(" ");
     const token = bearer[1];
@@ -21,7 +21,7 @@ export const AuthorizeUser = (req, res) => {
   jwt.verify(req.token, process.env.JWT_SECRET, async (err, userDetails) => {
     if (err) {
       console.log("ERROR: Could not connect to the protected route");
-      res.status(403).json({ success: false });
+      res.status(403).json({ message: 'forbidden' });
     } else {
       const {
         getUserInfo: { _id },
@@ -32,6 +32,7 @@ export const AuthorizeUser = (req, res) => {
         _id: mongoose.Types.ObjectId(`${_id}`),
       }).populate("account");
       const authorizedData = getUserInfo;
+      
 // DOnt know what is happening
       res.status(200).json({
         message: "Successful log in",

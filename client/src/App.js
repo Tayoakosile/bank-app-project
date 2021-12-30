@@ -36,7 +36,7 @@ const App = () => {
   return (
     <React.Fragment>
       <Navigation />
-      <AnimatePresence exitBeforeEnter >
+      <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.key}>
           <Route exact path="/signup">
             <SignUp />
