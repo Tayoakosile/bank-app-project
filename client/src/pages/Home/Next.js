@@ -1,42 +1,71 @@
-import { Box, Center, Heading, HStack, Text } from "@chakra-ui/layout";
+import { Center, HStack } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
 import FulLogo from "../../assets/img/logo/FulLogo";
 import useMotionComponent from "../../hooks/useMotionComponent";
 
-const BoxMotion = motion(Box);
-
 const Next = () => {
-  const { CenterMotion, HeadingMotion, TextMotion, BoxMotion } =
+  const { CenterMotion, HeadingMotion, TextMotion, BoxMotion, ButtonMotion } =
     useMotionComponent();
 
-  const CenterMotionVariants = {
+  const BoxMotionVariants = {
     hidden: {
       opacity: 0,
     },
     visible: {
       opacity: 1,
-      transition: { delay: 0.4 },
+      transition: { delay: 0.2, ease: "easeInOut" },
+      when: "beforeChildren",
+      staggerChildren: 0.2,
     },
   };
+
+  const HeroTextVariant = {
+    hidden: {
+      scale: 0.5,
+      opacity: 0.2,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+
+      transition: { delay: 0.5, type: "tween" },
+    },
+    TextHidden: {
+      x: "100vw",
+      opacity: 0.2,
+      transition: { delay: 0.7, type: "tween" },
+    },
+    TextVisible: {
+      scale: 1,
+      x: 0,
+      opacity: 1,
+      transition: { delay: 0.5, type: "tween", duration: "0.8" },
+    },
+  };
+
+  const buttonVariant = {
+    hidden: {
+      opacity: 0,
+      scale: 1.4,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+    },
+  };
+
   return (
     <BoxMotion
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      when="beforeChildren"
-      transition={{ delay: 0.1, duration: 1, type: "tween" }}
+      variants={BoxMotionVariants}
+      initial="hidden"
+      animate="visible"
       className="home-intro"
       as="section"
     >
       {/* Company logo */}
-      <CenterMotion
-        variants={CenterMotionVariants}
-        initial="hidden"
-        animate="visible"
-        pt="8"
-      >
+      <CenterMotion pt="8">
         <FulLogo w={"8"} h="8" />
       </CenterMotion>
       {/* Company logo */}
@@ -50,10 +79,19 @@ const Next = () => {
         textAlign="center"
         color="#fff"
       >
-        <HeadingMotion fontSize="3xl">
+        <HeadingMotion
+          variants={HeroTextVariant}
+          initial="hidden"
+          animate="visible"
+          fontSize="3xl"
+          pb="6"
+        >
           Make Transfer, the secure way.
         </HeadingMotion>
-        <Text
+        <HeadingMotion
+          variants={HeroTextVariant}
+          initial="TextHidden"
+          animate="TextVisible"
           textAlign="center"
           fontWeight="normal"
           color="brand.100"
@@ -61,7 +99,7 @@ const Next = () => {
         >
           Fund and make transactions to your loved ones with Moneydais, the
           online bank app you definitely need.
-        </Text>
+        </HeadingMotion>
       </Center>
 
       <HStack
@@ -74,7 +112,11 @@ const Next = () => {
         w="84%"
         ml=""
       >
-        <Button
+        <ButtonMotion
+          variants={buttonVariant}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.6, type: "spring", duration: 0.4 }}
           textTransform="uppercase"
           as={Link}
           to="/signup"
@@ -87,8 +129,12 @@ const Next = () => {
           rounded="4px"
         >
           Sign up
-        </Button>
-        <Button
+        </ButtonMotion>
+        <ButtonMotion
+          variants={buttonVariant}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.7, type: "spring", duration: 0.4 }}
           border="1px solid"
           as={Link}
           to="/login"
@@ -103,7 +149,7 @@ const Next = () => {
           fontWeight="bold"
         >
           Log in
-        </Button>
+        </ButtonMotion>
       </HStack>
     </BoxMotion>
   );

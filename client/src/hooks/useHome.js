@@ -6,7 +6,7 @@ const useHome = () => {
  useEffect(() => {
   const showNextPageAfterSomeSec = setTimeout(() => {
    setShowNextPage(true)
-  }, 5000)
+  }, 4500)
 
   return () => {
    clearTimeout(showNextPageAfterSomeSec)
