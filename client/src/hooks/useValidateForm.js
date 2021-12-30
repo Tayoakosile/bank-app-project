@@ -6,8 +6,10 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { isUserEmailUnique, postRequestToServer } from "../api/api";
 import useStore from "../zustand/index";
+import useMotionComponent from "../hooks/useMotionComponent";
 
 const useValidateForm = () => {
+  const { HeadingMotion, TextMotion, FormErrorMotion } = useMotionComponent();
   const [isFirstNameTypedIn, setIsFirstNameTypedIn] = useState(false);
   /* Labels */
   const [isLastNameTypedIn, setIsLastNameTypedIn] = useState(false);
@@ -124,6 +126,9 @@ const useValidateForm = () => {
     }
   }, [isLoading, isSuccess, isError]);
   // Get response from backend
+
+  // animations
+
   return {
     register,
     handleSubmit,
@@ -149,6 +154,9 @@ const useValidateForm = () => {
     isLoading,
     isSuccess,
     isError,
+    HeadingMotion,
+    TextMotion,
+    FormErrorMotion,
   };
 };
 

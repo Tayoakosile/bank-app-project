@@ -19,6 +19,9 @@ const Next = () => {
       when: "beforeChildren",
       staggerChildren: 0.2,
     },
+    exit: {
+      opacity: 0,
+    },
   };
 
   const HeroTextVariant = {
@@ -61,6 +64,7 @@ const Next = () => {
       variants={BoxMotionVariants}
       initial="hidden"
       animate="visible"
+      exit="exit"
       className="home-intro"
       as="section"
     >

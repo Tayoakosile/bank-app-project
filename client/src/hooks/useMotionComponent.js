@@ -1,8 +1,25 @@
-import { Center,Button, Box, Heading, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  FormErrorMessage,
+  Button,
+  Center,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Link,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 const useMotionComponent = () => {
   const BoxMotion = motion(Box);
+  const FormErrorMotion = motion(FormErrorMessage);
   const ButtonMotion = motion(Button);
   const HeadingMotion = motion(Heading);
   const VStackMotion = motion(VStack);
@@ -15,6 +32,7 @@ const useMotionComponent = () => {
     CenterMotion,
     BoxMotion,
     ButtonMotion,
+    FormErrorMotion,
   };
 };
 
