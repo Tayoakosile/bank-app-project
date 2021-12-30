@@ -19,6 +19,8 @@ import { motion } from "framer-motion";
 
 const useMotionComponent = () => {
   const BoxMotion = motion(Box);
+  const FormControlMotion = motion(FormControl);
+  const StackMotion = motion(Stack);
   const FormErrorMotion = motion(FormErrorMessage);
   const ButtonMotion = motion(Button);
   const HeadingMotion = motion(Heading);
@@ -33,6 +35,8 @@ const useMotionComponent = () => {
     BoxMotion,
     ButtonMotion,
     FormErrorMotion,
+    StackMotion,
+    FormControlMotion,
   };
 };
 

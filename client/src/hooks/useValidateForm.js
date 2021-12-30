@@ -9,7 +9,14 @@ import useStore from "../zustand/index";
 import useMotionComponent from "../hooks/useMotionComponent";
 
 const useValidateForm = () => {
-  const { HeadingMotion, TextMotion, FormErrorMotion } = useMotionComponent();
+  const {
+    HeadingMotion,
+    TextMotion,
+    FormError,
+    StackMotion,
+    MotionStackMotion,
+    FormControlMotion,
+  } = useMotionComponent();
   const [isFirstNameTypedIn, setIsFirstNameTypedIn] = useState(false);
   /* Labels */
   const [isLastNameTypedIn, setIsLastNameTypedIn] = useState(false);
@@ -156,7 +163,10 @@ const useValidateForm = () => {
     isError,
     HeadingMotion,
     TextMotion,
-    FormErrorMotion,
+    FormError,
+    MotionStackMotion,
+    StackMotion,
+    FormControlMotion,
   };
 };
 
