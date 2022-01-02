@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import useStore from "../zustand";
-import randomize from "randomatic";
-import { usePaystackPayment } from "react-paystack";
 
 const useDashboard = () => {
   const [userDetails, setUserDetails] = useState("***");
@@ -13,9 +11,10 @@ const useDashboard = () => {
     if (user) {
       setUserDetails(user);
     }
-  }, []);
+  }, [user]);
 
   const { balance } = userDetails.account !== undefined && userDetails.account;
+  console.log(balance);
 
   return { balance };
 };

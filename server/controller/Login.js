@@ -74,11 +74,17 @@ export const Login = (req, res) => {
                     token: `${token}`,
                   });
                   /* if user status is pending */
-                  if (user.status == "pending") {
+                  console.log(user.status,'user status')
+
+                  if (user.status == "Pending") {
                     const isUserRegistered = await User.findById({
                       _id: mongoose.Types.ObjectId(`${user._id}`),
                     });
 
+                  console.log(
+                    isUserRegistered,
+                    "is user registerd isUserRegistered"
+                  );
                     /* If user is found in database */
                     if (isUserRegistered) {
                       const { email, firstname, lastname, _id } =
@@ -87,7 +93,7 @@ export const Login = (req, res) => {
                       const checkCode = await Code.exists({
                         email: isUserRegistered.email,
                       });
-                      console.log(checkCode);
+                      console.log(checkCode,'check code');
                       /* If it has expired then create new verification one and send to users email account */
                       if (!checkCode) {
                         const generateSecretCode = await NewSecretCode(

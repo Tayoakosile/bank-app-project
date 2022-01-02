@@ -13,35 +13,27 @@ import User from "./models/SignUp.js";
 import transactionRoute from "./routes/transactionRoute.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-dotenv.config();
-// App initialization
 
 const app = express();
 const port = process.env.PORT || 4000;
-
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-app.use(express.static(path.resolve(__dirname, "./build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./build", "index.html"));
-});
+// App initialization
 
-
-//Default config
-
+// //Default config
+app.use(express.static(path.join(__dirname, "build")));
 
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-
-  next();
-});
-
 app.use(passport.initialize());
 app.use(passport.session());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
@@ -79,14 +71,16 @@ const upload = multer({ storage });
 //mongoose Initialization
 const db = mongoose.connection;
 let gfs;
+
 db.once("open", () => {
   gfs = new mongoose.mongo.GridFSBucket(db.db, {
     bucketName: "UsersProfileImages",
   });
   // Routes
+
   app.get("/", (req, res) => {
     res.status(200).json({ success: true });
-    console.log(hello);
+    console.log("hello");
   });
 
   app.use("/user", Route);
@@ -138,6 +132,11 @@ db.once("open", () => {
   });
 
   console.log("Database fully connected");
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/build/index.html"));
+  });
+
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
   });

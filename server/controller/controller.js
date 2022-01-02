@@ -4,16 +4,16 @@ import Code from "../models/SecretCode.js";
 import User from "../models/SignUp.js";
 import { SecretCodeToUser } from "../utils/utils.js";
 export const isUserLoginsUnique = async (req, res) => {
-  const query = req.body;
+  const query = req.query;
   console.log(query);
   const userExists = await User.exists(query);
-
+  console.log();
   userExists
     ? res
         .status(400)
         .json({ success: true, message: "Email address Already Exist" })
     : res.status(200).json({ success: false, message: "Doesnt exist" });
-  console.log(userExists, query);
+  console.log(userExists, req.body,'user exist');
 };
 
 // Verify User Email Address

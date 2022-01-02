@@ -19,7 +19,7 @@ const TransactionPin = () => {
   const { userDetail, redirectToConfirmPassword } = useTransactionPin();
   const { pin } = userDetail;
   return (
-    <>
+    <ProtectedComponent>
       {pin === null ? (
         <>
           <Heading size="md" p="6" textTransform="capitalize">
@@ -27,7 +27,7 @@ const TransactionPin = () => {
           </Heading>
 
           <Center p="6">
-            <VStack mt="12" spacing="12">
+            <VStack mt="8" spacing="8">
               {/* Icon with text */}
               <VStack spacing="1" textAlign="center">
                 <Icon as={TransactionPinSvg} w="40" h="40" />
@@ -57,7 +57,7 @@ const TransactionPin = () => {
       ) : (
         <Redirect to="/dashboard"></Redirect>
       )}
-    </>
+    </ProtectedComponent>
   );
 };
 

@@ -12,7 +12,6 @@ const useTransactionPin = () => {
   //   Get user id from global state
   const [userDetail, setUserDetail] = useState({ pin: null, _id: null });
 
-  const [successAlert, setSuccessAlert] = useState(false);
   //   Get user id from global state
   const [isSamePinCode, setIsSamePinCode] = useState(true);
 
@@ -44,21 +43,18 @@ const useTransactionPin = () => {
   // Checks if the pin are the same
 
   //submit Pin to Backend
-  const UpdateUserPin = () => {
-    const userPin = reactLocalStorage.get("userPin");
-    mutate({ pin: userPin, _id: user._id });
-  };
-  useEffect(() => {
-    if (isSuccess) {
-      reactLocalStorage.remove("userPin");
-      setSuccessAlert(isSuccess);
-    }
-  }, [isSuccess, isLoading]);
-  console.log(successAlert);
+  // const UpdateUserPin = () => {
+  //   const userPin = reactLocalStorage.get("userPin");
+  //   mutate({ pin: userPin, _id: user._id });
+  // };
 
-  const onClose = () => {
-    setSuccessAlert(false);
-  };
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     reactLocalStorage.remove("userPin");
+  //   }
+  // }, [isSuccess, isLoading]);
+
+
   //submit Pin to Backend
 
   return {
@@ -66,13 +62,10 @@ const useTransactionPin = () => {
     userDetail,
     redirectToConfirmPassword,
     isSamePinCode,
-    UpdateUserPin,
+    // UpdateUserPin,
     isSuccess,
     isLoading,
     isError,
-    cancelRef,
-    onClose,
-    successAlert,
   };
 };
 

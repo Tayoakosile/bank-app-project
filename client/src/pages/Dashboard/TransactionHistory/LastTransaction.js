@@ -21,7 +21,7 @@ const LastTransaction = () => {
       {/* Last transaction and view all component */}
       <HStack pl="5" alignItems="baseline">
         <Box>
-          <Heading fontSize="lg">Last Transactions</Heading>
+          <Heading fontSize="md">Last Transactions</Heading>
         </Box>
         <Spacer />
         <Button
@@ -79,7 +79,7 @@ const LastTransaction = () => {
                         </VStack>{" "}
                         <VStack alignItems="flex-start" spacing="1">
                           {" "}
-                          <Heading size="sm">
+                          <Heading size="xs">
                             {transaction_type === "Fund" && "Funded wallet"}{" "}
                             {transaction_type === "credit" && `${sender_name}`}{" "}
                             {transaction_type === "debit" && `${receiver}`}{" "}
@@ -105,7 +105,7 @@ const LastTransaction = () => {
                               : "red.500"
                           }
                         >
-                          <Text as="span" fontSize="2xl">
+                          <Text as="span" fontSize="xl">
                             {transaction_type !== "debit" ? "+" : "-"}
                           </Text>
                           <Heading size="md">{amount}</Heading>

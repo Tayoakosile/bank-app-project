@@ -17,9 +17,11 @@ const Notification = () => {
     <Box h="100%">
       {/* Notification Heading */}
       <Headroom>
-        <HStack bg="white" py="6" mb="4" pl={2} spacing="4">
-          <Back />
-          <Heading size="lg">Notifications</Heading>
+        <HStack bg="brand.500" py="6" mb="4" pl={2} spacing="4">
+          <Back color="white" />
+          <Heading size="md" color="white">
+            Notifications
+          </Heading>
         </HStack>
       </Headroom>
       {/* Notification Heading */}

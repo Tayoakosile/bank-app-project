@@ -5,19 +5,15 @@ import IsLoading from "../pages/Loading/IsLoading";
 
 const ProtectedComponent = ({ children }) => {
   const { isSuccess, isLoading, data, isError } = useAuth();
+  const { authorizedData: result } = data !== undefined && data;
+  // User's verified status /
+  const { status: UserStatus, transaction_pin } = !isLoading && result;
+
   if (isLoading) {
     return <IsLoading />;
   }
 
-  if (isError || data === undefined) {
-    return <Redirect to="/login"></Redirect>;
-  }
-
   if (isSuccess) {
-    const { authorizedData: result } = data !== undefined && data;
-    // User's verified status /
-    const { status: UserStatus, transaction_pin } = !isLoading && result;
-
     return (
       <>
         {UserStatus === "active" ? (
@@ -34,6 +30,12 @@ const ProtectedComponent = ({ children }) => {
       </>
     );
   }
+
+  if (isError) {
+    return <Redirect to="/login"></Redirect>;
+  }
+
+  return <>tayo</>;
 };
 
 export default ProtectedComponent;

@@ -48,6 +48,7 @@ const useAuth = () => {
     (state) => state
   );
   const token = reactLocalStorage.get("userToken");
+
   const { error, isLoading, isSuccess, data, isError } = useQuery(
     "authorize",
     async () => {
@@ -71,17 +72,15 @@ const useAuth = () => {
   useEffect(() => {
     if (!isError) {
       if (isSuccess) {
-        if (data !== undefined) {
+        if (data) {
           setUserId(data.authorizedData._id);
           setData(data.authorizedData.email);
           setUser(data.authorizedData);
-          console.log(data, "data here");
+          console.log(data);
         }
       }
     }
-    isError && console.log("error");
   }, [isSuccess, data, isError]);
-  console.log(data);
 
   return {
     error,

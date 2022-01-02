@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import {
   AllTransactions,
+  Error,
   Setting,
   ConfirmUserTransfer,
   Dashboard,
@@ -36,7 +37,6 @@ const App = () => {
   return (
     <React.Fragment>
       <Navigation />
-      <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.key}>
           <Route exact path="/signup">
             <SignUp />
@@ -141,11 +141,17 @@ const App = () => {
           </Route>
           {/* Users Settings*/}
 
+          {/* Users Settings */}
+        
+          {/* Users Settings*/}
+
           <Route exact path="/">
             <Home />
           </Route>
+            <Route path="*">
+            <Error />
+          </Route>
         </Switch>
-      </AnimatePresence>
     </React.Fragment>
   );
 };

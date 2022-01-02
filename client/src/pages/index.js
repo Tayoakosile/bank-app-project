@@ -2,6 +2,7 @@ import SignUp from "./SignUp/SignUp";
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
 import Setting from "./Setting/Settings";
+import Error from "./Error/Error404";
 import ResetPassword from "./ResetPassword/ResetPassword";
 import AllTransactions from "./Dashboard/TransactionHistory/AllTransactions";
 import ResetPasswordCodeSent from "./ResetPassword/ResetPasswordCodeSent";
@@ -58,4 +59,5 @@ export {
   Notification,
   AllTransactions,
   Setting,
+  Error,
 };

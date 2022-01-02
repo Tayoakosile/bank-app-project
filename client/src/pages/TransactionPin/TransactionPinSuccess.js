@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 const TransactionPinSuccess = () => {
   const history = useHistory();
   return (
-    <VStack mt="56" spacing="32" w="90%" mx="auto" justifyContent="center">
+    <VStack mt="32" spacing="24" w="90%" mx="auto" justifyContent="center">
       <VStack>
         <Checkmark color="#1250a9" size="xLarge" />
         <Heading fontSize="4xl">Success</Heading>

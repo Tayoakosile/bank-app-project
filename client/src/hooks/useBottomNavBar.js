@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoHomeSharp } from "react-icons/io5";
 import { FiBarChart } from "react-icons/fi";
+import { CgProfile } from "react-icons/cg";
 import useStore from "../zustand/index";
 import { useHistory, useLocation } from "react-router-dom";
 const useBottomNavBar = () => {
@@ -86,9 +87,9 @@ const useBottomNavBar = () => {
 
     {
       title: "Profile",
-      icon: <FiBarChart style={{ fontSize: "18px", color: "#e2e8f0" }} />,
+      icon: <CgProfile style={{ fontSize: "18px", color: "#e2e8f0" }} />,
       activeIcon: (
-        <FiBarChart
+        <CgProfile
           style={{ fontSize: "18px", fill: "#0e3e84", color: "#0e3e84" }}
         />
       ),

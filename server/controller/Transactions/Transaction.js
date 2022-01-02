@@ -49,14 +49,17 @@ export const VerifyReferenceInTransaction = (req, res) => {
 export const VerifyTransaction = (req, res) => {
   const ref = randomatic("0A", 10);
   const { reference, trxref } = req.body;
-
+  console.log(req.body, trxref);
   verifyPayment(reference, (error, body) => {
     if (error) {
       console.log("error", error);
+      res.status(403).json({ success: false, message: `Error ${error}` });
     }
     // Data gotten from Paystack
     const { data } = JSON.parse(body);
+    console.log("user body from paystck", body);
     if (data) {
+      console.log("user transaction", data);
       const {
         metadata: { userId, transactionType, narration, accountId },
         amount,
@@ -125,7 +128,10 @@ export const VerifyTransaction = (req, res) => {
             );
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          res.status(403).json({ success: false, message: err });
+          console.log(err);
+        });
     }
   });
 };

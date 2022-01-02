@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 import { useToast } from "@chakra-ui/react";
-import { useMutation } from "react-query";
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
 import { useHistory } from "react-router-dom";
 import { isUserEmailUnique, postRequestToServer } from "../api/api";
 import useStore from "../zustand/index";

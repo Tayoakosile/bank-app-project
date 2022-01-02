@@ -1,6 +1,7 @@
 import axiosAsync from "axios";
 
 export const axios = axiosAsync.create({
+  // baseURL: "https://moneydais-app.herokuapp.com/user",
   baseURL: "http://localhost:4000/user",
 });
 

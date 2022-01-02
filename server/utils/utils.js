@@ -197,7 +197,7 @@ export const verificationEmailAddress = (lastname, url) => {
 
 
 
-  <!--[if !mso]><!-->
+  <!--[if !mso]><!--> 
   <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet" type="text/css">
   <!--<![endif]-->
 
@@ -862,7 +862,7 @@ export const resetUserPasswordTemplate = (firstname, lastname, url) => {
                             <td style="overflow-wrap:break-word;word-break:break-word;padding:16px 16px 16px 40px;font-family:'Cabin',sans-serif;" align="left">
 
                               <div align="left">
-                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Cabin',sans-serif;"><tr><td style="font-family:'Cabin',sans-serif;" align="left"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://localhost:3000/account/fund-success/BHD2EKTUM8" style="height:54px; v-text-anchor:middle; width:207px;" arcsize="7.5%" stroke="f" fillcolor="#114ea5"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Cabin',sans-serif;"><![endif]-->
+                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Cabin',sans-serif;"><tr><td style="font-family:'Cabin',sans-serif;" align="left"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href=${url}style="height:54px; v-text-anchor:middle; width:207px;" arcsize="7.5%" stroke="f" fillcolor="#114ea5"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Cabin',sans-serif;"><![endif]-->
                                 <a href="${url}" target="_blank" style="box-sizing: border-box;display: inline-block;font-family:'Cabin',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #114ea5; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;border-top-width: 0px; border-top-style: dotted; border-top-color: #CCC; border-left-width: 0px; border-left-style: dotted; border-left-color: #CCC; border-right-width: 0px; border-right-style: dotted; border-right-color: #CCC; border-bottom-width: 0px; border-bottom-style: dotted; border-bottom-color: #CCC;">
                                   <span style="display:block;padding:17px 32px;line-height:120%;"><span style="font-size: 16px; line-height: 19.2px;"><strong><span style="line-height: 19.2px; font-size: 16px;">Reset your Password</span></strong>
                                   </span>

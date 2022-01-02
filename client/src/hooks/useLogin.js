@@ -38,13 +38,13 @@ const useLogin = () => {
       reactLocalStorage.set("userToken", usersDetails.token);
       toast.success("Login Successfull", {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        onClose: () => history.push("dashboard"),
         progress: undefined,
+        onClose: () => history.push("dashboard"),
       });
     }
 

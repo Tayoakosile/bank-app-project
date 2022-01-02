@@ -103,9 +103,9 @@ const IsLoading = () => {
       exit={{ opacity: 0 }}
       when="beforeChildren"
       h="100%"
-      bg="brand.50"
+      bg="gray.50"
     >
-      <Icon as={Logo} fill="brand.500" color="brand.500" />
+      <Icon as={Logo} fill="brand.700" color="brand.700" />
     </CenterMotion>
   );
 };

@@ -21,6 +21,7 @@ import { GoMail } from "react-icons/go";
 import { Link as Navigator, Redirect } from "react-router-dom";
 import FulLogo from "../../assets/img/logo/FulLogo";
 import useAuth from "../../auth/useAuth";
+import MetaTags from "../../components/MetaTags";
 import useLogin from "../../hooks/useLogin";
 import useValidateForm from "../../hooks/useValidateForm";
 import useStore from "../../zustand";
@@ -53,6 +54,7 @@ export default function LoginIntoUserAccount() {
 
   return (
     <>
+    <MetaTags title ='Login to your MoneyDais Account'/>
       <VStack minH={"100vh"} w="full" spacing="3">
         <Box w="full">
           <Center className="signup" h="48">
@@ -76,8 +78,13 @@ export default function LoginIntoUserAccount() {
           </Box>
           {/* Login form here */}
 
-          <Box>
-            <Stack spacing={7} as="form" onSubmit={handleSubmit(onSubmit)}>
+          <Box w="full">
+            <Stack
+              w="full"
+              spacing={7}
+              as="form"
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <FormControl
                 className="moneydais-form"
                 id="email"
@@ -192,7 +199,12 @@ export default function LoginIntoUserAccount() {
                 </FormErrorMessage>
               </FormControl>
 
-              <Stack spacing={6} mb="4" mt=".8rem !important">
+              <Stack
+                spacing={6}
+                w="100% !important"
+                mb="4"
+                mt=".8rem !important"
+              >
                 <Stack
                   direction={{ base: "column", sm: "row" }}
                   align={"flex-end"}
@@ -218,9 +230,9 @@ export default function LoginIntoUserAccount() {
                   loadingText="Signing in"
                   textTransform="capitalize"
                   fontSize="sm"
-                  w="92%"
-                  mx="auto"
-                  h="16"
+                  w="85%"
+                  mx="auto !iMPORTANT"
+                  h="14"
                   variant={"solid"}
                 >
                   Sign in
@@ -247,7 +259,7 @@ export default function LoginIntoUserAccount() {
 
           {/* Login form here */}
         </Stack>
-        <Box as={ToastContainer} w="90%" mx="auto" mt='6' />
+        <Box as={ToastContainer} w="90%" mx="auto" mt="6" />
       </VStack>
     </>
   );

@@ -13,7 +13,9 @@ export const checkToken = (req, res, next) => {
   } else {
     //If header is undefined return Forbidden (403)
     console.log("login required");
-    res.status(403).json({ success: false, message: "login required" });
+    res
+      .status(403)
+      .json({ success: false, message: "Forbidden:Login required" });
   }
 };
 
@@ -21,7 +23,7 @@ export const AuthorizeUser = (req, res) => {
   jwt.verify(req.token, process.env.JWT_SECRET, async (err, userDetails) => {
     if (err) {
       console.log("ERROR: Could not connect to the protected route");
-      res.status(403).json({ message: 'forbidden' });
+      res.status(403).json({ message: "forbidden" });
     } else {
       const {
         getUserInfo: { _id },
@@ -32,8 +34,8 @@ export const AuthorizeUser = (req, res) => {
         _id: mongoose.Types.ObjectId(`${_id}`),
       }).populate("account");
       const authorizedData = getUserInfo;
-      
-// DOnt know what is happening
+
+      // DOnt know what is happening
       res.status(200).json({
         message: "Successful log in",
         authorizedData,

@@ -10,7 +10,7 @@ const BottomMobileNav = () => {
   return (
     <>
       {ToggleBottomNavVisibility && (
-        <ProtectedComponent>
+        <>
           <Box
             position="fixed"
             zIndex="12"
@@ -27,7 +27,7 @@ const BottomMobileNav = () => {
               defaultSelected={0}
             ></BottomNavigation>
           </Box>
-        </ProtectedComponent>
+        </>
       )}
     </>
   );

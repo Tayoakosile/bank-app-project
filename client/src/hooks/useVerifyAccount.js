@@ -18,8 +18,10 @@ const useVerifyAccount = () => {
 
   const { data, isError, isSuccess, error, isLoading } = useQuery(
     "verificationcode",
-    () =>
+    () => {
+      
       postRequestToServer(`/verification/verify-account/${_id}/${secretCode}`)
+    }
   );
 
   useEffect(() => {

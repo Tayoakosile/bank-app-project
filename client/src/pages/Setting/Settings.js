@@ -87,7 +87,7 @@ const Settings = () => {
               name="lastname"
               className="Active"
               color={errors.lastname ? "#a12000" : "brand.600"}
-              fontSize="md"
+              fontSize="sm"
               className="Active"
               opacity={errors.lastname ? "1" : ".80"}
               fontWeight={errors.lastname ? "bold" : "bold"}
@@ -121,13 +121,12 @@ const Settings = () => {
 
           {/*Save changes button */}
 
-          <Box w="full" mx="auto" left="4" position="fixed" bottom="24">
+          <Box mt="6" w="full" mx="auto">
             <Button
               role="submit"
               type="submit"
               bg="brand.500"
               isLoading={isLoading}
-              textTransform="uppercase"
               fontSize="lg"
               w="90%"
               mx="auto"
@@ -138,7 +137,7 @@ const Settings = () => {
             </Button>
           </Box>
         </VStack>
-        <Box h="20" w="full" bg="gray.100"></Box>
+        <Box h="20" w="full"></Box>
       </Box>
       <Box as={ToastContainer} w="90%" mx="auto" />
     </ProctectedComponent>

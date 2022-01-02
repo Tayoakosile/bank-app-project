@@ -59,6 +59,7 @@ const useFundAccount = () => {
   //   Fund user account
   const FundAccount = (amount) => {
     // If funding account is successful, run this function
+    
     const onSuccess = (reference) => {
       mutate(reference);
     };

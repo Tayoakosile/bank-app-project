@@ -23,7 +23,6 @@ import { Link as NavLink } from "react-router-dom";
 import FulLogo from "../../assets/img/logo/FulLogo";
 import Header from "../../components/Heading";
 import useValidateForm from "../../hooks/useValidateForm";
-import useMotionComponent from "../../hooks/useMotionComponent";
 export default function SplitScreen() {
   const {
     register,
@@ -48,11 +47,8 @@ export default function SplitScreen() {
     isError,
   } = useValidateForm();
 
-  const { StackMotion, HeadingMotion } = useMotionComponent();
   return (
-    <StackMotion
-      exit={{opacity:0}}
-      minH={"100vh"} direction={{ base: "column", md: "row" }}>
+    <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex flex={1}>
         <Center className="signup" h="48">
           <FulLogo w="10" h="10" fs="2xl" />
@@ -413,9 +409,8 @@ export default function SplitScreen() {
               </Link>
             </Text>
           </VStack>
-        
         </Stack>
       </Flex>
-    </StackMotion>
+    </Stack>
   );
 }

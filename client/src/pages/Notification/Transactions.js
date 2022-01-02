@@ -33,22 +33,23 @@ const Transactions = ({ notification }) => {
 
   return (
     <ProtectedComponent>
-      <Box shadow="lg" py="6" px="4" w="full" h="64">
+      <Box shadow="xs" border py="6" px="4" w="full" h="56">
         {/* Payment type */}
         <HStack spacing="4">
           {transaction_type === "debit" && (
             <IconButton
-              colorScheme="red"
-              size="xs"
-              variant="outline"
+              colorScheme="brand"
+              size="sm"
+              variant="solid"
               icon={<HiOutlineUpload />}
             />
           )}
           {transaction_type === "Fund" && (
             <IconButton
-              size="xs"
-              colorScheme="brand"
-              variant="outline"
+              size="md"
+              bg="brand.50"
+              color="brand.700"
+              variant="solid"
               icon={<IoCashOutline />}
             />
           )}
@@ -69,7 +70,7 @@ const Transactions = ({ notification }) => {
         </HStack>
         {/* Payment type */}
 
-        <VStack spacing="-1" my="6">
+        <VStack spacing="1" my="3">
           <Heading
             fontWeight="normal"
             size="sm"
@@ -78,18 +79,18 @@ const Transactions = ({ notification }) => {
           >
             {message}
           </Heading>
-          <Heading fontWeight="bold" color="brand.600" fontSize="5xl">
-            <Text pr="1" as="span" fontSize="0.4em">
+          <Heading fontWeight="bold" color="brand.600" fontSize="3xl">
+            <Text pr="1" as="span" fontSize="0.5em">
               ₦
             </Text>
-            {amount}
+            {amount}.00
           </Heading>
         </VStack>
 
-        <HStack mt="2" mb="2" pr="4">
+        <HStack pr="4" mb="1">
           <Heading
             fontWeight="normal"
-            size="sm"
+            size="xs"
             color="gray.400"
             textTransform="capitalize"
           >
@@ -97,22 +98,24 @@ const Transactions = ({ notification }) => {
             {transaction_type === "debit" && "Receiver"}
             {transaction_type === "Fund" && "Payment Method"} :
           </Heading>
-          <Heading size="sm">
+          <Heading size="xs" fontWeight="normal" color="brand.500">
             {sender && sender}
             {receiver && receiver}
             {transaction_type === "Fund" && payment_method}
           </Heading>
         </HStack>
-        <Divider />
         {/* Date and view details */}
-        <HStack mt="4" fontSize="md" justifyContent="space-between">
-          <Text fontSize="sm">
+        <Divider />
+        <HStack mt="4" justifyContent="space-between">
+          <Text fontSize="xs">
             {moment(created_at).format(" MMM Do, YYYY h:mm:a")}
           </Text>
 
           <Link as={Navigate} to={`/account/fund-success/${ref}`}>
-            <HStack>
-              <Text as="span">View</Text>
+            <HStack spacing="0">
+              <Text as="span" color="brand.500" fontSize="sm">
+                View
+              </Text>
               <Icon
                 as={HiOutlineChevronRight}
                 w="4"
