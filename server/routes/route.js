@@ -68,7 +68,7 @@ route.post("/notification", AllNotifications);
 
 /* Search for user in the database */
 route.get("/", (req, res) => {
-  res.status(500).json({ success: true,message:'yello' });
+  res.status(403).json({ success: true,message:'Forbidden' });
   console.log("hello");
 });
 /* Search for user in the database */

@@ -45,7 +45,7 @@ const LastTransaction = () => {
                 narration,
                 created_at,
                 status,
-                receiver,
+                receiver_name,
                 sender_name,
                 transaction_type,
                 ref,
@@ -82,7 +82,7 @@ const LastTransaction = () => {
                           <Heading size="xs">
                             {transaction_type === "Fund" && "Funded wallet"}{" "}
                             {transaction_type === "credit" && `${sender_name}`}{" "}
-                            {transaction_type === "debit" && `${receiver}`}{" "}
+                            {transaction_type === "debit" && `${receiver_name}`}{" "}
                           </Heading>{" "}
                           <Text
                             color="gray.500"
