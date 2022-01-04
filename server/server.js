@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import fs from "fs";
 import crypto from "crypto";
 import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import mongoose from "mongoose";
 import multer from "multer";
 import { GridFsStorage } from "multer-gridfs-storage";
@@ -17,6 +19,8 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 4000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 //Default config
 app.use(cors());
@@ -40,6 +44,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+app.use(express.static(path.join(__dirname, "build")));
+
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -130,6 +136,10 @@ db.once("open", () => {
     });
   });
   console.log("Database fully connected");
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/build/index.html"));
+  });
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
   });
