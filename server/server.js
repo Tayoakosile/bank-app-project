@@ -23,6 +23,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 //Default config
+app.use(express.static(path.join(__dirname, "build")));
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb" }));
@@ -34,17 +35,9 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "x-www-form-urlencoded, Origin, X-Requested-With, Content-Type, Accept, Authorization, *"
   );
-  if (req.method === "OPTIONS") {
-    res.header(
-      "Access-Control-Allow-Methods",
-      "GET, PUT, POST, PATCH, DELETE, OPTIONS"
-    );
-    res.setHeader("Access-Control-Allow-Credentials", true);
-    return res.status(200).json({});
-  }
+
   next();
 });
-app.use(express.static(path.join(__dirname, "build")));
 
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
@@ -135,11 +128,12 @@ db.once("open", () => {
       }
     });
   });
-  console.log("Database fully connected");
-
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname + "/build/index.html"));
   });
+
+  console.log("Database fully connected");
+
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
   });
