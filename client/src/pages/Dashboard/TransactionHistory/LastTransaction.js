@@ -2,7 +2,7 @@ import { Box, Heading, HStack, Spacer, Text, VStack } from "@chakra-ui/layout";
 import { Button, Icon, Table, Tbody, Td, Tr } from "@chakra-ui/react";
 import randomatic from "randomatic";
 import React from "react";
-import { BsWallet, BsUpload, BsDownload } from "react-icons/bs";
+import { BsDownload, BsUpload, BsWallet } from "react-icons/bs";
 import { Link, useHistory } from "react-router-dom";
 import useTransactionHistory from "../../../hooks/useTransactionHistory";
 import useStore from "../../../zustand/index";

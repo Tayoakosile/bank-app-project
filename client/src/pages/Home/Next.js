@@ -1,4 +1,4 @@
-import { Center, HStack } from "@chakra-ui/layout";
+import { Center, Heading, HStack,Box } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -6,10 +6,7 @@ import FulLogo from "../../assets/img/logo/FulLogo";
 import useMotionComponent from "../../hooks/useMotionComponent";
 
 const Next = () => {
-  const { CenterMotion, HeadingMotion, TextMotion, BoxMotion, ButtonMotion } =
-    useMotionComponent();
-
-  const BoxMotionVariants = {
+  const BoxVariants = {
     hidden: {
       opacity: 0,
     },
@@ -60,8 +57,8 @@ const Next = () => {
   };
 
   return (
-    <BoxMotion
-      variants={BoxMotionVariants}
+    <Box
+      variants={BoxVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
@@ -69,9 +66,9 @@ const Next = () => {
       as="section"
     >
       {/* Company logo */}
-      <CenterMotion pt="8">
+      <Center pt="8">
         <FulLogo w={"8"} h="8" />
-      </CenterMotion>
+      </Center>
       {/* Company logo */}
 
       <Center
@@ -83,7 +80,7 @@ const Next = () => {
         textAlign="center"
         color="#fff"
       >
-        <HeadingMotion
+        <Heading
           variants={HeroTextVariant}
           initial="hidden"
           animate="visible"
@@ -91,8 +88,8 @@ const Next = () => {
           pb="6"
         >
           Make Transfer, the secure way.
-        </HeadingMotion>
-        <HeadingMotion
+        </Heading>
+        <Heading
           variants={HeroTextVariant}
           initial="TextHidden"
           animate="TextVisible"
@@ -103,7 +100,7 @@ const Next = () => {
         >
           Fund and make transactions to your loved ones with Moneydais, the
           online bank app you definitely need.
-        </HeadingMotion>
+        </Heading>
       </Center>
 
       <HStack
@@ -116,8 +113,7 @@ const Next = () => {
         w="84%"
         ml=""
       >
-        <ButtonMotion
-          variants={buttonVariant}
+        <Button
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.6, type: "spring", duration: 0.4 }}
@@ -133,8 +129,8 @@ const Next = () => {
           rounded="4px"
         >
           Sign up
-        </ButtonMotion>
-        <ButtonMotion
+        </Button>
+        <Button
           variants={buttonVariant}
           initial="hidden"
           animate="visible"
@@ -153,9 +149,9 @@ const Next = () => {
           fontWeight="bold"
         >
           Log in
-        </ButtonMotion>
+        </Button>
       </HStack>
-    </BoxMotion>
+    </Box>
   );
 };
 

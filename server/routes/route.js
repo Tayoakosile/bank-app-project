@@ -50,7 +50,7 @@ route.post("/transaction/set-pin", TransactionPin);
 route.post("/transaction/validatepin", ValidatePin);
 /* Transaction pin */
 
-// Users setting
+// Users settings
 route.post("/account/setting/:id", Setting);
 
 // Users setting
